@@ -18,31 +18,32 @@
   <meta name="author" content="prelearn">
   <meta name="keywords" content="">
   
-    <meta name="description" content="交易树(MPT) 只组织当前区块的交易。 提供默克尔证明。 查询操作。  收据树(MPT) 由于  bloom filter 高效查找存在性。 生成摘要，查看映射函数是否存在。 哈希之后映射。  可能会误报，不会不报。 false positive。 不支持删除操作。 添加计数器才可以进行参数操作，类似链接。 每个交易都有一个bloom fliter。 块头有一个总的Bloom filter。 快">
+    <meta name="description" content="理论     为了实现15秒左右的共识，为权益证明实现提供更多的时间。  回退了300万个  难度炸弹的调整在拜占庭阶段。  调整区块的奖励。   具体的代码实现拜占庭阶段挖矿难度调整">
 <meta property="og:type" content="article">
-<meta property="og:title" content="04-ETH-交易树与收据树">
-<meta property="og:url" content="https://prelearn-code.github.io/2024/07/29/04-ETH-%E4%BA%A4%E6%98%93%E6%A0%91%E4%B8%8E%E6%94%B6%E6%8D%AE%E6%A0%91/index.html">
+<meta property="og:title" content="07-ETH-难度调整">
+<meta property="og:url" content="https://prelearn-code.github.io/2024/07/30/07-ETH-%E9%9A%BE%E5%BA%A6%E8%B0%83%E6%95%B4/index.html">
 <meta property="og:site_name" content="prelearn-code">
-<meta property="og:description" content="交易树(MPT) 只组织当前区块的交易。 提供默克尔证明。 查询操作。  收据树(MPT) 由于  bloom filter 高效查找存在性。 生成摘要，查看映射函数是否存在。 哈希之后映射。  可能会误报，不会不报。 false positive。 不支持删除操作。 添加计数器才可以进行参数操作，类似链接。 每个交易都有一个bloom fliter。 块头有一个总的Bloom filter。 快">
+<meta property="og:description" content="理论     为了实现15秒左右的共识，为权益证明实现提供更多的时间。  回退了300万个  难度炸弹的调整在拜占庭阶段。  调整区块的奖励。   具体的代码实现拜占庭阶段挖矿难度调整">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240729223126.png">
-<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240729225256.png">
-<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240729225626.png">
-<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240729225710.png">
-<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240729225847.png">
-<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240729225947.png">
-<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240729230334.png">
-<meta property="article:published_time" content="2024-07-29T15:08:09.000Z">
-<meta property="article:modified_time" content="2024-07-29T15:11:16.415Z">
+<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240730170810.png">
+<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240730170925.png">
+<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240730171104.png">
+<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240730171145.png">
+<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240730171630.png">
+<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240730171915.png">
+<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240730172050.png">
+<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240730172201.png">
+<meta property="article:published_time" content="2024-07-30T15:57:03.000Z">
+<meta property="article:modified_time" content="2024-07-30T16:01:39.706Z">
 <meta property="article:author" content="prelearn">
 <meta property="article:tag" content="BlockChain">
 <meta property="article:tag" content="ETH">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240729223126.png">
+<meta name="twitter:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240730170810.png">
   
   
   
-  <title>04-ETH-交易树与收据树 - prelearn-code</title>
+  <title>07-ETH-难度调整 - prelearn-code</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -208,7 +209,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="04-ETH-交易树与收据树"></span>
+            <span id="subtitle" data-typed-text="07-ETH-难度调整"></span>
           
         </div>
 
@@ -219,8 +220,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-07-29 23:08" pubdate>
-          2024年7月29日 晚上
+        <time datetime="2024-07-30 23:57" pubdate>
+          2024年7月30日 晚上
         </time>
       </span>
     
@@ -231,7 +232,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          231 字
+          71 字
         
       </span>
     
@@ -242,7 +243,7 @@
         
         
         
-          2 分钟
+          1 分钟
         
       </span>
     
@@ -279,54 +280,28 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">04-ETH-交易树与收据树</h1>
+            <h1 id="seo-header">07-ETH-难度调整</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="交易树-MPT"><a href="#交易树-MPT" class="headerlink" title="交易树(MPT)"></a>交易树(MPT)</h1><ul>
-<li>只组织当前区块的交易。</li>
-<li>提供默克尔证明。</li>
-<li>查询操作。</li>
-</ul>
-<h1 id="收据树-MPT"><a href="#收据树-MPT" class="headerlink" title="收据树(MPT)"></a>收据树(MPT)</h1><ul>
-<li>由于</li>
-</ul>
-<h1 id="bloom-filter"><a href="#bloom-filter" class="headerlink" title="bloom filter"></a>bloom filter</h1><ul>
-<li>高效查找存在性。</li>
-<li>生成摘要，查看映射函数是否存在。</li>
-<li>哈希之后映射。 </li>
-<li>可能会误报，不会不报。</li>
-<li>false positive。</li>
-<li>不支持删除操作。</li>
-<li>添加计数器才可以进行参数操作，类似链接。</li>
-<li>每个交易都有一个bloom fliter。</li>
-<li>块头有一个总的Bloom filter。</li>
-<li>快速过滤。</li>
-<li><img src="/../pic/Pasted%20image%2020240729223126.png" srcset="/img/loading.gif" lazyload></li>
-</ul>
-<h1 id="交易驱动状态机-ETH"><a href="#交易驱动状态机-ETH" class="headerlink" title="交易驱动状态机-ETH"></a>交易驱动状态机-ETH</h1><h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><h2 id="账户状态是否可以只包含这两个账号的状态。"><a href="#账户状态是否可以只包含这两个账号的状态。" class="headerlink" title="账户状态是否可以只包含这两个账号的状态。"></a>账户状态是否可以只包含这两个账号的状态。</h2><ul>
-<li>不方便找到账户的信息。</li>
-<li>新建区块需要找到创世区块。</li>
-</ul>
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><h2 id="交易树与收据树的创建"><a href="#交易树与收据树的创建" class="headerlink" title="交易树与收据树的创建"></a>交易树与收据树的创建</h2><p><img src="/../pic/Pasted%20image%2020240729225256.png" srcset="/img/loading.gif" lazyload></p>
+                <h1 id="理论"><a href="#理论" class="headerlink" title="理论"></a>理论</h1><p><img src="/../pic/Pasted%20image%2020240730170810.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/../pic/Pasted%20image%2020240730170925.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/../pic/Pasted%20image%2020240730171104.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/../pic/Pasted%20image%2020240730171145.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
-<li>交易树的创建。</li>
-<li>收据树的创建。</li>
+<li><p>为了实现15秒左右的共识，为权益证明实现提供更多的时间。</p>
+</li>
+<li><p>回退了300万个<br><img src="/../pic/Pasted%20image%2020240730171630.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>难度炸弹的调整在拜占庭阶段。</p>
+</li>
+<li><p>调整区块的奖励。</p>
+</li>
 </ul>
-<h2 id="DeriveSha"><a href="#DeriveSha" class="headerlink" title="DeriveSha"></a>DeriveSha</h2><p>![[Pasted%20image%2020240729225540.png]]</p>
-<h2 id="trie"><a href="#trie" class="headerlink" title="trie"></a>trie</h2><p><img src="/../pic/Pasted%20image%2020240729225626.png" srcset="/img/loading.gif" lazyload></p>
-<h1 id="收据树的结构"><a href="#收据树的结构" class="headerlink" title="收据树的结构"></a>收据树的结构</h1><p><img src="/../pic/Pasted%20image%2020240729225710.png" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li>bloom：bloom filter</li>
-<li>logs：根据logs产生相应的bloom filter。</li>
-</ul>
-<h2 id="区块头的数据结构"><a href="#区块头的数据结构" class="headerlink" title="区块头的数据结构"></a>区块头的数据结构</h2><p><img src="/../pic/Pasted%20image%2020240729225847.png" srcset="/img/loading.gif" lazyload></p>
-<h2 id="create-bloom函数"><a href="#create-bloom函数" class="headerlink" title="create bloom函数"></a>create bloom函数</h2><p><img src="/../pic/Pasted%20image%2020240729225947.png" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li>映射三个位置。</li>
-</ul>
-<h2 id="查询bloom-filter"><a href="#查询bloom-filter" class="headerlink" title="查询bloom filter"></a>查询bloom filter</h2><p><img src="/../pic/Pasted%20image%2020240729230334.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="具体的代码实现"><a href="#具体的代码实现" class="headerlink" title="具体的代码实现"></a>具体的代码实现</h1><h2 id="拜占庭阶段挖矿难度调整"><a href="#拜占庭阶段挖矿难度调整" class="headerlink" title="拜占庭阶段挖矿难度调整"></a>拜占庭阶段挖矿难度调整</h2><p><img src="/../pic/Pasted%20image%2020240730171915.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/../pic/Pasted%20image%2020240730172050.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/../pic/Pasted%20image%2020240730172201.png" srcset="/img/loading.gif" lazyload></p>
 
                 
               </div>
@@ -381,8 +356,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>04-ETH-交易树与收据树</div>
-      <div>https://prelearn-code.github.io/2024/07/29/04-ETH-交易树与收据树/</div>
+      <div>07-ETH-难度调整</div>
+      <div>https://prelearn-code.github.io/2024/07/30/07-ETH-难度调整/</div>
     </div>
     <div class="license-meta">
       
@@ -394,13 +369,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年7月29日</div>
+          <div>2024年7月30日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年7月29日</div>
+          <div>2024年7月31日</div>
         </div>
       
       
@@ -431,18 +406,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/07/30/05-ETH-%E5%85%AC%E5%BC%8F%E6%9C%BA%E5%88%B6/" title="05-ETH-公式机制">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">05-ETH-公式机制</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/07/29/ShellCode/" title="ShellCode">
-                        <span class="hidden-mobile">ShellCode</span>
+                      <a href="/2024/07/30/06-ETH-%E6%8C%96%E7%9F%BF%E7%AE%97%E6%B3%95/" title="06-ETH-挖矿算法">
+                        <span class="hidden-mobile">06-ETH-挖矿算法</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

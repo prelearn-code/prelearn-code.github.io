@@ -18,31 +18,27 @@
   <meta name="author" content="prelearn">
   <meta name="keywords" content="">
   
-    <meta name="description" content="交易树(MPT) 只组织当前区块的交易。 提供默克尔证明。 查询操作。  收据树(MPT) 由于  bloom filter 高效查找存在性。 生成摘要，查看映射函数是否存在。 哈希之后映射。  可能会误报，不会不报。 false positive。 不支持删除操作。 添加计数器才可以进行参数操作，类似链接。 每个交易都有一个bloom fliter。 块头有一个总的Bloom filter。 快">
+    <meta name="description" content="共识机制（ghost） 作废块也有出块奖励，uncle block。  叔块奖励奖励的7&#x2F;8。  最多包含2个叔父区块。  包含了区块获得1&#x2F;32。    修改协议 区块部分辈分，只要是之前的未在最长链的区块，都算叔父区块。  最多有7辈分的叔。  为了尽快合并区块链。  解决临时性分叉。  防止篡改。  只能合并合法区块，包含了非法块就成为坏块。    奖励 block re">
 <meta property="og:type" content="article">
-<meta property="og:title" content="04-ETH-交易树与收据树">
-<meta property="og:url" content="https://prelearn-code.github.io/2024/07/29/04-ETH-%E4%BA%A4%E6%98%93%E6%A0%91%E4%B8%8E%E6%94%B6%E6%8D%AE%E6%A0%91/index.html">
+<meta property="og:title" content="05-ETH-公式机制">
+<meta property="og:url" content="https://prelearn-code.github.io/2024/07/30/05-ETH-%E5%85%AC%E5%BC%8F%E6%9C%BA%E5%88%B6/index.html">
 <meta property="og:site_name" content="prelearn-code">
-<meta property="og:description" content="交易树(MPT) 只组织当前区块的交易。 提供默克尔证明。 查询操作。  收据树(MPT) 由于  bloom filter 高效查找存在性。 生成摘要，查看映射函数是否存在。 哈希之后映射。  可能会误报，不会不报。 false positive。 不支持删除操作。 添加计数器才可以进行参数操作，类似链接。 每个交易都有一个bloom fliter。 块头有一个总的Bloom filter。 快">
+<meta property="og:description" content="共识机制（ghost） 作废块也有出块奖励，uncle block。  叔块奖励奖励的7&#x2F;8。  最多包含2个叔父区块。  包含了区块获得1&#x2F;32。    修改协议 区块部分辈分，只要是之前的未在最长链的区块，都算叔父区块。  最多有7辈分的叔。  为了尽快合并区块链。  解决临时性分叉。  防止篡改。  只能合并合法区块，包含了非法块就成为坏块。    奖励 block re">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240729223126.png">
-<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240729225256.png">
-<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240729225626.png">
-<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240729225710.png">
-<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240729225847.png">
-<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240729225947.png">
-<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240729230334.png">
-<meta property="article:published_time" content="2024-07-29T15:08:09.000Z">
-<meta property="article:modified_time" content="2024-07-29T15:11:16.415Z">
+<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240730154320.png">
+<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240730155608.png">
+<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240730161831.png">
+<meta property="article:published_time" content="2024-07-30T15:56:48.000Z">
+<meta property="article:modified_time" content="2024-07-30T16:00:03.053Z">
 <meta property="article:author" content="prelearn">
 <meta property="article:tag" content="BlockChain">
 <meta property="article:tag" content="ETH">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240729223126.png">
+<meta name="twitter:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240730154320.png">
   
   
   
-  <title>04-ETH-交易树与收据树 - prelearn-code</title>
+  <title>05-ETH-公式机制 - prelearn-code</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -208,7 +204,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="04-ETH-交易树与收据树"></span>
+            <span id="subtitle" data-typed-text="05-ETH-公式机制"></span>
           
         </div>
 
@@ -219,8 +215,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-07-29 23:08" pubdate>
-          2024年7月29日 晚上
+        <time datetime="2024-07-30 23:56" pubdate>
+          2024年7月30日 晚上
         </time>
       </span>
     
@@ -231,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          231 字
+          191 字
         
       </span>
     
@@ -279,54 +275,51 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">04-ETH-交易树与收据树</h1>
+            <h1 id="seo-header">05-ETH-公式机制</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="交易树-MPT"><a href="#交易树-MPT" class="headerlink" title="交易树(MPT)"></a>交易树(MPT)</h1><ul>
-<li>只组织当前区块的交易。</li>
-<li>提供默克尔证明。</li>
-<li>查询操作。</li>
+                <h1 id="共识机制（ghost）"><a href="#共识机制（ghost）" class="headerlink" title="共识机制（ghost）"></a>共识机制（ghost）</h1><ul>
+<li><p>作废块也有出块奖励，uncle block。</p>
+</li>
+<li><p>叔块奖励奖励的7&#x2F;8。</p>
+</li>
+<li><p>最多包含2个叔父区块。</p>
+</li>
+<li><p>包含了区块获得1&#x2F;32。</p>
+</li>
 </ul>
-<h1 id="收据树-MPT"><a href="#收据树-MPT" class="headerlink" title="收据树(MPT)"></a>收据树(MPT)</h1><ul>
-<li>由于</li>
+<p><img src="/../pic/Pasted%20image%2020240730154320.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="修改协议"><a href="#修改协议" class="headerlink" title="修改协议"></a>修改协议</h1><ul>
+<li><p>区块部分辈分，只要是之前的未在最长链的区块，都算叔父区块。</p>
+</li>
+<li><p>最多有7辈分的叔。</p>
+</li>
+<li><p>为了尽快合并区块链。</p>
+</li>
+<li><p>解决临时性分叉。</p>
+</li>
+<li><p>防止篡改。</p>
+</li>
+<li><p>只能合并合法区块，包含了非法块就成为坏块。</p>
+</li>
 </ul>
-<h1 id="bloom-filter"><a href="#bloom-filter" class="headerlink" title="bloom filter"></a>bloom filter</h1><ul>
-<li>高效查找存在性。</li>
-<li>生成摘要，查看映射函数是否存在。</li>
-<li>哈希之后映射。 </li>
-<li>可能会误报，不会不报。</li>
-<li>false positive。</li>
-<li>不支持删除操作。</li>
-<li>添加计数器才可以进行参数操作，类似链接。</li>
-<li>每个交易都有一个bloom fliter。</li>
-<li>块头有一个总的Bloom filter。</li>
-<li>快速过滤。</li>
-<li><img src="/../pic/Pasted%20image%2020240729223126.png" srcset="/img/loading.gif" lazyload></li>
+<p><img src="/../pic/Pasted%20image%2020240730155608.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="奖励"><a href="#奖励" class="headerlink" title="奖励"></a>奖励</h1><ul>
+<li><p>block reward：不会自动变化。</p>
+</li>
+<li><p>gas free：</p>
+</li>
+<li><p>叔父区块无法包含交易。</p>
+</li>
+<li><p>叔父区块只查header，交易容易与主链冲突。</p>
+</li>
+<li><p>叔块包含的交易会在后面的主链上进行执行。</p>
+</li>
+<li><p>只有分叉后的第一个区块才奖励。<br><img src="/../pic/Pasted%20image%2020240730161831.png" srcset="/img/loading.gif" lazyload></p>
+</li>
 </ul>
-<h1 id="交易驱动状态机-ETH"><a href="#交易驱动状态机-ETH" class="headerlink" title="交易驱动状态机-ETH"></a>交易驱动状态机-ETH</h1><h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><h2 id="账户状态是否可以只包含这两个账号的状态。"><a href="#账户状态是否可以只包含这两个账号的状态。" class="headerlink" title="账户状态是否可以只包含这两个账号的状态。"></a>账户状态是否可以只包含这两个账号的状态。</h2><ul>
-<li>不方便找到账户的信息。</li>
-<li>新建区块需要找到创世区块。</li>
-</ul>
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><h2 id="交易树与收据树的创建"><a href="#交易树与收据树的创建" class="headerlink" title="交易树与收据树的创建"></a>交易树与收据树的创建</h2><p><img src="/../pic/Pasted%20image%2020240729225256.png" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li>交易树的创建。</li>
-<li>收据树的创建。</li>
-</ul>
-<h2 id="DeriveSha"><a href="#DeriveSha" class="headerlink" title="DeriveSha"></a>DeriveSha</h2><p>![[Pasted%20image%2020240729225540.png]]</p>
-<h2 id="trie"><a href="#trie" class="headerlink" title="trie"></a>trie</h2><p><img src="/../pic/Pasted%20image%2020240729225626.png" srcset="/img/loading.gif" lazyload></p>
-<h1 id="收据树的结构"><a href="#收据树的结构" class="headerlink" title="收据树的结构"></a>收据树的结构</h1><p><img src="/../pic/Pasted%20image%2020240729225710.png" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li>bloom：bloom filter</li>
-<li>logs：根据logs产生相应的bloom filter。</li>
-</ul>
-<h2 id="区块头的数据结构"><a href="#区块头的数据结构" class="headerlink" title="区块头的数据结构"></a>区块头的数据结构</h2><p><img src="/../pic/Pasted%20image%2020240729225847.png" srcset="/img/loading.gif" lazyload></p>
-<h2 id="create-bloom函数"><a href="#create-bloom函数" class="headerlink" title="create bloom函数"></a>create bloom函数</h2><p><img src="/../pic/Pasted%20image%2020240729225947.png" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li>映射三个位置。</li>
-</ul>
-<h2 id="查询bloom-filter"><a href="#查询bloom-filter" class="headerlink" title="查询bloom filter"></a>查询bloom filter</h2><p><img src="/../pic/Pasted%20image%2020240729230334.png" srcset="/img/loading.gif" lazyload></p>
 
                 
               </div>
@@ -381,8 +374,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>04-ETH-交易树与收据树</div>
-      <div>https://prelearn-code.github.io/2024/07/29/04-ETH-交易树与收据树/</div>
+      <div>05-ETH-公式机制</div>
+      <div>https://prelearn-code.github.io/2024/07/30/05-ETH-公式机制/</div>
     </div>
     <div class="license-meta">
       
@@ -394,13 +387,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年7月29日</div>
+          <div>2024年7月30日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年7月29日</div>
+          <div>2024年7月31日</div>
         </div>
       
       
@@ -431,9 +424,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/07/30/05-ETH-%E5%85%AC%E5%BC%8F%E6%9C%BA%E5%88%B6/" title="05-ETH-公式机制">
+                      <a href="/2024/07/30/06-ETH-%E6%8C%96%E7%9F%BF%E7%AE%97%E6%B3%95/" title="06-ETH-挖矿算法">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">05-ETH-公式机制</span>
+                        <span class="hidden-mobile">06-ETH-挖矿算法</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -441,8 +434,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/07/29/ShellCode/" title="ShellCode">
-                        <span class="hidden-mobile">ShellCode</span>
+                      <a href="/2024/07/29/04-ETH-%E4%BA%A4%E6%98%93%E6%A0%91%E4%B8%8E%E6%94%B6%E6%8D%AE%E6%A0%91/" title="04-ETH-交易树与收据树">
+                        <span class="hidden-mobile">04-ETH-交易树与收据树</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
