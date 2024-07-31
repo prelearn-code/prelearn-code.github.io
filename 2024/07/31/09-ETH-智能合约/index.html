@@ -1,0 +1,829 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/myicon.png">
+  <link rel="icon" href="/img/myicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="prelearn">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="智能合约特点 可执行代码。  编程特点   不知支持对于哈希表进行遍历。 构造函数只能有一个。 调用函数放在data域中。 接受转账的函数需要设置为payable类型。 竞标的函数通过叫价把自己的以太币放在合约里面锁定。 withdraw函数撤回以太币函数。  合约调用另一个合约函数直接调用  被调用出现错误，调用者也出现错误。  使用address类型进行调用  被调用函数异常，调用者会继续执行">
+<meta property="og:type" content="article">
+<meta property="og:title" content="09-ETH-智能合约">
+<meta property="og:url" content="https://prelearn-code.github.io/2024/07/31/09-ETH-%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/index.html">
+<meta property="og:site_name" content="prelearn-code">
+<meta property="og:description" content="智能合约特点 可执行代码。  编程特点   不知支持对于哈希表进行遍历。 构造函数只能有一个。 调用函数放在data域中。 接受转账的函数需要设置为payable类型。 竞标的函数通过叫价把自己的以太币放在合约里面锁定。 withdraw函数撤回以太币函数。  合约调用另一个合约函数直接调用  被调用出现错误，调用者也出现错误。  使用address类型进行调用  被调用函数异常，调用者会继续执行">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240731154908.png">
+<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240731155038.png">
+<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240731155254.png">
+<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240731155404.png">
+<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240731162336.png">
+<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240731162647.png">
+<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240731184932.png">
+<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240731185943.png">
+<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240731190048.png">
+<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240731190411.png">
+<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240731154908.png">
+<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240731191813.png">
+<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240731191946.png">
+<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240731193147.png">
+<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240731193958.png">
+<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240731194050.png">
+<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240731195121.png">
+<meta property="article:published_time" content="2024-07-31T15:51:45.000Z">
+<meta property="article:modified_time" content="2024-07-31T15:54:05.997Z">
+<meta property="article:author" content="prelearn">
+<meta property="article:tag" content="BlockChain">
+<meta property="article:tag" content="ETH">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240731154908.png">
+  
+  
+  
+  <title>09-ETH-智能合约 - prelearn-code</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"prelearn-code.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>prelearn-code</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="09-ETH-智能合约"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-07-31 23:51" pubdate>
+          2024年7月31日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          11 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">09-ETH-智能合约</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="智能合约"><a href="#智能合约" class="headerlink" title="智能合约"></a>智能合约</h1><h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ul>
+<li>可执行代码。</li>
+</ul>
+<h2 id="编程特点"><a href="#编程特点" class="headerlink" title="编程特点"></a>编程特点</h2><p><img src="/../pic/Pasted%20image%2020240731154908.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/../pic/Pasted%20image%2020240731155038.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>不知支持对于哈希表进行遍历。</li>
+<li>构造函数只能有一个。</li>
+<li>调用函数放在data域中。</li>
+<li>接受转账的函数需要设置为payable类型。</li>
+<li>竞标的函数通过叫价把自己的以太币放在合约里面锁定。</li>
+<li>withdraw函数撤回以太币函数。</li>
+</ul>
+<h2 id="合约调用另一个合约函数"><a href="#合约调用另一个合约函数" class="headerlink" title="合约调用另一个合约函数"></a>合约调用另一个合约函数</h2><h3 id="直接调用"><a href="#直接调用" class="headerlink" title="直接调用"></a>直接调用</h3><p><img src="/../pic/Pasted%20image%2020240731155254.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>被调用出现错误，调用者也出现错误。</li>
+</ul>
+<h3 id="使用address类型进行调用"><a href="#使用address类型进行调用" class="headerlink" title="使用address类型进行调用"></a>使用address类型进行调用</h3><p><img src="/../pic/Pasted%20image%2020240731155404.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>被调用函数异常，调用者会继续执行。</li>
+</ul>
+<h3 id="代理调用"><a href="#代理调用" class="headerlink" title="代理调用"></a>代理调用</h3><p><img src="/../pic/Pasted%20image%2020240731162336.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>在当前环境执行被调用函数。</li>
+</ul>
+<h2 id="特殊函数"><a href="#特殊函数" class="headerlink" title="特殊函数"></a>特殊函数</h2><h3 id="fallback-函数"><a href="#fallback-函数" class="headerlink" title="fallback()函数"></a>fallback()函数</h3><p><img src="/../pic/Pasted%20image%2020240731162647.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>默认保底调用函数在data域中。</li>
+<li>合约接受转账。</li>
+<li>调用的合约函数不存在。</li>
+<li>为了填充data域。</li>
+</ul>
+<h2 id="创建与运行"><a href="#创建与运行" class="headerlink" title="创建与运行"></a>创建与运行</h2><h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><ul>
+<li>写代码，进行编译为bytecode形式。</li>
+<li>创建合约：通过向0x00地址发起0ETH的转账交易。</li>
+<li>代码放在data域中，并且支付一定的gas fee.</li>
+</ul>
+<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><ul>
+<li>智能合约运行在EVM上。</li>
+<li>EVM提供一个统一的运行平台。</li>
+<li>以太坊是一个交易驱动的状态机，要确定每个账户的状态。</li>
+<li>调用智能合约的交易发布到区块上，每个矿工都会执行这个交易。</li>
+<li>为了进行确定性的状态转移。</li>
+</ul>
+<h2 id="gas-fee"><a href="#gas-fee" class="headerlink" title="gas fee"></a>gas fee</h2><ul>
+<li>图灵完备系统。</li>
+<li>出现死循环是halting problem。</li>
+<li>执行合约收取gas fee，由发起人来支付。</li>
+<li>gas limit是最大限度的数据可用的gas 费用。</li>
+<li>先提取最大gas fee,多余大的再返回。</li>
+<li>少的话就就会回滚，退回到执行之前的状态。</li>
+<li>简单指令是便宜的，复杂的或者需要存储状态的指令很贵。</li>
+<li>读取公共数据是免费的。</li>
+<li>运行错误也会返回，运行的消耗的gas fee是不退回的，避免拒绝服务攻击。</li>
+</ul>
+<h3 id="扣费原理"><a href="#扣费原理" class="headerlink" title="扣费原理"></a>扣费原理</h3><ul>
+<li>状态数、交易树、收据树，都在本地维护。</li>
+<li>先在本地进行扣除最大gas 费用，不够不执行。</li>
+<li>执行完了加回多余的费用。</li>
+</ul>
+<h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><h3 id="不存在处理错误的操作。"><a href="#不存在处理错误的操作。" class="headerlink" title="不存在处理错误的操作。"></a>不存在处理错误的操作。</h3><h3 id="assert-bool-condition"><a href="#assert-bool-condition" class="headerlink" title="assert(bool condition)"></a>assert(bool condition)</h3><ul>
+<li>不满足条件就会抛出错误。</li>
+<li>用于内部的错误。</li>
+</ul>
+<h3 id="require-bool-condition"><a href="#require-bool-condition" class="headerlink" title="require(bool condition)"></a>require(bool condition)</h3><ul>
+<li>不满足条件就抛出错误。</li>
+<li>用于输入或者外部的组件引起的错误。</li>
+</ul>
+<h3 id="revert-throw"><a href="#revert-throw" class="headerlink" title="revert(){throw()}"></a>revert(){throw()}</h3><ul>
+<li>直接终止运行并进行回滚。</li>
+</ul>
+<h3 id="嵌套调用"><a href="#嵌套调用" class="headerlink" title="嵌套调用"></a>嵌套调用</h3><ul>
+<li>合约的执行具有原子性。</li>
+<li>一个合约调用另一个合约的函数。</li>
+<li>通过直接调用的方式会出现连锁回滚。</li>
+<li>通过address类型调用域代理调用不会混滚调用者的合约。</li>
+<li>转账默认调用fallback函数，也会进行嵌套调用。</li>
+</ul>
+<h2 id="区块发布"><a href="#区块发布" class="headerlink" title="区块发布"></a>区块发布</h2><h3 id="先执行再挖矿"><a href="#先执行再挖矿" class="headerlink" title="先执行再挖矿"></a>先执行再挖矿</h3><ul>
+<li>先获取三棵树的根哈希值。</li>
+</ul>
+<h3 id="消耗资源的节点获得什么补偿"><a href="#消耗资源的节点获得什么补偿" class="headerlink" title="消耗资源的节点获得什么补偿"></a>消耗资源的节点获得什么补偿</h3><ul>
+<li>没有补偿，还要验证交易的合法性与区块的同步性。</li>
+</ul>
+<h3 id="会不会不给汽油费不验证"><a href="#会不会不给汽油费不验证" class="headerlink" title="会不会不给汽油费不验证"></a>会不会不给汽油费不验证</h3><ul>
+<li>危害区块链安全，就相当于不干了。</li>
+<li>发新的区块时别人不认，相当于无效挖矿。</li>
+<li>可以抄别人的信息。</li>
+</ul>
+<h3 id="发布到区块链的交易是不是都是成功执行的"><a href="#发布到区块链的交易是不是都是成功执行的" class="headerlink" title="发布到区块链的交易是不是都是成功执行的"></a>发布到区块链的交易是不是都是成功执行的</h3><ul>
+<li>也要发布，需要扣汽油费。</li>
+<li>要不然无法扣汽油费。</li>
+</ul>
+<h4 id="收据树"><a href="#收据树" class="headerlink" title="收据树"></a>收据树</h4><p><img src="/../pic/Pasted%20image%2020240731184932.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="智能合约支不支持多核并行处理"><a href="#智能合约支不支持多核并行处理" class="headerlink" title="智能合约支不支持多核并行处理"></a>智能合约支不支持多核并行处理</h3><ul>
+<li>不支持多线程。</li>
+<li>状态转换是确定性的。</li>
+<li>多线程会导致结果不同。 </li>
+<li>产生随机数也不支持。</li>
+<li>使用的是伪随机数。</li>
+</ul>
+<h4 id="智能合约可以得到区块的信息"><a href="#智能合约可以得到区块的信息" class="headerlink" title="智能合约可以得到区块的信息"></a>智能合约可以得到区块的信息</h4><p><img src="/../pic/Pasted%20image%2020240731185943.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="智能合约可以获得调用的信息"><a href="#智能合约可以获得调用的信息" class="headerlink" title="智能合约可以获得调用的信息"></a>智能合约可以获得调用的信息</h4><p><img src="/../pic/Pasted%20image%2020240731190048.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>message.data：发起的合约函数。</li>
+<li>tx.origin：交易或者调用的最终发起者。</li>
+</ul>
+<h3 id="地址类型"><a href="#地址类型" class="headerlink" title="地址类型"></a>地址类型</h3><p><img src="/../pic/Pasted%20image%2020240731190411.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>address.transfer(amount)：转入函数。</li>
+<li>address.send：发送交易。</li>
+</ul>
+<h4 id="转账的三种方式"><a href="#转账的三种方式" class="headerlink" title="转账的三种方式"></a>转账的三种方式</h4><h5 id="transfer"><a href="#transfer" class="headerlink" title="transfer"></a>transfer</h5><ul>
+<li>专门转账的。</li>
+<li>失败就抛出异常，引起连锁回滚。</li>
+<li>汽油费少。</li>
+</ul>
+<h5 id="send"><a href="#send" class="headerlink" title="send"></a>send</h5><ul>
+<li>专门转账函数。</li>
+<li>失败返回false。</li>
+<li>汽油费少。</li>
+</ul>
+<h5 id="call-value"><a href="#call-value" class="headerlink" title="call.value"></a>call.value</h5><ul>
+<li>也不会引起失败连锁反应。</li>
+<li>把本来剩下的所有汽油费都发给执行节点。</li>
+</ul>
+<h2 id="拍卖合约"><a href="#拍卖合约" class="headerlink" title="拍卖合约"></a>拍卖合约</h2><h3 id="主合约"><a href="#主合约" class="headerlink" title="主合约"></a>主合约</h3><p><img src="/../pic/Pasted%20image%2020240731154908.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="竞拍合约函数"><a href="#竞拍合约函数" class="headerlink" title="竞拍合约函数"></a>竞拍合约函数</h3><p><img src="/../pic/Pasted%20image%2020240731191813.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="结束竞拍函数"><a href="#结束竞拍函数" class="headerlink" title="结束竞拍函数"></a>结束竞拍函数</h3><p><img src="/../pic/Pasted%20image%2020240731191946.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="攻击"><a href="#攻击" class="headerlink" title="攻击"></a>攻击</h3><h4 id="攻击合约"><a href="#攻击合约" class="headerlink" title="攻击合约"></a>攻击合约</h4><p><img src="/../pic/Pasted%20image%2020240731193147.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="攻击过程"><a href="#攻击过程" class="headerlink" title="攻击过程"></a>攻击过程</h3><ul>
+<li>在黑客调用这个黑客合约函数时，会进行竞拍。</li>
+<li>把黑客发送的竞拍币都发给竞拍函数。</li>
+<li>在竞拍结束后，要返回非最高出价人的钱时。</li>
+<li>找不到黑客合约的fallback函数，转账失败。</li>
+<li>且用的是tranfer进行的转账回去，就会出现合约执行错误。</li>
+<li>所有人都无法获得发出的拍卖资金。</li>
+<li>无法补救。</li>
+<li>code is law.</li>
+</ul>
+<h3 id="修改合约函数"><a href="#修改合约函数" class="headerlink" title="修改合约函数"></a>修改合约函数</h3><h4 id="拍卖结束撤回资金"><a href="#拍卖结束撤回资金" class="headerlink" title="拍卖结束撤回资金"></a>拍卖结束撤回资金</h4><p><img src="/../pic/Pasted%20image%2020240731193958.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="给受益人转钱"><a href="#给受益人转钱" class="headerlink" title="给受益人转钱"></a>给受益人转钱</h4><p><img src="/../pic/Pasted%20image%2020240731194050.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="黑客合约"><a href="#黑客合约" class="headerlink" title="黑客合约"></a>黑客合约</h4><p><img src="/../pic/Pasted%20image%2020240731195121.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>通过fallback一直进行递归调用转账.</li>
+<li>合约没钱了.</li>
+<li>汽油费不够了.</li>
+<li>调用栈超限.</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/BlockChain/" class="category-chain-item">BlockChain</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/BlockChain/ETH/" class="category-chain-item">ETH</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/BlockChain/" class="print-no-link">#BlockChain</a>
+      
+        <a href="/tags/ETH/" class="print-no-link">#ETH</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>09-ETH-智能合约</div>
+      <div>https://prelearn-code.github.io/2024/07/31/09-ETH-智能合约/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>prelearn</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年7月31日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2024年7月31日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/07/31/10-ETH-DAO/" title="10-ETH-DAO">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">10-ETH-DAO</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/07/31/08-ETH-%E6%9D%83%E7%9B%8A%E8%AF%81%E6%98%8E/" title="08-ETH-权益证明">
+                        <span class="hidden-mobile">08-ETH-权益证明</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

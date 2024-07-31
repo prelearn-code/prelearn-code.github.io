@@ -4,6 +4,180 @@
   
   
   <entry>
+    <title>13-ETH-区块链的应用</title>
+    <link href="/2024/07/31/13-ETH-%E5%8C%BA%E5%9D%97%E9%93%BE%E7%9A%84%E5%BA%94%E7%94%A8/"/>
+    <url>/2024/07/31/13-ETH-%E5%8C%BA%E5%9D%97%E9%93%BE%E7%9A%84%E5%BA%94%E7%94%A8/</url>
+    
+    <content type="html"><![CDATA[<h1 id="区块链不是万能的"><a href="#区块链不是万能的" class="headerlink" title="区块链不是万能的"></a>区块链不是万能的</h1><h1 id="区块链在全链上上链信息"><a href="#区块链在全链上上链信息" class="headerlink" title="区块链在全链上上链信息"></a>区块链在全链上上链信息</h1><h1 id="没有信任关系"><a href="#没有信任关系" class="headerlink" title="没有信任关系"></a>没有信任关系</h1><h1 id="去中心花与中心化模式是没有黑白分明的"><a href="#去中心花与中心化模式是没有黑白分明的" class="headerlink" title="去中心花与中心化模式是没有黑白分明的"></a>去中心花与中心化模式是没有黑白分明的</h1><h1 id="法律监管问题"><a href="#法律监管问题" class="headerlink" title="法律监管问题"></a>法律监管问题</h1><h1 id="跨国交易与转账"><a href="#跨国交易与转账" class="headerlink" title="跨国交易与转账"></a>跨国交易与转账</h1><h1 id="去中心化有自己的应用场景"><a href="#去中心化有自己的应用场景" class="headerlink" title="去中心化有自己的应用场景"></a>去中心化有自己的应用场景</h1><h1 id="效率在当时的历史条件上看"><a href="#效率在当时的历史条件上看" class="headerlink" title="效率在当时的历史条件上看"></a>效率在当时的历史条件上看</h1><h1 id="智能合约存在安全漏洞并且不易看懂"><a href="#智能合约存在安全漏洞并且不易看懂" class="headerlink" title="智能合约存在安全漏洞并且不易看懂"></a>智能合约存在安全漏洞并且不易看懂</h1><ul><li>程序化是大趋势。</li><li>不能因噎废食。</li><li>智能合约只能解决部分问题。</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>BlockChain</category>
+      
+      <category>ETH</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>BlockChain</tag>
+      
+      <tag>ETH</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>12-ETH-美链</title>
+    <link href="/2024/07/31/12-ETH-%E7%BE%8E%E9%93%BE/"/>
+    <url>/2024/07/31/12-ETH-%E7%BE%8E%E9%93%BE/</url>
+    
+    <content type="html"><![CDATA[<h1 id="美链-一种代币"><a href="#美链-一种代币" class="headerlink" title="美链(一种代币)"></a>美链(一种代币)</h1><ul><li><p>只是一个智能合约。</p></li><li><p>有自己的代币BEC.</p></li><li><p>ICO(Initial Coin offering)</p></li><li><p>没有自己的链，代币的交易都是通过智能合约的函数来实现的。</p></li><li><p>可以自定义规则，每个账户有多少代币存储在智能合约的状态变量里面。</p></li><li><p>ERC 20是以太坊的代币的一个标准，规范了所有发行的合约应该实现的功能和遵循的接口。（Ethereum Request for Comments）</p></li><li><p>美链中有一个叫做batchTransfer的函数，功能是向多个接收者发送代币，把这些代币从调用者里面扣除。<br><img src="/../pic/Pasted%20image%2020240731231353.png"></p></li><li><p>数据乘法溢出。</p></li><li><p>发送的很多。</p></li><li><p>减少的很少。</p></li></ul><h1 id="考虑是不是溢出"><a href="#考虑是不是溢出" class="headerlink" title="考虑是不是溢出"></a>考虑是不是溢出</h1><h1 id="safemath库自动判断是否溢出"><a href="#safemath库自动判断是否溢出" class="headerlink" title="safemath库自动判断是否溢出"></a>safemath库自动判断是否溢出</h1>]]></content>
+    
+    
+    <categories>
+      
+      <category>BlockChain</category>
+      
+      <category>ETH</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>BlockChain</tag>
+      
+      <tag>ETH</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>11-ETH-反思</title>
+    <link href="/2024/07/31/11-ETH-%E5%8F%8D%E6%80%9D/"/>
+    <url>/2024/07/31/11-ETH-%E5%8F%8D%E6%80%9D/</url>
+    
+    <content type="html"><![CDATA[<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><h2 id="智能合约的反思"><a href="#智能合约的反思" class="headerlink" title="智能合约的反思"></a>智能合约的反思</h2><h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ul><li>自动合约。</li><li>代码合同</li></ul><h3 id="不可篡改性"><a href="#不可篡改性" class="headerlink" title="不可篡改性"></a>不可篡改性</h3><ul><li>有漏洞无法进行补丁。</li><li>冻结账户终结交易是困难的。</li><li>只有软分叉才能实现冻结。</li><li>快转走钱。</li></ul><h3 id="什么是不可篡改的"><a href="#什么是不可篡改的" class="headerlink" title="什么是不可篡改的"></a>什么是不可篡改的</h3><ul><li>没有什么是不可篡改的。</li></ul><h3 id="语言设计上的问题"><a href="#语言设计上的问题" class="headerlink" title="语言设计上的问题"></a>语言设计上的问题</h3><ul><li>转账回调函数。</li><li>图灵完备是不是好。</li><li>模板化。</li><li>合约专门的书写部门可能。</li></ul><h3 id="many-eyeball-fallacy"><a href="#many-eyeball-fallacy" class="headerlink" title="many eyeball fallacy"></a>many eyeball fallacy</h3><ul><li>别人看不懂源代码。</li></ul><h3 id="去中心化"><a href="#去中心化" class="headerlink" title="去中心化"></a>去中心化</h3><ul><li>对规则的修改需要进行投票。</li><li>分叉是去中心化的体现，是民主的选择。</li></ul><h3 id="去中心化-分布式"><a href="#去中心化-分布式" class="headerlink" title="去中心化 !&#x3D; 分布式"></a>去中心化 !&#x3D; 分布式</h3><ul><li>去中心化是分布式。</li><li>分布式可以是中心化。</li><li>分布式是多个计算机处理一个任务。</li><li>去中心化是为了容错，速度很慢。</li><li>运行在上面的主要是某些控制逻辑。</li><li>大规模的计算与存储是十分不划算的。</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>BlockChain</category>
+      
+      <category>ETH</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>BlockChain</tag>
+      
+      <tag>ETH</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>10-ETH-DAO</title>
+    <link href="/2024/07/31/10-ETH-DAO/"/>
+    <url>/2024/07/31/10-ETH-DAO/</url>
+    
+    <content type="html"><![CDATA[<h1 id="DAO-Decenntralized-Automous-Orgarization"><a href="#DAO-Decenntralized-Automous-Orgarization" class="headerlink" title="DAO(Decenntralized Automous Orgarization)"></a>DAO(Decenntralized Automous Orgarization)</h1><h2 id="The-DAO（去中心化的自治组织的一个）"><a href="#The-DAO（去中心化的自治组织的一个）" class="headerlink" title="The DAO（去中心化的自治组织的一个）"></a>The DAO（去中心化的自治组织的一个）</h2><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><ul><li>通过发送给众筹组织以太币，从而获取代币，从而获得投票权。</li><li></li></ul><h3 id="收回以太币（拆分）"><a href="#收回以太币（拆分）" class="headerlink" title="收回以太币（拆分）"></a>收回以太币（拆分）</h3><ul><li>拆分成立子基金child DAO，然后投给自己。</li><li>拆分之前有7天讨论期。</li><li>拆分之后的子基金以太币28天冻结期。</li></ul><h4 id="the-dao-代码"><a href="#the-dao-代码" class="headerlink" title="the dao 代码"></a>the dao 代码</h4><p><img src="/../pic/Pasted%20image%2020240731220617.png"></p><ul><li>应该先设置为0，在进行转账操作。</li></ul><h4 id="补救措施（失败）"><a href="#补救措施（失败）" class="headerlink" title="补救措施（失败）"></a>补救措施（失败）</h4><ul><li>软件升级添加一个交易判断条件。</li><li>跟the dao相关的都不合法的软分叉。</li><li>但是没有问关于the dao的交易收取gas费用。</li></ul><h4 id="硬分叉的措施"><a href="#硬分叉的措施" class="headerlink" title="硬分叉的措施"></a>硬分叉的措施</h4><ul><li>强行把the dao的资金转入新的合约。</li><li>在第192w个区块进行强行转账。</li></ul><h4 id="不支持的分叉"><a href="#不支持的分叉" class="headerlink" title="不支持的分叉"></a>不支持的分叉</h4><ul><li>许多的以太币没有参与投票。</li><li>多数即正义？</li><li>新链叫ETC。</li><li>增加了Chain ID区分新旧链。</li></ul><h1 id="DAC-De-Au-Corporation"><a href="#DAC-De-Au-Corporation" class="headerlink" title="DAC(De Au Corporation)"></a>DAC(De Au Corporation)</h1><ul><li>盈利组织。</li><li>没有法人地位。</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>BlockChain</category>
+      
+      <category>ETH</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>BlockChain</tag>
+      
+      <tag>ETH</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>09-ETH-智能合约</title>
+    <link href="/2024/07/31/09-ETH-%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/"/>
+    <url>/2024/07/31/09-ETH-%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/</url>
+    
+    <content type="html"><![CDATA[<h1 id="智能合约"><a href="#智能合约" class="headerlink" title="智能合约"></a>智能合约</h1><h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ul><li>可执行代码。</li></ul><h2 id="编程特点"><a href="#编程特点" class="headerlink" title="编程特点"></a>编程特点</h2><p><img src="/../pic/Pasted%20image%2020240731154908.png"></p><p><img src="/../pic/Pasted%20image%2020240731155038.png"></p><ul><li>不知支持对于哈希表进行遍历。</li><li>构造函数只能有一个。</li><li>调用函数放在data域中。</li><li>接受转账的函数需要设置为payable类型。</li><li>竞标的函数通过叫价把自己的以太币放在合约里面锁定。</li><li>withdraw函数撤回以太币函数。</li></ul><h2 id="合约调用另一个合约函数"><a href="#合约调用另一个合约函数" class="headerlink" title="合约调用另一个合约函数"></a>合约调用另一个合约函数</h2><h3 id="直接调用"><a href="#直接调用" class="headerlink" title="直接调用"></a>直接调用</h3><p><img src="/../pic/Pasted%20image%2020240731155254.png"></p><ul><li>被调用出现错误，调用者也出现错误。</li></ul><h3 id="使用address类型进行调用"><a href="#使用address类型进行调用" class="headerlink" title="使用address类型进行调用"></a>使用address类型进行调用</h3><p><img src="/../pic/Pasted%20image%2020240731155404.png"></p><ul><li>被调用函数异常，调用者会继续执行。</li></ul><h3 id="代理调用"><a href="#代理调用" class="headerlink" title="代理调用"></a>代理调用</h3><p><img src="/../pic/Pasted%20image%2020240731162336.png"></p><ul><li>在当前环境执行被调用函数。</li></ul><h2 id="特殊函数"><a href="#特殊函数" class="headerlink" title="特殊函数"></a>特殊函数</h2><h3 id="fallback-函数"><a href="#fallback-函数" class="headerlink" title="fallback()函数"></a>fallback()函数</h3><p><img src="/../pic/Pasted%20image%2020240731162647.png"></p><ul><li>默认保底调用函数在data域中。</li><li>合约接受转账。</li><li>调用的合约函数不存在。</li><li>为了填充data域。</li></ul><h2 id="创建与运行"><a href="#创建与运行" class="headerlink" title="创建与运行"></a>创建与运行</h2><h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><ul><li>写代码，进行编译为bytecode形式。</li><li>创建合约：通过向0x00地址发起0ETH的转账交易。</li><li>代码放在data域中，并且支付一定的gas fee.</li></ul><h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><ul><li>智能合约运行在EVM上。</li><li>EVM提供一个统一的运行平台。</li><li>以太坊是一个交易驱动的状态机，要确定每个账户的状态。</li><li>调用智能合约的交易发布到区块上，每个矿工都会执行这个交易。</li><li>为了进行确定性的状态转移。</li></ul><h2 id="gas-fee"><a href="#gas-fee" class="headerlink" title="gas fee"></a>gas fee</h2><ul><li>图灵完备系统。</li><li>出现死循环是halting problem。</li><li>执行合约收取gas fee，由发起人来支付。</li><li>gas limit是最大限度的数据可用的gas 费用。</li><li>先提取最大gas fee,多余大的再返回。</li><li>少的话就就会回滚，退回到执行之前的状态。</li><li>简单指令是便宜的，复杂的或者需要存储状态的指令很贵。</li><li>读取公共数据是免费的。</li><li>运行错误也会返回，运行的消耗的gas fee是不退回的，避免拒绝服务攻击。</li></ul><h3 id="扣费原理"><a href="#扣费原理" class="headerlink" title="扣费原理"></a>扣费原理</h3><ul><li>状态数、交易树、收据树，都在本地维护。</li><li>先在本地进行扣除最大gas 费用，不够不执行。</li><li>执行完了加回多余的费用。</li></ul><h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><h3 id="不存在处理错误的操作。"><a href="#不存在处理错误的操作。" class="headerlink" title="不存在处理错误的操作。"></a>不存在处理错误的操作。</h3><h3 id="assert-bool-condition"><a href="#assert-bool-condition" class="headerlink" title="assert(bool condition)"></a>assert(bool condition)</h3><ul><li>不满足条件就会抛出错误。</li><li>用于内部的错误。</li></ul><h3 id="require-bool-condition"><a href="#require-bool-condition" class="headerlink" title="require(bool condition)"></a>require(bool condition)</h3><ul><li>不满足条件就抛出错误。</li><li>用于输入或者外部的组件引起的错误。</li></ul><h3 id="revert-throw"><a href="#revert-throw" class="headerlink" title="revert(){throw()}"></a>revert(){throw()}</h3><ul><li>直接终止运行并进行回滚。</li></ul><h3 id="嵌套调用"><a href="#嵌套调用" class="headerlink" title="嵌套调用"></a>嵌套调用</h3><ul><li>合约的执行具有原子性。</li><li>一个合约调用另一个合约的函数。</li><li>通过直接调用的方式会出现连锁回滚。</li><li>通过address类型调用域代理调用不会混滚调用者的合约。</li><li>转账默认调用fallback函数，也会进行嵌套调用。</li></ul><h2 id="区块发布"><a href="#区块发布" class="headerlink" title="区块发布"></a>区块发布</h2><h3 id="先执行再挖矿"><a href="#先执行再挖矿" class="headerlink" title="先执行再挖矿"></a>先执行再挖矿</h3><ul><li>先获取三棵树的根哈希值。</li></ul><h3 id="消耗资源的节点获得什么补偿"><a href="#消耗资源的节点获得什么补偿" class="headerlink" title="消耗资源的节点获得什么补偿"></a>消耗资源的节点获得什么补偿</h3><ul><li>没有补偿，还要验证交易的合法性与区块的同步性。</li></ul><h3 id="会不会不给汽油费不验证"><a href="#会不会不给汽油费不验证" class="headerlink" title="会不会不给汽油费不验证"></a>会不会不给汽油费不验证</h3><ul><li>危害区块链安全，就相当于不干了。</li><li>发新的区块时别人不认，相当于无效挖矿。</li><li>可以抄别人的信息。</li></ul><h3 id="发布到区块链的交易是不是都是成功执行的"><a href="#发布到区块链的交易是不是都是成功执行的" class="headerlink" title="发布到区块链的交易是不是都是成功执行的"></a>发布到区块链的交易是不是都是成功执行的</h3><ul><li>也要发布，需要扣汽油费。</li><li>要不然无法扣汽油费。</li></ul><h4 id="收据树"><a href="#收据树" class="headerlink" title="收据树"></a>收据树</h4><p><img src="/../pic/Pasted%20image%2020240731184932.png"></p><h3 id="智能合约支不支持多核并行处理"><a href="#智能合约支不支持多核并行处理" class="headerlink" title="智能合约支不支持多核并行处理"></a>智能合约支不支持多核并行处理</h3><ul><li>不支持多线程。</li><li>状态转换是确定性的。</li><li>多线程会导致结果不同。 </li><li>产生随机数也不支持。</li><li>使用的是伪随机数。</li></ul><h4 id="智能合约可以得到区块的信息"><a href="#智能合约可以得到区块的信息" class="headerlink" title="智能合约可以得到区块的信息"></a>智能合约可以得到区块的信息</h4><p><img src="/../pic/Pasted%20image%2020240731185943.png"></p><h4 id="智能合约可以获得调用的信息"><a href="#智能合约可以获得调用的信息" class="headerlink" title="智能合约可以获得调用的信息"></a>智能合约可以获得调用的信息</h4><p><img src="/../pic/Pasted%20image%2020240731190048.png"></p><ul><li>message.data：发起的合约函数。</li><li>tx.origin：交易或者调用的最终发起者。</li></ul><h3 id="地址类型"><a href="#地址类型" class="headerlink" title="地址类型"></a>地址类型</h3><p><img src="/../pic/Pasted%20image%2020240731190411.png"></p><ul><li>address.transfer(amount)：转入函数。</li><li>address.send：发送交易。</li></ul><h4 id="转账的三种方式"><a href="#转账的三种方式" class="headerlink" title="转账的三种方式"></a>转账的三种方式</h4><h5 id="transfer"><a href="#transfer" class="headerlink" title="transfer"></a>transfer</h5><ul><li>专门转账的。</li><li>失败就抛出异常，引起连锁回滚。</li><li>汽油费少。</li></ul><h5 id="send"><a href="#send" class="headerlink" title="send"></a>send</h5><ul><li>专门转账函数。</li><li>失败返回false。</li><li>汽油费少。</li></ul><h5 id="call-value"><a href="#call-value" class="headerlink" title="call.value"></a>call.value</h5><ul><li>也不会引起失败连锁反应。</li><li>把本来剩下的所有汽油费都发给执行节点。</li></ul><h2 id="拍卖合约"><a href="#拍卖合约" class="headerlink" title="拍卖合约"></a>拍卖合约</h2><h3 id="主合约"><a href="#主合约" class="headerlink" title="主合约"></a>主合约</h3><p><img src="/../pic/Pasted%20image%2020240731154908.png"></p><h3 id="竞拍合约函数"><a href="#竞拍合约函数" class="headerlink" title="竞拍合约函数"></a>竞拍合约函数</h3><p><img src="/../pic/Pasted%20image%2020240731191813.png"></p><h3 id="结束竞拍函数"><a href="#结束竞拍函数" class="headerlink" title="结束竞拍函数"></a>结束竞拍函数</h3><p><img src="/../pic/Pasted%20image%2020240731191946.png"></p><h3 id="攻击"><a href="#攻击" class="headerlink" title="攻击"></a>攻击</h3><h4 id="攻击合约"><a href="#攻击合约" class="headerlink" title="攻击合约"></a>攻击合约</h4><p><img src="/../pic/Pasted%20image%2020240731193147.png"></p><h3 id="攻击过程"><a href="#攻击过程" class="headerlink" title="攻击过程"></a>攻击过程</h3><ul><li>在黑客调用这个黑客合约函数时，会进行竞拍。</li><li>把黑客发送的竞拍币都发给竞拍函数。</li><li>在竞拍结束后，要返回非最高出价人的钱时。</li><li>找不到黑客合约的fallback函数，转账失败。</li><li>且用的是tranfer进行的转账回去，就会出现合约执行错误。</li><li>所有人都无法获得发出的拍卖资金。</li><li>无法补救。</li><li>code is law.</li></ul><h3 id="修改合约函数"><a href="#修改合约函数" class="headerlink" title="修改合约函数"></a>修改合约函数</h3><h4 id="拍卖结束撤回资金"><a href="#拍卖结束撤回资金" class="headerlink" title="拍卖结束撤回资金"></a>拍卖结束撤回资金</h4><p><img src="/../pic/Pasted%20image%2020240731193958.png"></p><h4 id="给受益人转钱"><a href="#给受益人转钱" class="headerlink" title="给受益人转钱"></a>给受益人转钱</h4><p><img src="/../pic/Pasted%20image%2020240731194050.png"></p><h4 id="黑客合约"><a href="#黑客合约" class="headerlink" title="黑客合约"></a>黑客合约</h4><p><img src="/../pic/Pasted%20image%2020240731195121.png"></p><ul><li>通过fallback一直进行递归调用转账.</li><li>合约没钱了.</li><li>汽油费不够了.</li><li>调用栈超限.</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>BlockChain</category>
+      
+      <category>ETH</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>BlockChain</tag>
+      
+      <tag>ETH</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>08-ETH-权益证明</title>
+    <link href="/2024/07/31/08-ETH-%E6%9D%83%E7%9B%8A%E8%AF%81%E6%98%8E/"/>
+    <url>/2024/07/31/08-ETH-%E6%9D%83%E7%9B%8A%E8%AF%81%E6%98%8E/</url>
+    
+    <content type="html"><![CDATA[<h2 id="工作量证明能耗太高"><a href="#工作量证明能耗太高" class="headerlink" title="工作量证明能耗太高"></a>工作量证明能耗太高</h2><h3 id="ETH每笔能耗小于BTC"><a href="#ETH每笔能耗小于BTC" class="headerlink" title="ETH每笔能耗小于BTC"></a>ETH每笔能耗小于BTC</h3><ul><li>由于ETH出块速度快。</li><li>平均下来消耗能耗就会小一点。</li></ul><h1 id="原来是工作量证明"><a href="#原来是工作量证明" class="headerlink" title="原来是工作量证明"></a>原来是工作量证明</h1><h1 id="POS-权益证明"><a href="#POS-权益证明" class="headerlink" title="POS(权益证明)"></a>POS(权益证明)</h1><ul><li>需要51%的币才有攻击的可能。</li></ul><h1 id="Proof-of-Deposit"><a href="#Proof-of-Deposit" class="headerlink" title="Proof of Deposit"></a>Proof of Deposit</h1><h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><ul><li>可以通过币来进行降低挖矿难度。</li><li>威胁是币越多的人越容易挖矿。</li><li>通过对于投入降低难度的币进行时间锁定。</li></ul><h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><ul><li>两头下注，在两条链上投入相同的币进行挖矿。</li></ul><h2 id="Casper-the-Friendly-Finality-Gadest-FFG"><a href="#Casper-the-Friendly-Finality-Gadest-FFG" class="headerlink" title="Casper the Friendly  Finality Gadest(FFG)"></a>Casper the Friendly  Finality Gadest(FFG)</h2><h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ul><li>不会出现回滚，确认最长连。</li></ul><h3 id="验证者（Validator）"><a href="#验证者（Validator）" class="headerlink" title="验证者（Validator）"></a>验证者（Validator）</h3><ul><li>投入一定数量的以太币作为质押。</li><li>权重与投入的币数量正比。</li><li>币会被锁定。</li><li>不投票会被罚一定数量的以太币。</li><li>乱投不符合规则的票，会被没收投入的以太币，并销毁。</li><li>有任期。</li><li>任期结束后进行等待期，进行等待其他的检举揭发，进行惩处。</li><li></li></ul><h3 id="投票"><a href="#投票" class="headerlink" title="投票"></a>投票</h3><ul><li>50个区块投票一次.</li><li>每个epoch投一次票。</li><li>这一次投票对于上一个epoch来说是准备的投票。</li><li>对于这一个epoch来说是提交的投票。</li><li>获取两个投票2&#x2F;3以上的投票资金支持才可以。</li></ul><h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><h4 id="投票的Finality会不会被推翻"><a href="#投票的Finality会不会被推翻" class="headerlink" title="投票的Finality会不会被推翻"></a>投票的Finality会不会被推翻</h4><ul><li>至少有1&#x2F;3的验证者进行两边押注。</li></ul><h4 id="为什么不开始就用权益证明"><a href="#为什么不开始就用权益证明" class="headerlink" title="为什么不开始就用权益证明"></a>为什么不开始就用权益证明</h4><ul><li>bug bounty</li></ul><h2 id="EOS-DPOS"><a href="#EOS-DPOS" class="headerlink" title="EOS(DPOS)"></a>EOS(DPOS)</h2><ul><li>选取超级节点进行投票。</li></ul><h2 id="挖矿的实际作用"><a href="#挖矿的实际作用" class="headerlink" title="挖矿的实际作用"></a>挖矿的实际作用</h2><ul><li>可以以货币形式存储过剩的电能。</li><li>但是进行的是无用功操作，浪费资源。</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>BlockChain</category>
+      
+      <category>ETH</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>BlockChain</tag>
+      
+      <tag>ETH</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>07-ETH-难度调整</title>
     <link href="/2024/07/30/07-ETH-%E9%9A%BE%E5%BA%A6%E8%B0%83%E6%95%B4/"/>
     <url>/2024/07/30/07-ETH-%E9%9A%BE%E5%BA%A6%E8%B0%83%E6%95%B4/</url>
