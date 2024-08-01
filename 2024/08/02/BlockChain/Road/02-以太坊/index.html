@@ -1,0 +1,753 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/myicon.png">
+  <link rel="icon" href="/img/myicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="prelearn">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="ETHer-developer-roadmap 2024以太坊 Dapp 开发学习路线 —— By 浙江大学区块链协会（Zhejiang University BlockChain Association, ZJUBCA） 以太坊技术原理初级： 以太坊基本概念，Foundational topics 部分：🔗 利用 geth 搭建私有链并交互： 利用区块链浏览器 Etherscan 查看区块、交">
+<meta property="og:type" content="article">
+<meta property="og:title" content="02-以太坊">
+<meta property="og:url" content="https://prelearn-code.github.io/2024/08/02/BlockChain/Road/02-%E4%BB%A5%E5%A4%AA%E5%9D%8A/index.html">
+<meta property="og:site_name" content="prelearn-code">
+<meta property="og:description" content="ETHer-developer-roadmap 2024以太坊 Dapp 开发学习路线 —— By 浙江大学区块链协会（Zhejiang University BlockChain Association, ZJUBCA） 以太坊技术原理初级： 以太坊基本概念，Foundational topics 部分：🔗 利用 geth 搭建私有链并交互： 利用区块链浏览器 Etherscan 查看区块、交">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-08-01T16:01:58.000Z">
+<meta property="article:modified_time" content="2024-08-01T16:11:17.821Z">
+<meta property="article:author" content="prelearn">
+<meta property="article:tag" content="BlockChain">
+<meta property="article:tag" content="Road">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>02-以太坊 - prelearn-code</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"prelearn-code.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>prelearn-code</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="02-以太坊"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-08-02 00:01" pubdate>
+          2024年8月2日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          535 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          5 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">02-以太坊</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="ETHer-developer-roadmap-2024"><a href="#ETHer-developer-roadmap-2024" class="headerlink" title="ETHer-developer-roadmap 2024"></a>ETHer-developer-roadmap 2024</h1><p>以太坊 Dapp 开发学习路线</p>
+<p>—— By 浙江大学区块链协会（Zhejiang University BlockChain Association, ZJUBCA）</p>
+<h2 id="以太坊技术原理"><a href="#以太坊技术原理" class="headerlink" title="以太坊技术原理"></a>以太坊技术原理</h2><h3 id="初级："><a href="#初级：" class="headerlink" title="初级："></a>初级：</h3><ol>
+<li>以太坊基本概念，Foundational topics 部分：<a target="_blank" rel="noopener" href="https://ethereum.org/en/developers/docs/">🔗</a></li>
+<li>利用 geth 搭建私有链并交互：</li>
+<li>利用区块链浏览器 Etherscan 查看区块、交易、合约等信息：<a target="_blank" rel="noopener" href="http://etherscan.io/">🔗</a></li>
+<li>智能合约入门，solidity 官方文档 Basic 部分：<a target="_blank" rel="noopener" href="https://docs.soliditylang.org/en/latest/introduction-to-smart-contracts.html">🔗</a></li>
+<li>以太坊知识库：<a target="_blank" rel="noopener" href="https://learnblockchain.cn/eth/">🔗</a></li>
+<li>文章：分析 solidity 智能合约在EVM底层的存储架构，介绍不同的数据类型存储的地址槽和所占的大小 <a target="_blank" rel="noopener" href="https://programtheblockchain.com/posts/2018/03/09/understanding-ethereum-smart-contract-storage">🔗</a></li>
+</ol>
+<h3 id="中级："><a href="#中级：" class="headerlink" title="中级："></a>中级：</h3><ol>
+<li>以太坊开发文档，Ethereum stack 部分：<a target="_blank" rel="noopener" href="https://ethereum.org/en/developers/docs/">🔗</a></li>
+<li>《精通以太坊》书籍<ol>
+<li>英文版：<a target="_blank" rel="noopener" href="https://github.com/ethereumbook/ethereumbook">🔗</a></li>
+<li>中文版：<a target="_blank" rel="noopener" href="https://github.com/inoutcode/ethereum_book">🔗</a></li>
+</ol>
+</li>
+<li>以太坊白皮书（optional）：<a target="_blank" rel="noopener" href="https://ethereum.org/en/whitepaper/">🔗</a></li>
+</ol>
+<h3 id="高级"><a href="#高级" class="headerlink" title="高级"></a>高级</h3><ol>
+<li><strong>以太坊客户端</strong>（建议 Geth）源码分模块阅读与分析：<a target="_blank" rel="noopener" href="https://geth.ethereum.org/">🔗</a></li>
+<li><strong>以太坊黄皮书（optional）</strong>：<a target="_blank" rel="noopener" href="https://files.gitter.im/ethereum/yellowpaper/VIyt/Paper.pdf">🔗</a></li>
+<li>Layer2、ETH2.0 技术方案阅读与分析：<ol>
+<li><a target="_blank" rel="noopener" href="https://ethereum.org/en/developers/docs/scaling/">🔗</a></li>
+<li><a target="_blank" rel="noopener" href="https://ethereum.org/en/developers/docs/scaling/layer-2-rollups/">🔗</a></li>
+</ol>
+</li>
+<li>以太坊官网上（各路大佬们写）的<strong>blog</strong>：<a target="_blank" rel="noopener" href="https://blog.ethereum.org/archive/">🔗</a></li>
+</ol>
+<h3 id="EVM"><a href="#EVM" class="headerlink" title="EVM"></a>EVM</h3><ol>
+<li>深潜 EVM 系列(EVM Deep Dives)文章：<a target="_blank" rel="noopener" href="https://substack.com/profile/80455042-noxx">🔗</a><ul>
+<li>EVM 的函数选择原理：<a target="_blank" rel="noopener" href="https://learnblockchain.cn/article/3647">🔗</a></li>
+<li>EVM 中的内存数据区：<a target="_blank" rel="noopener" href="https://learnblockchain.cn/article/3684">🔗</a></li>
+</ul>
+</li>
+<li>…</li>
+</ol>
+<h2 id="智能合约开发"><a href="#智能合约开发" class="headerlink" title="智能合约开发"></a>智能合约开发</h2><h3 id="初级"><a href="#初级" class="headerlink" title="初级"></a>初级</h3><ol>
+<li>掌握“以太坊技术原理部分”初中级 75%以上内容</li>
+<li>了解开发工具：2022 十大智能合约开发工具<a target="_blank" rel="noopener" href="https://learnblockchain.cn/article/3434">🔗</a></li>
+<li>以太坊开发教程（optional）：<a target="_blank" rel="noopener" href="https://ethereum-blockchain-developer.com/000-learn-ethereum/">🔗</a></li>
+<li>*Cryptozombies —玩游戏的方式学习 Solidity：<a target="_blank" rel="noopener" href="https://cryptozombies.io/">🔗</a></li>
+</ol>
+<h3 id="中级"><a href="#中级" class="headerlink" title="中级"></a>中级</h3><h4 id="开发"><a href="#开发" class="headerlink" title="开发"></a>开发</h4><ol>
+<li>solidity 开发文档：<a target="_blank" rel="noopener" href="https://docs.soliditylang.org/en/latest/">🔗</a></li>
+<li>Openzeppelin 文档（✨）：<a target="_blank" rel="noopener" href="https://docs.openzeppelin.com/contracts/4.x/">🔗</a></li>
+<li>一种前端 API：<ol>
+<li>web3.js: <a target="_blank" rel="noopener" href="https://web3js.readthedocs.io/en/v1.7.1/">🔗</a></li>
+<li>ethers.js: <a target="_blank" rel="noopener" href="https://docs.ethers.io/v5/">🔗</a></li>
+<li>对比分析：<a target="_blank" rel="noopener" href="https://blog.infura.io/ethereum-javascript-libraries-web3-js-vs-ethers-js-part-i/">🔗</a></li>
+<li>…</li>
+</ol>
+</li>
+<li>一种合约开发框架：<ol>
+<li>Truffle: <a target="_blank" rel="noopener" href="https://trufflesuite.com/">🔗</a></li>
+<li>Hardhat: <a target="_blank" rel="noopener" href="https://hardhat.org/">🔗</a></li>
+<li>Brownie: <a target="_blank" rel="noopener" href="https://eth-brownie.readthedocs.io/en/stable/">🔗</a></li>
+</ol>
+</li>
+<li>…</li>
+</ol>
+<h4 id="安全"><a href="#安全" class="headerlink" title="安全"></a>安全</h4><ol>
+<li>以太坊智能合约——最佳安全开发指南：<a target="_blank" rel="noopener" href="https://consensys.github.io/smart-contract-best-practices/">🔗</a></li>
+<li>智能合约攻击示例：<a target="_blank" rel="noopener" href="https://github.com/kadenzipfel/smart-contract-attack-vectors">🔗</a></li>
+<li>BlockSec：<a target="_blank" rel="noopener" href="https://www.blocksecteam.com/">🔗</a></li>
+</ol>
+<h2 id="链上数据"><a href="#链上数据" class="headerlink" title="链上数据"></a>链上数据</h2><ol>
+<li><em>The Graph —链上数据获取：</em><a target="_blank" rel="noopener" href="https://thegraph.com/">🔗</a></li>
+<li><em>Chainlist —EVM 网络列表：</em><a target="_blank" rel="noopener" href="https://chainlist.org/">🔗</a></li>
+</ol>
+<h2 id="常用工具和网站"><a href="#常用工具和网站" class="headerlink" title="常用工具和网站"></a>常用工具和网站</h2><h3 id="工具："><a href="#工具：" class="headerlink" title="工具："></a>工具：</h3><ol>
+<li>Solhint：一种静态检查器，提供安全和风格指南以及智能合约验证的最佳实践规则。</li>
+<li><a target="_blank" rel="noopener" href="https://dapp.tools/">Dapptools</a>： 一套专注于以太坊的 CLI 工具，遵循 Unix 设计理念，倾向于可组合、可配置和可扩展性。</li>
+</ol>
+<h3 id="社区"><a href="#社区" class="headerlink" title="社区"></a>社区</h3><ol>
+<li><em>登链社区 —区块链开发者社区：</em><a target="_blank" rel="noopener" href="https://learnblockchain.cn/">🔗</a></li>
+<li>Stack Overflow —程序开发交流社区：<a target="_blank" rel="noopener" href="https://stackoverflow.com/">🔗</a></li>
+<li>Stack Exchange —以太坊开发交流社区：<a target="_blank" rel="noopener" href="https://ethereum.stackexchange.com/">🔗</a></li>
+</ol>
+<h3 id="开源"><a href="#开源" class="headerlink" title="开源"></a>开源</h3><ol>
+<li>awesome-openzeppelin: <a target="_blank" rel="noopener" href="https://github.com/OpenZeppelin/awesome-openzeppelin">🔗</a></li>
+<li>区块链 Dapp 开发教程：<a target="_blank" rel="noopener" href="https://github.com/Dapp-Learning-DAO/Dapp-Learning">🔗</a></li>
+</ol>
+<h3 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h3><ol>
+<li>EIP&#x2F;ERC：<a target="_blank" rel="noopener" href="https://dev.ethereum.cn/eips-1/">🔗</a></li>
+<li>以太坊维基百科：<a target="_blank" rel="noopener" href="https://eth.wiki/">🔗</a></li>
+<li>layer2 方案的备忘录：<a target="_blank" rel="noopener" href="https://mirror.xyz/ethmaxitard.eth/iyCAlOexgQKOvoSAAk4utYGEdnESOKb5HstM2_LaqL4">🔗</a></li>
+<li>ethereum-input-data-decoder：<a target="_blank" rel="noopener" href="https://lab.miguelmota.com/ethereum-input-data-decoder/example/">🔗</a></li>
+<li>evm 字节码：<a target="_blank" rel="noopener" href="https://www.evm.codes/">🔗</a></li>
+<li>加密协议列表：<a target="_blank" rel="noopener" href="https://github.com/bryanhpchiang/protocol-reading-list">🔗</a></li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/BlockChain/" class="category-chain-item">BlockChain</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/BlockChain/Road/" class="category-chain-item">Road</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/BlockChain/" class="print-no-link">#BlockChain</a>
+      
+        <a href="/tags/Road/" class="print-no-link">#Road</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>02-以太坊</div>
+      <div>https://prelearn-code.github.io/2024/08/02/BlockChain/Road/02-以太坊/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>prelearn</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年8月2日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2024年8月2日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/08/02/BlockChain/Road/03-Dapp/" title="03-Dapp">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">03-Dapp</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/08/02/BlockChain/Road/01-%E5%8C%BA%E5%9D%97%E9%93%BE%E5%9F%BA%E6%9C%AC%E8%B7%AF%E7%BA%BF/" title="01-区块链基本路线">
+                        <span class="hidden-mobile">01-区块链基本路线</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

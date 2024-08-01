@@ -1,0 +1,814 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/myicon.png">
+  <link rel="icon" href="/img/myicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="prelearn">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="NFTer-roadmap 2024NFT 学习路线总结，不断更新。 —— By 浙江大学区块链协会（Zhejiang University BlockChain Association, ZJUBCA） 第一层 快速入门   历史发展： NFT 圣经：关于非同质化代币的所有知识 🔗   一些解读： NFT：价值互联网的 HTML 🔗  深度解析：NFT 有哪些应用场景？非同质化代币最全用例手">
+<meta property="og:type" content="article">
+<meta property="og:title" content="08-NFT">
+<meta property="og:url" content="https://prelearn-code.github.io/2024/08/02/BlockChain/Road/08-NFT/index.html">
+<meta property="og:site_name" content="prelearn-code">
+<meta property="og:description" content="NFTer-roadmap 2024NFT 学习路线总结，不断更新。 —— By 浙江大学区块链协会（Zhejiang University BlockChain Association, ZJUBCA） 第一层 快速入门   历史发展： NFT 圣经：关于非同质化代币的所有知识 🔗   一些解读： NFT：价值互联网的 HTML 🔗  深度解析：NFT 有哪些应用场景？非同质化代币最全用例手">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-08-01T16:07:29.000Z">
+<meta property="article:modified_time" content="2024-08-01T16:12:44.062Z">
+<meta property="article:author" content="prelearn">
+<meta property="article:tag" content="BlockChain">
+<meta property="article:tag" content="Road">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>08-NFT - prelearn-code</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"prelearn-code.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>prelearn-code</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="08-NFT"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-08-02 00:07" pubdate>
+          2024年8月2日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          587 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          5 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">08-NFT</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="NFTer-roadmap-2024"><a href="#NFTer-roadmap-2024" class="headerlink" title="NFTer-roadmap 2024"></a>NFTer-roadmap 2024</h1><p>NFT 学习路线总结，不断更新。</p>
+<p>—— By 浙江大学区块链协会（Zhejiang University BlockChain Association, ZJUBCA）</p>
+<h2 id="第一层"><a href="#第一层" class="headerlink" title="第一层"></a>第一层</h2><blockquote>
+<p>快速入门</p>
+</blockquote>
+<ul>
+<li><strong>历史发展</strong>：<ul>
+<li>NFT 圣经：关于非同质化代币的所有知识 <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/Lr-q6cgfcnWzbVqDDjMebQ">🔗</a></li>
+</ul>
+</li>
+<li><strong>一些解读</strong>：<ul>
+<li>NFT：价值互联网的 HTML <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/m8TOUNQypFTJdlK7af6knA">🔗 </a></li>
+<li>深度解析：NFT 有哪些应用场景？非同质化代币最全用例手册 <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/taJs6WYFNY6vVAl0w8HkPg">🔗</a></li>
+<li>a16z 前合伙人：NFT 让互联网“Ownable” <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/Zukwh08lYzh-2Ai8jXPP6g">🔗</a></li>
+<li>NFT、Metaverse，与泡泡玛特 <a target="_blank" rel="noopener" href="https://m.theblockbeats.com/news/23129">🔗</a></li>
+<li>李启威：NFT 的真正价值究竟是什么？ <a target="_blank" rel="noopener" href="https://www.chainnews.com/articles/576303926328.htm">🔗</a></li>
+<li>问题在于,你站在哪个世界看 NFT ｜预言家周报#114 <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/y7GvQeB46zqE-dVitVpMYw">🔗</a></li>
+</ul>
+</li>
+<li><strong>生态现状</strong>：<ul>
+<li>NFT 生态大起底：最值得关注的项目都在这里 <a target="_blank" rel="noopener" href="https://m.theblockbeats.com/news/22526">🔗</a></li>
+<li>全景式解读 NFT 生态全貌，这些重点项目不容错过 <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/r4oxyGw6eB7WdibMNcaOgA">🔗</a></li>
+</ul>
+</li>
+<li><strong>精品宝藏</strong>：<ul>
+<li>《从 0 到 1: 精通 NFT——一本万能的 NFT 知识图谱》<a target="_blank" rel="noopener" href="https://www.yuque.com/books/share/a8a2de86-76de-4531-8486-ac3d40944557">🔗</a> 🌟</li>
+</ul>
+</li>
+</ul>
+<h2 id="第二层"><a href="#第二层" class="headerlink" title="第二层"></a>第二层</h2><ul>
+<li><strong>技术原理</strong>（至少了解 ERC-721，其次 ERC-1155）<ul>
+<li>ERC-721：最基础的 NFT<ul>
+<li>EIP：<a target="_blank" rel="noopener" href="https://eips.ethereum.org/EIPS/eip-721">🔗</a></li>
+<li>第三方中文翻译：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/e6d4f57fbba6">🔗</a></li>
+<li>第三方中文翻译：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/d5604554c324">🔗</a></li>
+</ul>
+</li>
+<li>ERC-1155：单合约多资产<ul>
+<li>EIP：<a target="_blank" rel="noopener" href="https://eips.ethereum.org/EIPS/eip-1155">🔗</a></li>
+<li>第三方中文翻译</li>
+</ul>
+</li>
+<li>ERC-1523：保险单 NFT<ul>
+<li>EIP：<a target="_blank" rel="noopener" href="https://eips.ethereum.org/EIPS/eip-1523">🔗</a></li>
+</ul>
+</li>
+<li>ERC-998：可组合 NFT<ul>
+<li>EIP：<a target="_blank" rel="noopener" href="https://eips.ethereum.org/EIPS/eip-998">🔗</a></li>
+</ul>
+</li>
+<li>EIP-1948：可变信息的 NFT<ul>
+<li>EIP：<a target="_blank" rel="noopener" href="https://eips.ethereum.org/EIPS/eip-1948">🔗</a></li>
+</ul>
+</li>
+<li>EIP-2981：NFT 版税<ul>
+<li>EIP：<a target="_blank" rel="noopener" href="https://eips.ethereum.org/EIPS/eip-2981">🔗</a></li>
+</ul>
+</li>
+<li>ERC-875：批量转移 NFT<ul>
+<li>EIP：<a target="_blank" rel="noopener" href="https://eips.ethereum.org/EIPS/eip-875">🔗</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>市场细分</strong><ul>
+<li>收藏品：<ul>
+<li>项目：CryptoKitties、CryptoPunks、Avastars、GoPepe、Marble.Cards、pixEOS Gallery、PixelChain、Pixel Master</li>
+</ul>
+</li>
+<li>游戏资产：<ul>
+<li>项目：Gods Unchained、Axie Infinity、My Crypto Heroes、CryptoSpaceCommanders、Sorare、F1 Delta Time、ChainZ Arena - Play and Earn、Upload、MegaCryptoPoll、EvolutionLand</li>
+</ul>
+</li>
+<li>虚拟世界：<ul>
+<li>项目：Decentraland、Cryptovoxels、Somnium Space、The Sandbox、Vegas City</li>
+</ul>
+</li>
+<li>加密艺术品：<ul>
+<li>项目：Async Art、 SuperRare、 Nifty Gateway、 KnownOrigin、 MakersPlace</li>
+</ul>
+</li>
+<li>金融：<ul>
+<li>项目：Yinsurance、Aavegotchi、DEGO Finance、Meme、WHALE</li>
+</ul>
+</li>
+<li>功能型 NFT：<ul>
+<li>项目：ENS、Urbit ID、Unstoppable Domains、Terra Virtua</li>
+</ul>
+</li>
+<li>交易市场：<ul>
+<li>一般交易市场：OpenSea、Rarible、Finannel、Axie Markerplace、Atomic Market、Myth.Market、Minitbase、Collectables、Terra Virtua、Fyooz</li>
+<li>艺术品交易市场：SuperRare、MarketPlace、Async Art、Known Origin</li>
+</ul>
+</li>
+<li>文化代币：n0wear、Zora、 Foundation</li>
+<li>其它：传统物理产品，门票、产权、数字身份</li>
+<li>指数基金：<ul>
+<li>NFTX：<a target="_blank" rel="noopener" href="https://nftx.org/#/">🔗</a></li>
+</ul>
+</li>
+<li>数据聚合器：<ul>
+<li>nonfungible（NFT 数据聚合、数据分析、新闻评论）<ul>
+<li>官网：<a target="_blank" rel="noopener" href="https://nonfungible.com/">🔗</a></li>
+<li>介绍：<a target="_blank" rel="noopener" href="https://nonfungible.com/pages/about-us">🔗</a></li>
+</ul>
+</li>
+<li>cryptoslam：<a target="_blank" rel="noopener" href="https://cryptoslam.io/">🔗</a></li>
+</ul>
+</li>
+<li>NFT 浏览器-：<ul>
+<li>etherscan：<a target="_blank" rel="noopener" href="https://etherscan.io/tokens/label/nft">🔗</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="第三层"><a href="#第三层" class="headerlink" title="第三层"></a>第三层</h2><ul>
+<li>NFT 基础设施<ul>
+<li>FLOW<ul>
+<li>官网：<a target="_blank" rel="noopener" href="https://www.onflow.org/">🔗</a></li>
+<li>技术白皮书：<a target="_blank" rel="noopener" href="https://www.onflow.org/technical-paper">🔗</a></li>
+<li>Flow 的团队叫 Dapper Labs，制作了 NFT 历史上交易量最大的 2 个 NFT 应用：CryptoKitties、NBA Top Shot。</li>
+</ul>
+</li>
+<li>ETH<ul>
+<li>CryptoPunks：<a target="_blank" rel="noopener" href="https://cryptoslam.io/cryptopunks">🔗</a></li>
+<li>Sorare：<a target="_blank" rel="noopener" href="https://cryptoslam.io/sorare">🔗</a></li>
+<li>Axie Infinity：<a target="_blank" rel="noopener" href="https://cryptoslam.io/axie-infinity">🔗</a></li>
+<li>CryptoKitties：<a target="_blank" rel="noopener" href="https://www.cryptokitties.co/">🔗</a></li>
+<li>MyCryptoHeroes：<a target="_blank" rel="noopener" href="https://cryptoslam.io/mycryptoheroes">🔗</a></li>
+<li>Gods Unchained：<a target="_blank" rel="noopener" href="https://godsunchained.com/">🔗</a></li>
+<li>F1 Delta Time：<a target="_blank" rel="noopener" href="https://cryptoslam.io/f1-delta-time">🔗</a></li>
+</ul>
+</li>
+<li>WAX<ul>
+<li>WAX &#x3D; Worldwide Asset eXchange</li>
+<li>官网：<a target="_blank" rel="noopener" href="https://on.wax.io/wax-io/">🔗</a></li>
+<li>白皮书：<a target="_blank" rel="noopener" href="https://github.com/worldwide-asset-exchange/whitepaper">🔗</a></li>
+<li>WAX 被称为 NFT 之王，在 Cryptoslam 的数据统计中，前三十名的 NFT 发行项目目有 20 个建立在 WAX 之上，市场份额超过 2&#x2F;3，如同比特币长期占有加密市场约 2&#x2F;3 的市值一样，WAX 在 NFT 领域也长期处于领导地位</li>
+</ul>
+</li>
+<li>Polkadot<ul>
+<li>协议层：<ul>
+<li>NFT-Pallet：<a target="_blank" rel="noopener" href="https://github.com/danforbes/pallet-nft">🔗</a></li>
+<li>NFT-Parachain：<a target="_blank" rel="noopener" href="https://github.com/w3f-community/nft_parachain">🔗</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/BlockChain/" class="category-chain-item">BlockChain</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/BlockChain/Road/" class="category-chain-item">Road</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/BlockChain/" class="print-no-link">#BlockChain</a>
+      
+        <a href="/tags/Road/" class="print-no-link">#Road</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>08-NFT</div>
+      <div>https://prelearn-code.github.io/2024/08/02/BlockChain/Road/08-NFT/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>prelearn</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年8月2日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2024年8月2日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/08/02/BlockChain/Road/09-%E8%B5%84%E6%96%99/" title="09-资料">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">09-资料</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/08/02/BlockChain/Road/07-Base/" title="07-Base">
+                        <span class="hidden-mobile">07-Base</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

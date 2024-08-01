@@ -1,0 +1,699 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/myicon.png">
+  <link rel="icon" href="/img/myicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="prelearn">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Base背景介绍什么是BaseBase是总部位于美国的加密货币交易平台Coinbase于2023年8月9日正式发布的以太坊Layer 2(L2)区块链。作为这家上市公司推出的第一个区块链，它受到了加密货币社区的广泛关注。 Base是与以太坊Layer 2区块链OP Stack上的OPtimism合作开发的，而OP Stack是一个支持OPTimism的标准化开源开发堆栈。Base允许开发者在开发去">
+<meta property="og:type" content="article">
+<meta property="og:title" content="07-Base">
+<meta property="og:url" content="https://prelearn-code.github.io/2024/08/02/BlockChain/Road/07-Base/index.html">
+<meta property="og:site_name" content="prelearn-code">
+<meta property="og:description" content="Base背景介绍什么是BaseBase是总部位于美国的加密货币交易平台Coinbase于2023年8月9日正式发布的以太坊Layer 2(L2)区块链。作为这家上市公司推出的第一个区块链，它受到了加密货币社区的广泛关注。 Base是与以太坊Layer 2区块链OP Stack上的OPtimism合作开发的，而OP Stack是一个支持OPTimism的标准化开源开发堆栈。Base允许开发者在开发去">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-08-01T16:05:49.000Z">
+<meta property="article:modified_time" content="2024-08-01T16:12:33.914Z">
+<meta property="article:author" content="prelearn">
+<meta property="article:tag" content="BlockChain">
+<meta property="article:tag" content="Road">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>07-Base - prelearn-code</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"prelearn-code.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>prelearn-code</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="07-Base"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-08-02 00:05" pubdate>
+          2024年8月2日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          13 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">07-Base</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Base背景介绍"><a href="#Base背景介绍" class="headerlink" title="Base背景介绍"></a>Base背景介绍</h1><h2 id="什么是Base"><a href="#什么是Base" class="headerlink" title="什么是Base"></a>什么是Base</h2><p>Base是总部位于美国的加密货币交易平台Coinbase于2023年8月9日正式发布的以太坊Layer 2(L2)区块链。作为这家上市公司推出的第一个区块链，它受到了加密货币社区的广泛关注。</p>
+<p>Base是与以太坊Layer 2区块链OP Stack上的OPtimism合作开发的，而OP Stack是一个支持OPTimism的标准化开源开发堆栈。Base允许开发者在开发去中心化应用程序(dApps)时能够访问Coinbase的生态系统，该生态系统拥有1.1亿验证用户和超过800亿美元的资产。<br>Base的愿景是创建一个所谓的“超级链”，使用Optimism技术来提高性能，并依靠开发者社区的支持和参与来实现这一愿景。</p>
+<h2 id="Base与其他L2对比"><a href="#Base与其他L2对比" class="headerlink" title="Base与其他L2对比"></a>Base与其他L2对比</h2><ol>
+<li><p>企业背景与支持：<br>Base链由Coinbase支持，这是世界上最大的加密货币交易所之一，为Base提供了强大的用户资源和财务支持。</p>
+</li>
+<li><p>无缝集成与用户体验：<br>Base链与Coinbase的产品、用户和工具实现了无缝集成，提供了易于使用的开发者API和强大的用户访问权限，增强了用户体验。</p>
+</li>
+<li><p>技术基础与创新：Base链建立在Optimism的OP Stack之上，采用Optimistic Rollups技术，与以太坊主网兼容性强，并计划逐步去中心化。</p>
+</li>
+<li><p>TVL增长与市场表现：<br>尽管Base链起步较晚，但其TVL增长迅速，显示出市场的高度认可。Base的TVL在14天内达到了1亿美元以上，随着链上协议的推出和扩展，TVL很可能会继续增长。</p>
+</li>
+<li><p>技术基础与创新</p>
+<p> Base链建立在Optimism的OP Stack之上，采用Optimistic Rollups技术，与以太坊主网兼容性强，并计划逐步去中心化。</p>
+</li>
+<li><p>原生文化与社区活跃度：<br>Base链通过举办链上夏季活动（Onchain Summer Event）、FarCon等活动，成功吸引了社区的关注和参与，增强了其原生文化的影响力。</p>
+</li>
+<li><p>合作伙伴关系：Base链与Optimism Collective合作，共享治理及收入，这种合作关系为Base链提供了额外的资源和支持。</p>
+</li>
+</ol>
+<h2 id="Base链的技术创新，AA钱包的应用"><a href="#Base链的技术创新，AA钱包的应用" class="headerlink" title="Base链的技术创新，AA钱包的应用"></a>Base链的技术创新，AA钱包的应用</h2><p>Base链作为Coinbase孵化的Layer2网络，其设计初衷在于提供一个安全、低成本且对开发者友好的环境。</p>
+<p>AA钱包，即账户抽象（Account Abstraction）钱包，是一种新型的智能合约钱包，它允许用户通过智能合约来管理其资产，从而简化了与区块链互动的过程。</p>
+<p>Base链支持AA钱包，这表明它紧跟以太坊的最新发展和创新，同时也展现了其对提供先进用户体验的承诺。AA钱包的核心优势在于它能够实现更高级的用户交互，比如批量交易处理、自动化的Gas费支付，以及更灵活的资产控制。这些特性使得AA钱包对于普通用户和开发者都极具吸引力。</p>
+<p>例如，AA钱包允许用户通过一笔交易与多个合约互动，这大大简化了用户在使用去中心化应用（DApps）时的复杂性。</p>
+<p>此外，AA钱包还支持使用稳定币支付Gas费，这为用户提供了更多的灵活性和便利性Base链通过整合AA钱包，不仅展示了其对最新区块链技术的支持，还体现了其致力于提供高效、用户友好服务的愿景。随着Base链和AA钱包的进一步发展，预计它们将在推动以太坊生态系统扩展和改善用户体验方面发挥重要作用。</p>
+<p>总体而言，Base链的技术架构，以及在安全性、技术成熟度和监管合作方面的努力，共同构成了其在Layer2领域的竞争力。通过这些特性和合作，Base链旨在为用户提供一个高效、低成本且安全的链上体验。</p>
+<h2 id="Base创始人的愿景与展望"><a href="#Base创始人的愿景与展望" class="headerlink" title="Base创始人的愿景与展望"></a>Base创始人的愿景与展望</h2><p>Jesse Pollak展示了他对Base链开放性、去中心化以及其在推动链上经济和文化传递方面的信念和期望</p>
+<ol>
+<li>Jesse Pollak认为Meme币是链上经济的重要组成部分，并且很高兴看到更多基于Meme币的扩散，帮助世界进入链上经济。</li>
+<li>他指出Base链上的活力很旺盛，特别是Meme币创作者培育了无数新的方式，让人们加入他们的社区，这创造了一种“寒武纪式的上链实验大爆炸”。</li>
+<li>Jesse强调了Base链是“无需许可的”，意味着任何人都可以在上面构建和部署智能合约，Coinbase并没有对合约的单方面控制权，也没有能力冻结Optimistic rollup网络上的资金。</li>
+<li>他提到Base链将逐步去中心化，并在未来几周内分享更多关于Base权力下放的细节。</li>
+<li>Jesse还提到Base链上的Meme币已经帮助数千人加入了第2层网络，并将成为下一个百万人的关键。</li>
+<li>在讨论Base生态系统时，Jesse Pollak强调了通过meme项目覆盖广泛的用户群，以及Base链上社交产品的创新和尝试，如Friend.Tech等。</li>
+<li>Jesse对Base链的未来发展持乐观态度，并认为Meme币将成为吸引数百万用户加入Base网络的关键驱动力。</li>
+</ol>
+<h2 id="Base链的未来"><a href="#Base链的未来" class="headerlink" title="Base链的未来"></a>Base链的未来</h2><p>今年的坎昆升级之后，base又来了新一波的爆发，而base链的创始人在前几天，更是列出了一大批base链的项目，算是明牌表示支持了一众项目，在这些应用背后的，是 Paradigm、a16z、Multicoin、DragonFly、Variant Funds、1confirmation 等一批加密市场知名的 VC 机构。</p>
+<p>而这些 VC 机构也因各自的投资风格不同，在 Base 生态分化出了两种特色，一方是以 Paradigm 为首的「赌徒文化」攒局者，另一方是以 a16z 为中心的长期主义派。但他们的目的都只有一个——为 Base 带来更多的真实用户，创建一个活跃繁荣的链上生态。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/BlockChain/" class="category-chain-item">BlockChain</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/BlockChain/Road/" class="category-chain-item">Road</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/BlockChain/" class="print-no-link">#BlockChain</a>
+      
+        <a href="/tags/Road/" class="print-no-link">#Road</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>07-Base</div>
+      <div>https://prelearn-code.github.io/2024/08/02/BlockChain/Road/07-Base/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>prelearn</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年8月2日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2024年8月2日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/08/02/BlockChain/Road/08-NFT/" title="08-NFT">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">08-NFT</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/08/02/BlockChain/Road/06-Farcaster%E7%A4%BE%E4%BA%A4%E5%8D%8F%E8%AE%AE/" title="06-Farcaster社交协议">
+                        <span class="hidden-mobile">06-Farcaster社交协议</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
