@@ -1,0 +1,715 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/myicon.png">
+  <link rel="icon" href="/img/myicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="prelearn">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、安装操作1. OpenSSH Client（openssh-client）：这个客户端工具允许用户通过SSH协议连接到远程主机。常用的命令包括： ssh：用于安全远程登录。 scp：用于安全复制文件。 sftp：用于安全文件传输。 ssh-keygen：用于生成和管理SSH密钥。 ssh-copy-id：用于将本地生成的SSH公钥复制到远程主机的授权密钥文件中，以便实现无密码登录。   Ope">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SSH-操作">
+<meta property="og:url" content="https://prelearn-code.github.io/2024/07/22/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/SSH-%E6%93%8D%E4%BD%9C/index.html">
+<meta property="og:site_name" content="prelearn-code">
+<meta property="og:description" content="一、安装操作1. OpenSSH Client（openssh-client）：这个客户端工具允许用户通过SSH协议连接到远程主机。常用的命令包括： ssh：用于安全远程登录。 scp：用于安全复制文件。 sftp：用于安全文件传输。 ssh-keygen：用于生成和管理SSH密钥。 ssh-copy-id：用于将本地生成的SSH公钥复制到远程主机的授权密钥文件中，以便实现无密码登录。   Ope">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-07-22T08:20:41.000Z">
+<meta property="article:modified_time" content="2024-08-08T03:05:28.915Z">
+<meta property="article:author" content="prelearn">
+<meta property="article:tag" content="SSH">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>SSH-操作 - prelearn-code</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"prelearn-code.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>prelearn-code</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="SSH-操作"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-07-22 16:20" pubdate>
+          2024年7月22日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          779 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          7 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">SSH-操作</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="一、安装操作"><a href="#一、安装操作" class="headerlink" title="一、安装操作"></a>一、安装操作</h1><h2 id="1-OpenSSH-Client（openssh-client）：这个客户端工具允许用户通过SSH协议连接到远程主机。常用的命令包括："><a href="#1-OpenSSH-Client（openssh-client）：这个客户端工具允许用户通过SSH协议连接到远程主机。常用的命令包括：" class="headerlink" title="1. OpenSSH Client（openssh-client）：这个客户端工具允许用户通过SSH协议连接到远程主机。常用的命令包括："></a>1. <strong>OpenSSH Client（openssh-client）</strong>：这个客户端工具允许用户通过SSH协议连接到远程主机。常用的命令包括：</h2><ul>
+<li><code>ssh</code>：用于安全远程登录。</li>
+<li><code>scp</code>：用于安全复制文件。</li>
+<li><code>sftp</code>：用于安全文件传输。</li>
+<li><code>ssh-keygen</code>：用于生成和管理SSH密钥。</li>
+<li><code>ssh-copy-id</code>：用于将本地生成的SSH公钥复制到远程主机的授权密钥文件中，以便实现无密码登录。</li>
+</ul>
+<ol start="2">
+<li><strong>OpenSSH Server（openssh-server）</strong>：这个服务器端工具允许远程用户通过SSH协议连接到这台机器。主要组件包括：<ul>
+<li><code>sshd</code>：SSH守护进程，处理和管理SSH连接。</li>
+<li>配置文件通常位于<code>/etc/ssh/sshd_config</code>，可以在这里进行各种设置，如端口、认证方式、允许或禁止的用户等。</li>
+</ul>
+</li>
+</ol>
+<p>要检查Ubuntu 24.04是否已安装OpenSSH工具包，可以使用以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">dpkg -l | grep openssh<br><br><span class="hljs-built_in">sudo</span> apt update<br><span class="hljs-built_in">sudo</span> apt install openssh-client openssh-server<br></code></pre></td></tr></table></figure>
+
+<h1 id="二、查看SSH服务的版本"><a href="#二、查看SSH服务的版本" class="headerlink" title="二、查看SSH服务的版本"></a>二、查看SSH服务的版本</h1><h2 id="1-查看OpenSSH客户端版本："><a href="#1-查看OpenSSH客户端版本：" class="headerlink" title="1. 查看OpenSSH客户端版本："></a>1. <strong>查看OpenSSH客户端版本</strong>：</h2>   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ssh -V<br></code></pre></td></tr></table></figure>
+<p>   这将输出类似于以下的信息：<br>   <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">OpenSSH_8</span>.<span class="hljs-number">9</span>p1, OpenSSL <span class="hljs-number">1</span>.<span class="hljs-number">1</span>.<span class="hljs-number">1</span>n  <span class="hljs-number">15</span> Mar <span class="hljs-number">2022</span><br></code></pre></td></tr></table></figure></p>
+<h2 id="2-查看OpenSSH服务器版本："><a href="#2-查看OpenSSH服务器版本：" class="headerlink" title="2. 查看OpenSSH服务器版本："></a>2. <strong>查看OpenSSH服务器版本</strong>：</h2><p>   首先确保SSH服务器正在运行，然后使用以下命令连接到本地SSH服务器并查看其版本信息：<br>   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ssh -V localhost<br></code></pre></td></tr></table></figure><br>   这将返回客户端和服务器的版本信息。如果只需要查看服务器版本信息，可以查找<code>sshd</code>守护进程的版本：<br>   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> sshd -T | grep version<br></code></pre></td></tr></table></figure><br>   这将输出类似于以下的信息：<br>   <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">sshd</span> version OpenSSH_8.<span class="hljs-number">9</span>p1, OpenSSL <span class="hljs-number">1</span>.<span class="hljs-number">1</span>.<span class="hljs-number">1</span>n  <span class="hljs-number">15</span> Mar <span class="hljs-number">2022</span><br></code></pre></td></tr></table></figure></p>
+<h1 id="三、启动操作"><a href="#三、启动操作" class="headerlink" title="三、启动操作"></a>三、启动操作</h1><h2 id="1-开启端口防火墙策略"><a href="#1-开启端口防火墙策略" class="headerlink" title="1.开启端口防火墙策略"></a>1.开启端口防火墙策略</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo apt install ufw<br>sudo ufw enable<br>sudo ufw allow 22<br>sudo ufw status<br></code></pre></td></tr></table></figure>
+
+<h2 id="2-自定义开放端口-可选"><a href="#2-自定义开放端口-可选" class="headerlink" title="2.自定义开放端口(可选)"></a>2.自定义开放端口(可选)</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo ufw allow 2222<br>sudo ufw status<br></code></pre></td></tr></table></figure>
+<h2 id="3-启动SSH服务"><a href="#3-启动SSH服务" class="headerlink" title="3.启动SSH服务"></a>3.启动SSH服务</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo systemctl start ssh<br>sudo systemctl enable ssh  //自启动命令<br>sudo systemctl status ssh<br><br>/etc/ssh/sshd_config   // 配置文件所在位置<br></code></pre></td></tr></table></figure>
+
+<h1 id="四、退出操作（exit）"><a href="#四、退出操作（exit）" class="headerlink" title="四、退出操作（exit）"></a>四、退出操作（exit）</h1><h3 id="方法1：使用exit命令"><a href="#方法1：使用exit命令" class="headerlink" title="方法1：使用exit命令"></a>方法1：使用<code>exit</code>命令</h3><p>在SSH会话中，可以使用<code>exit</code>命令退出会话并断开连接：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">exit</span><br></code></pre></td></tr></table></figure>
+
+<p>或者按 <code>Ctrl+D</code> 组合键，也可以关闭当前的SSH会话。</p>
+<h3 id="方法2：使用logout命令"><a href="#方法2：使用logout命令" class="headerlink" title="方法2：使用logout命令"></a>方法2：使用<code>logout</code>命令</h3><p>在某些系统上，可以使用<code>logout</code>命令断开SSH连接：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">logout</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="方法3：关闭终端"><a href="#方法3：关闭终端" class="headerlink" title="方法3：关闭终端"></a>方法3：关闭终端</h3><p>如果你是在终端（如gnome-terminal、xterm、tmux等）中运行的SSH连接，直接关闭终端窗口也会断开SSH连接。</p>
+<h3 id="方法4：使用kill命令（强制断开）"><a href="#方法4：使用kill命令（强制断开）" class="headerlink" title="方法4：使用kill命令（强制断开）"></a>方法4：使用<code>kill</code>命令（强制断开）</h3><p>如果需要强制断开SSH连接，可以在本地终端上找到SSH进程并杀掉它：</p>
+<ol>
+<li><p>找到SSH进程的PID：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ps aux | grep ssh<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>使用<code>kill</code>命令终止进程（替换<code>&lt;PID&gt;</code>为实际的进程ID）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">kill</span> &lt;PID&gt;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>如果<code>kill</code>命令无法终止进程，可以使用<code>kill -9</code>强制终止：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">kill</span> -9 &lt;PID&gt;<br></code></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="方法5：使用tmux或screen分离会话（可选）"><a href="#方法5：使用tmux或screen分离会话（可选）" class="headerlink" title="方法5：使用tmux或screen分离会话（可选）"></a>方法5：使用<code>tmux</code>或<code>screen</code>分离会话（可选）</h3><p>如果你在SSH会话中使用了<code>tmux</code>或<code>screen</code>，可以分离（detach）会话，而不会真正断开连接：</p>
+<ul>
+<li>在<code>tmux</code>中，按下 <code>Ctrl+B</code> 然后按 <code>D</code> 键。</li>
+<li>在<code>screen</code>中，按下 <code>Ctrl+A</code> 然后按 <code>D</code> 键。</li>
+</ul>
+<p>这将分离会话，但会话仍在远程主机上运行，你可以稍后重新连接。</p>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>假设你当前在SSH会话中，只需键入<code>exit</code>并按回车即可：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">exit</span><br></code></pre></td></tr></table></figure>
+
+
+<h1 id="五、认证操作"><a href="#五、认证操作" class="headerlink" title="五、认证操作"></a>五、认证操作</h1><h2 id="（1）账号密码连接"><a href="#（1）账号密码连接" class="headerlink" title="（1）账号密码连接"></a>（1）账号密码连接</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">ssh ubuntu@192.168.179.141<br></code></pre></td></tr></table></figure>
+
+<h2 id="（2）公私钥认证连接"><a href="#（2）公私钥认证连接" class="headerlink" title="（2）公私钥认证连接"></a>（2）公私钥认证连接</h2>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" class="category-chain-item">网络协议</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/SSH/" class="category-chain-item">SSH</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/SSH/" class="print-no-link">#SSH</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>SSH-操作</div>
+      <div>https://prelearn-code.github.io/2024/07/22/网络协议/SSH-操作/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>prelearn</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年7月22日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2024年8月8日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/07/22/BlockChain/BTC/04%20BTC-%E5%AE%9E%E7%8E%B0/" title="04 BTC-实现">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">04 BTC-实现</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/07/22/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/SSH-%E7%90%86%E8%AE%BA/" title="SSH-理论">
+                        <span class="hidden-mobile">SSH-理论</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

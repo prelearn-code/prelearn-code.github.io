@@ -1,0 +1,726 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/myicon.png">
+  <link rel="icon" href="/img/myicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="prelearn">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1.SSH理论概述（1）SSH工作的特点 工作在应用层。 使用TCP传输协议。 密文传输命令，比telent明文传输命令更加安全。 只能对与一个应用进行加密。 需要双方都有公私钥对。 端口22。  （2）SSH工作的基本框架a. 传输层协议提供服务器认证，数据机密性，信息完整性 等的支持。 b. 用户认证协议为服务器提供客户端的身份鉴别。 c. 连接协议将加密的信息隧道复用成若干个逻辑通道，提供给">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SSH-理论">
+<meta property="og:url" content="https://prelearn-code.github.io/2024/07/22/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/SSH-%E7%90%86%E8%AE%BA/index.html">
+<meta property="og:site_name" content="prelearn-code">
+<meta property="og:description" content="1.SSH理论概述（1）SSH工作的特点 工作在应用层。 使用TCP传输协议。 密文传输命令，比telent明文传输命令更加安全。 只能对与一个应用进行加密。 需要双方都有公私钥对。 端口22。  （2）SSH工作的基本框架a. 传输层协议提供服务器认证，数据机密性，信息完整性 等的支持。 b. 用户认证协议为服务器提供客户端的身份鉴别。 c. 连接协议将加密的信息隧道复用成若干个逻辑通道，提供给">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240722150717.png">
+<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240722150736.png">
+<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240722151051.png">
+<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240722151212.png">
+<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240722151314.png">
+<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240722151617.png">
+<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240722151748.png">
+<meta property="article:published_time" content="2024-07-22T08:20:19.000Z">
+<meta property="article:modified_time" content="2024-08-01T16:18:40.789Z">
+<meta property="article:author" content="prelearn">
+<meta property="article:tag" content="SSH">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240722150717.png">
+  
+  
+  
+  <title>SSH-理论 - prelearn-code</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"prelearn-code.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>prelearn-code</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="SSH-理论"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-07-22 16:20" pubdate>
+          2024年7月22日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          13 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">SSH-理论</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="1-SSH理论概述"><a href="#1-SSH理论概述" class="headerlink" title="1.SSH理论概述"></a>1.SSH理论概述</h1><h2 id="（1）SSH工作的特点"><a href="#（1）SSH工作的特点" class="headerlink" title="（1）SSH工作的特点"></a>（1）SSH工作的特点</h2><ul>
+<li>工作在应用层。</li>
+<li>使用TCP传输协议。</li>
+<li>密文传输命令，比telent明文传输命令更加安全。</li>
+<li>只能对与一个应用进行加密。</li>
+<li>需要双方都有公私钥对。</li>
+<li>端口22。</li>
+</ul>
+<h2 id="（2）SSH工作的基本框架"><a href="#（2）SSH工作的基本框架" class="headerlink" title="（2）SSH工作的基本框架"></a>（2）SSH工作的基本框架</h2><h3 id="a-传输层协议"><a href="#a-传输层协议" class="headerlink" title="a. 传输层协议"></a>a. 传输层协议</h3><p>提供服务器认证，数据机密性，信息完整性 等的支持。</p>
+<h3 id="b-用户认证协议"><a href="#b-用户认证协议" class="headerlink" title="b. 用户认证协议"></a>b. 用户认证协议</h3><p>为服务器提供客户端的身份鉴别。</p>
+<h3 id="c-连接协议"><a href="#c-连接协议" class="headerlink" title="c. 连接协议"></a>c. 连接协议</h3><p>将加密的信息隧道复用成若干个逻辑通道，提供给更高层的应用协议使用； 各种高层应用协议可以相对地独立于SSH基本体系之外，并依靠这个基本框架，通过连接协议使用SSH的安全机制。</p>
+<h2 id="（3）SSH建立与通信的简单流程"><a href="#（3）SSH建立与通信的简单流程" class="headerlink" title="（3）SSH建立与通信的简单流程"></a>（3）SSH建立与通信的简单流程</h2><h3 id="a-版本号协商阶段"><a href="#a-版本号协商阶段" class="headerlink" title="a. 版本号协商阶段"></a>a. 版本号协商阶段</h3><ul>
+<li>服务器打开端口 22，等待客户端连接。</li>
+<li>客户端向服务器端发起 TCP初始连接请求，TCP连接建立后，服务器向客户端发送第一个报文，包括版本标志字符串，格式为“SSH－&lt;主协议版本号&gt;.&lt;次协议版本号&gt;－&lt;软件版本号&gt;”，协议版本号由主版本号和次版本号组成，软件版本号主要是为调试使用。</li>
+<li>客户端收到报文后，解析该数据包，如果服务器端的协议版本号比自己的低，且客户端能支持服务器端的低版本，就使用服务器端的低版本协议号，否则使用自己的协议版本号。</li>
+<li>客户端回应服务器一个报文，包含了客户端决定使用的协议版本号。服务器比较客户端发来的版本号，决定是否能同客户端一起工作。</li>
+<li>如果协商成功，则进入密钥和算法协商阶段，否则服务器端断开 TCP连接。</li>
+<li>版本号协商阶段报文都是采用明文方式传输的。</li>
+</ul>
+<h3 id="b-密钥和算法协商阶段"><a href="#b-密钥和算法协商阶段" class="headerlink" title="b.密钥和算法协商阶段"></a>b.密钥和算法协商阶段</h3><ul>
+<li>服务器端和客户端分别发送算法协商报文给对端，报文中包含自己支持的公钥算法列表、加密算法列表、MAC（Message Authentication Code，消息验证码）算法列表、压缩算法列表等;</li>
+<li>服务器端和客户端根据对端和本端支持的算法列表得出最终使用的算法。</li>
+<li>服务器端和客户端利用 DH交换（Diffie-Hellman Exchange）算法、主机密钥对等参数，生成会话密钥和会话 ID。</li>
+<li>对于后续传输的数据，两端都会使用会话密钥进行加密和解密，保证了数据传送的安全</li>
+<li>在认证阶段，两端会使用会话 ID用于认证过程。</li>
+<li> 在协商阶段之前，服务器端已经生成 RSA或 DSA密钥对，他们主要用于参与会话密钥的生成。</li>
+</ul>
+<h3 id="c-认证阶段"><a href="#c-认证阶段" class="headerlink" title="c.认证阶段"></a>c.认证阶段</h3><ul>
+<li>客户端向服务器端发送认证请求，认证请求中包含用户名、认证方法、与该认证方法相关的内容（如：password认证时，内容为密码）。</li>
+<li>服务器端对客户端进行认证，如果认证失败，则向客户端发送认证失败消息，其中包含可以再次认证的方法列表。</li>
+<li>客户端从认证方法列表中选取一种认证方法再次进行认证。</li>
+<li>该过程反复进行， 直到认证成功或者认证次数达到上限， 服务器关闭连接为止。</li>
+</ul>
+<h4 id="SSH1认证的方式"><a href="#SSH1认证的方式" class="headerlink" title="SSH1认证的方式"></a>SSH1认证的方式</h4><ul>
+<li> password认证：客户端向服务器发出 password认证请求，将用户名和密码加密后发送给服务器；服务器将该信息解密后得到用户名和密码的明文，与设备上保存的用户名和密码进行比较，并返回认证成功或失败的消息。</li>
+<li>publickey 认证：采用数字签名的方法来认证客户端。目前，设备上可以利用RSA和 DSA两种公共密钥算法实现数字签名。客户端发送包含用户名、公共密钥和公共密钥算法的 publickey 认证请求给服务器端。服务器对公钥进行合法性检查，如果不合法，则直接发送失败消息；否则，服务器利用数字签名对客户端进行认证，并返回认证成功或失败的消息。</li>
+</ul>
+<h4 id="SSH2额外的认证方式"><a href="#SSH2额外的认证方式" class="headerlink" title="SSH2额外的认证方式"></a>SSH2额外的认证方式</h4><ul>
+<li>password-publickey 认证：指定该用户的认证方式为 password 和 publickey认证同时满足。客户端版本为 SSH1的用户只要通过其中一种认证即可登录；客户端版本为 SSH2的用户必须两种认证都通过才能登录。</li>
+<li>any认证：指定该用户的认证方式可以是 password，也可以是 publickey。</li>
+</ul>
+<h3 id="d-会话请求阶段"><a href="#d-会话请求阶段" class="headerlink" title="d.会话请求阶段"></a>d.会话请求阶段</h3><ul>
+<li>服务器等待客户端的请求；</li>
+<li>认证通过后，客户端向服务器发送会话请求；</li>
+<li>服务器处理客户端的请求。请求被成功处理后， 服务器会向客户端回应 SSH_SMSG_SUCCESS包，SSH进入交互会话阶段；否则回应 SSH_SMSG_FAILURE包，表示服务器处理请求失败或者不能识别请求。</li>
+</ul>
+<h3 id="e-交互会话阶段"><a href="#e-交互会话阶段" class="headerlink" title="e.交互会话阶段"></a>e.交互会话阶段</h3><ul>
+<li>在这个模式下，数据被双向传送。</li>
+<li>客户端将要执行的命令加密后传给服务器;</li>
+<li>服务器接收到报文，解密后执行该命令,将执行的结果加密发还给客户端;</li>
+<li>客户端将接收到的结果解密后显示到终端上。</li>
+</ul>
+<h1 id="2-SSH实际流程数据包分析"><a href="#2-SSH实际流程数据包分析" class="headerlink" title="2. SSH实际流程数据包分析"></a>2. <a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_49864110/article/details/128500490">SSH实际流程数据包分析</a></h1><h2 id="（1）版本协商"><a href="#（1）版本协商" class="headerlink" title="（1）版本协商"></a>（1）版本协商</h2><h3 id="客户端发送到服务端的协商"><a href="#客户端发送到服务端的协商" class="headerlink" title="客户端发送到服务端的协商"></a>客户端发送到服务端的协商</h3><p><img src="/../pic/Pasted%20image%2020240722150717.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="服务端返回给客户端的协商"><a href="#服务端返回给客户端的协商" class="headerlink" title="服务端返回给客户端的协商"></a>服务端返回给客户端的协商</h3><p><img src="/../pic/Pasted%20image%2020240722150736.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="（2）算法协商"><a href="#（2）算法协商" class="headerlink" title="（2）算法协商"></a>（2）算法协商</h2><h3 id="客户端到服务端的算法协商"><a href="#客户端到服务端的算法协商" class="headerlink" title="客户端到服务端的算法协商"></a>客户端到服务端的算法协商</h3><p><img src="/../pic/Pasted%20image%2020240722151051.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="服务端到客户端的算法协商"><a href="#服务端到客户端的算法协商" class="headerlink" title="服务端到客户端的算法协商"></a>服务端到客户端的算法协商</h3><p><img src="/../pic/Pasted%20image%2020240722151212.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="（3）密钥交换"><a href="#（3）密钥交换" class="headerlink" title="（3）密钥交换"></a>（3）密钥交换</h2><h3 id="客户端到服务端密钥交换"><a href="#客户端到服务端密钥交换" class="headerlink" title="客户端到服务端密钥交换"></a>客户端到服务端密钥交换</h3><p><img src="/../pic/Pasted%20image%2020240722151314.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="服务端到客户端密钥交换-newkeys"><a href="#服务端到客户端密钥交换-newkeys" class="headerlink" title="服务端到客户端密钥交换+newkeys"></a>服务端到客户端密钥交换+newkeys</h3><p><img src="/../pic/Pasted%20image%2020240722151617.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="客户端到服务端的newkeys"><a href="#客户端到服务端的newkeys" class="headerlink" title="客户端到服务端的newkeys"></a>客户端到服务端的newkeys</h3><p><img src="/../pic/Pasted%20image%2020240722151748.png" srcset="/img/loading.gif" lazyload></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" class="category-chain-item">网络协议</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/SSH/" class="category-chain-item">SSH</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/SSH/" class="print-no-link">#SSH</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>SSH-理论</div>
+      <div>https://prelearn-code.github.io/2024/07/22/网络协议/SSH-理论/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>prelearn</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年7月22日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2024年8月2日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/07/22/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/SSH-%E6%93%8D%E4%BD%9C/" title="SSH-操作">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">SSH-操作</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/07/21/BlockChain/BTC/03%20BTC-%E5%8D%8F%E8%AE%AE/" title="03 BTC-协议">
+                        <span class="hidden-mobile">03 BTC-协议</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
