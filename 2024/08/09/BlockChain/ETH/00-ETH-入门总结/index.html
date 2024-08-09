@@ -18,19 +18,21 @@
   <meta name="author" content="prelearn">
   <meta name="keywords" content="">
   
-    <meta name="description" content="一.密码学基础">
+    <meta name="description" content="一.概述与账户1.ETH概述ETH与BTC类似，都是通过交易驱动的状态机，但是以太坊的以太币与比特币的记录方式不同，花费方式也不同，比特币需要提供币的来源，同时要维护一个UTXO，以太坊使用账户余额形式来记录账户余额，所以不会出现花费两次的问题。以太坊全节点要维护状态树、交易树、收据树，状态树主要是记录不同账户的状态，记录每个上链的账户的余额信息和其他数据，交易树与收据树是记录交易相关的详细信息与">
 <meta property="og:type" content="article">
 <meta property="og:title" content="00-ETH入门总结">
-<meta property="og:url" content="https://prelearn-code.github.io/2024/08/08/BlockChain/ETH/00-ETH-%E5%85%A5%E9%97%A8%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:url" content="https://prelearn-code.github.io/2024/08/09/BlockChain/ETH/00-ETH-%E5%85%A5%E9%97%A8%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="prelearn-code">
-<meta property="og:description" content="一.密码学基础">
+<meta property="og:description" content="一.概述与账户1.ETH概述ETH与BTC类似，都是通过交易驱动的状态机，但是以太坊的以太币与比特币的记录方式不同，花费方式也不同，比特币需要提供币的来源，同时要维护一个UTXO，以太坊使用账户余额形式来记录账户余额，所以不会出现花费两次的问题。以太坊全节点要维护状态树、交易树、收据树，状态树主要是记录不同账户的状态，记录每个上链的账户的余额信息和其他数据，交易树与收据树是记录交易相关的详细信息与">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-08-08T02:59:12.000Z">
-<meta property="article:modified_time" content="2024-08-08T03:07:44.204Z">
+<meta property="og:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240725224548.png">
+<meta property="article:published_time" content="2024-08-09T02:59:12.000Z">
+<meta property="article:modified_time" content="2024-08-09T15:21:12.152Z">
 <meta property="article:author" content="prelearn">
 <meta property="article:tag" content="BlockChain">
 <meta property="article:tag" content="ETH">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://prelearn-code.github.io/pic/Pasted%20image%2020240725224548.png">
   
   
   
@@ -211,8 +213,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-08-08 10:59" pubdate>
-          2024年8月8日 上午
+        <time datetime="2024-08-09 10:59" pubdate>
+          2024年8月9日 上午
         </time>
       </span>
     
@@ -223,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          6 字
+          1.1k 字
         
       </span>
     
@@ -234,7 +236,7 @@
         
         
         
-          1 分钟
+          10 分钟
         
       </span>
     
@@ -276,7 +278,66 @@
             
               <div class="markdown-body">
                 
-                <h1 id="一-密码学基础"><a href="#一-密码学基础" class="headerlink" title="一.密码学基础"></a>一.密码学基础</h1>
+                <h1 id="一-概述与账户"><a href="#一-概述与账户" class="headerlink" title="一.概述与账户"></a>一.概述与账户</h1><h2 id="1-ETH概述"><a href="#1-ETH概述" class="headerlink" title="1.ETH概述"></a>1.ETH概述</h2><p>ETH与BTC类似，都是通过交易驱动的状态机，但是以太坊的以太币与比特币的记录方式不同，花费方式也不同，比特币需要提供币的来源，同时要维护一个UTXO，以太坊使用账户余额形式来记录账户余额，所以不会出现花费两次的问题。以太坊全节点要维护状态树、交易树、收据树，状态树主要是记录不同账户的状态，记录每个上链的账户的余额信息和其他数据，交易树与收据树是记录交易相关的详细信息与交易结果的信息，无论交易是否成功，都会进行收取gas，即手续费。因为以太坊中有智能合约的存在，账户也分为合约账户与普通账户。</p>
+<h2 id="2-普通账户生成"><a href="#2-普通账户生成" class="headerlink" title="2.普通账户生成"></a>2.普通账户生成</h2><h3 id="a-私钥生成"><a href="#a-私钥生成" class="headerlink" title="a.私钥生成"></a>a.私钥生成</h3><ul>
+<li>随机数32字节的随机数据。</li>
+<li>转换为16进制。</li>
+</ul>
+<h3 id="b-公钥生成"><a href="#b-公钥生成" class="headerlink" title="b.公钥生成"></a>b.公钥生成</h3><ul>
+<li>256位的数据进行点乘法。</li>
+<li>SECP256k1，为算法。</li>
+<li>最终得到x与y分别是32字节。</li>
+<li>最终0x04+x+y即为公钥。</li>
+</ul>
+<h3 id="c-地址生成"><a href="#c-地址生成" class="headerlink" title="c.地址生成"></a>c.地址生成</h3><ul>
+<li>去掉开头的0x04，进行哈希。</li>
+<li>keccak256。</li>
+<li>取后20字节，即160位为个人地址。</li>
+</ul>
+<h2 id="3-合约账户生成"><a href="#3-合约账户生成" class="headerlink" title="3.合约账户生成"></a>3.合约账户生成</h2><p>说明：合约账户地址是使用普通账户与其交易的nonce值来确定的数据。</p>
+<h3 id="a-合约地址生成"><a href="#a-合约地址生成" class="headerlink" title="a.合约地址生成"></a>a.合约地址生成</h3><ul>
+<li>取普通用户的地址去掉前缀+nonce</li>
+<li>取keccak256，取后20字节。</li>
+<li>根据前面普通用户的地址生成校验地址。</li>
+<li>前面地址的数据进行遍历并与合约地址对应。</li>
+<li>若原账户的地址那一位的数据大小在8-f之间。</li>
+<li>合约地址的对应位字符要大写，数字不变。</li>
+</ul>
+<h3 id="b-合约账户其他信息"><a href="#b-合约账户其他信息" class="headerlink" title="b.合约账户其他信息"></a>b.合约账户其他信息</h3><ul>
+<li>可以调用其他合约。</li>
+<li>有自己的存储空间。</li>
+<li>有代码。</li>
+<li>余额。</li>
+</ul>
+<h1 id="二-以太坊的结构"><a href="#二-以太坊的结构" class="headerlink" title="二.以太坊的结构"></a>二.以太坊的结构</h1><h2 id="1-区块头"><a href="#1-区块头" class="headerlink" title="1.区块头"></a>1.区块头</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">type</span> Header <span class="hljs-keyword">struct</span> &#123;<br><br>    ParentHash  common.Hash    <span class="hljs-string">`json:&quot;parentHash&quot;       gencodec:&quot;required&quot;`</span><br>    UncleHash   common.Hash    <span class="hljs-string">`json:&quot;sha3Uncles&quot;       gencodec:&quot;required&quot;`</span><br>    Coinbase    common.Address <span class="hljs-string">`json:&quot;miner&quot;`</span><br>    Root        common.Hash    <span class="hljs-string">`json:&quot;stateRoot&quot;        gencodec:&quot;required&quot;`</span><br>    TxHash      common.Hash    <span class="hljs-string">`json:&quot;transactionsRoot&quot; gencodec:&quot;required&quot;`</span><br>    ReceiptHash common.Hash    <span class="hljs-string">`json:&quot;receiptsRoot&quot;     gencodec:&quot;required&quot;`</span><br>    Bloom       Bloom          <span class="hljs-string">`json:&quot;logsBloom&quot;        gencodec:&quot;required&quot;`</span><br>    Difficulty  *big.Int       <span class="hljs-string">`json:&quot;difficulty&quot;       gencodec:&quot;required&quot;`</span><br>    Number      *big.Int       <span class="hljs-string">`json:&quot;number&quot;           gencodec:&quot;required&quot;`</span><br>    GasLimit    <span class="hljs-type">uint64</span>         <span class="hljs-string">`json:&quot;gasLimit&quot;         gencodec:&quot;required&quot;`</span><br>    GasUsed     <span class="hljs-type">uint64</span>         <span class="hljs-string">`json:&quot;gasUsed&quot;          gencodec:&quot;required&quot;`</span><br>    Time        <span class="hljs-type">uint64</span>         <span class="hljs-string">`json:&quot;timestamp&quot;        gencodec:&quot;required&quot;`</span><br>    Extra       []<span class="hljs-type">byte</span>         <span class="hljs-string">`json:&quot;extraData&quot;        gencodec:&quot;required&quot;`</span><br>    MixDigest   common.Hash    <span class="hljs-string">`json:&quot;mixHash&quot;`</span><br>    Nonce       BlockNonce     <span class="hljs-string">`json:&quot;nonce&quot;`</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>bloom：</li>
+<li>root：状态根哈希。</li>
+<li>TxHash：交易的根哈希。</li>
+<li>ReciptHash：收据的哈希。</li>
+</ul>
+<h2 id="2-区块体"><a href="#2-区块体" class="headerlink" title="2.区块体"></a>2.区块体</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">type</span> Body <span class="hljs-keyword">struct</span> &#123;<br>    Transactions []*Transaction<br>    Uncles       []*Header<br>    Withdrawals  []*Withdrawal <span class="hljs-string">`rlp:&quot;optional&quot;`</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>withdrawals：允许验证者进行提取质押币，POW向POS过度的一个重要标志。</li>
+<li>Transactions：交易集合。</li>
+<li>Uncles：最多指明两个叔父，之前未超过8代的叔块也可以。</li>
+<li>叔块：不进行交易执行，只用发布，有人引用就获取3&#x2F;4的区块奖励。</li>
+</ul>
+<h2 id="3-状态结构"><a href="#3-状态结构" class="headerlink" title="3.状态结构"></a>3.状态结构</h2><h1 id="三-状态树、交易树、数据树"><a href="#三-状态树、交易树、数据树" class="headerlink" title="三.状态树、交易树、数据树"></a>三.状态树、交易树、数据树</h1><h2 id="1-树的结构介绍"><a href="#1-树的结构介绍" class="headerlink" title="1.树的结构介绍"></a>1.树的结构介绍</h2><h3 id="a-字典树-trie"><a href="#a-字典树-trie" class="headerlink" title="a.字典树(trie)"></a>a.字典树(trie)</h3><p>通过路径上到叶节点即可通过路径找到对应的数据。</p>
+<h3 id="b-前缀树"><a href="#b-前缀树" class="headerlink" title="b.前缀树"></a>b.前缀树</h3><p>通过对于字典树进行前缀压缩，把相同的与节点少的树进行前缀压缩。</p>
+<h3 id="c-默克尔树"><a href="#c-默克尔树" class="headerlink" title="c.默克尔树"></a>c.默克尔树</h3><p>与比特币的交易树的根哈希的计算方法类似，为了实现对于整个树的数据的完整性进行校验的。</p>
+<h3 id="d-前缀默克尔树"><a href="#d-前缀默克尔树" class="headerlink" title="d.前缀默克尔树"></a>d.前缀默克尔树</h3><p>通过对于前缀进行压缩数据，对于分叉数据进行哈希指针查找，从而实现对于每个叶节点的遍历与查找。</p>
+<h2 id="2-状态树"><a href="#2-状态树" class="headerlink" title="2.状态树"></a>2.状态树</h2><p>说明：状态树是一种MPT数据结构，即前缀默克尔树。状态树的节点历史数据的需要存储，用来回退交易失败的状态。</p>
+<p><img src="/./pic/Pasted%20image%2020240725224548.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>存在状态根哈希，来判断状态是否相同。</li>
+<li>状态树的大部分内容是不改变的，交易只是对应少部分的信息。</li>
+<li></li>
+</ul>
+<p>#状态数的压缩节点怎么展开。</p>
+<h2 id="3-交易树"><a href="#3-交易树" class="headerlink" title="3.交易树"></a>3.交易树</h2><p>根据交易的哈希进行计算交易树，与比特币的交易树类似。</p>
+<h2 id="4-收据树"><a href="#4-收据树" class="headerlink" title="4.收据树"></a>4.收据树</h2><p>与交易树类似，对于收据进行哈希，得到根哈希值，放在块头。</p>
+
                 
               </div>
             
@@ -331,7 +392,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>00-ETH入门总结</div>
-      <div>https://prelearn-code.github.io/2024/08/08/BlockChain/ETH/00-ETH-入门总结/</div>
+      <div>https://prelearn-code.github.io/2024/08/09/BlockChain/ETH/00-ETH-入门总结/</div>
     </div>
     <div class="license-meta">
       
@@ -343,13 +404,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年8月8日</div>
+          <div>2024年8月9日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年8月8日</div>
+          <div>2024年8月9日</div>
         </div>
       
       
