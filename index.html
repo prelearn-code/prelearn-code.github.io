@@ -1,0 +1,1042 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/myicon.png">
+  <link rel="icon" href="/img/myicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="prelearn">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="prelearn-blog">
+<meta property="og:type" content="website">
+<meta property="og:title" content="prelearn-code">
+<meta property="og:url" content="https://prelearn-code.github.io/index.html">
+<meta property="og:site_name" content="prelearn-code">
+<meta property="og:description" content="prelearn-blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="prelearn">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>prelearn-code</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"prelearn-code.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>prelearn-code</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="The bolg of prelearn"></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          style="margin-top: 0">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/09/02/%E5%B0%8F%E8%AF%B4/%E6%B2%88%E6%98%9F%E4%B9%94/" target="_self">
+          沈星乔
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/09/02/%E5%B0%8F%E8%AF%B4/%E6%B2%88%E6%98%9F%E4%B9%94/" target="_self">
+        <div>
+          第20章  随时可以离婚“你说怎么了？”池宴忱凶狠狠的说着，强行将我的手机抢了过去。我见状，立即想夺回手机，“你干什么呀？你凭什么看我的手机？”可惜，不管我怎么蹦哒，都掰不开他的手。池宴忱举高手机，直接输入了开屏密码。“哼～，你居然把密码也换了？”之前，我的手机密码是我们的结婚纪念日。但刚刚，我已经重新修改了密码。“密码现在是什么？”“池宴忱，你发什么疯？”见我不肯告诉他，池宴忱直接捏着我的手指，
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-09-02 16:20" pubdate>
+              2024-09-02
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%B0%8F%E8%AF%B4/" class="category-chain-item">小说</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%B0%8F%E8%AF%B4/">#小说</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/08/09/BlockChain/ETH/00-ETH-%E5%85%A5%E9%97%A8%E6%80%BB%E7%BB%93/" target="_self">
+          00-ETH入门总结
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/08/09/BlockChain/ETH/00-ETH-%E5%85%A5%E9%97%A8%E6%80%BB%E7%BB%93/" target="_self">
+        <div>
+          一.概述与账户1.ETH概述ETH与BTC类似，都是通过交易驱动的状态机，但是以太坊的以太币与比特币的记录方式不同，花费方式也不同，比特币需要提供币的来源，同时要维护一个UTXO，以太坊使用账户余额形式来记录账户余额，所以不会出现花费两次的问题。以太坊全节点要维护状态树、交易树、收据树，状态树主要是记录不同账户的状态，记录每个上链的账户的余额信息和其他数据，交易树与收据树是记录交易相关的详细信息与
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-08-09 10:59" pubdate>
+              2024-08-09
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/BlockChain/" class="category-chain-item">BlockChain</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/BlockChain/ETH/" class="category-chain-item">ETH</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/BlockChain/">#BlockChain</a>
+            
+              <a href="/tags/ETH/">#ETH</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/08/07/BlockChain/BTC/00-BTC-%E5%85%A5%E9%97%A8%E6%80%BB%E7%BB%93/" target="_self">
+          00-BTC入门
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/08/07/BlockChain/BTC/00-BTC-%E5%85%A5%E9%97%A8%E6%80%BB%E7%BB%93/" target="_self">
+        <div>
+          一：比特币密码学与数据结构1.哈希函数a. 常用哈希 sha256 RIPEMD-160  b.使用途径 产生公钥。 交易进行哈希。 默克尔树生成。 跟哈希的生成与验证。 区块的哈希作为下一个区块的输入，验证区块是否合法。  2.非对称加解密a.使用的算法 ECDSA  b.使用的途径 公钥生成。 签名，用于脚本的验证，确保花费区块时的合法性。 验证交易的来源是否合法，对于交易需要进行签名,其中公
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-08-07 19:59" pubdate>
+              2024-08-07
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/BlockChain/" class="category-chain-item">BlockChain</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/BlockChain/BTC/" class="category-chain-item">BTC</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/BlockChain/">#BlockChain</a>
+            
+              <a href="/tags/BTC/">#BTC</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/08/02/BlockChain/Road/09-%E8%B5%84%E6%96%99/" target="_self">
+          09-资料
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/08/02/BlockChain/Road/09-%E8%B5%84%E6%96%99/" target="_self">
+        <div>
+          reference浙江大学区块链协会开源计划。欢迎所有人贡献！！！ 书籍入门 精通比特币 区块链-技术驱动金融 区块链-从数字货币到信用社会  进阶 区块链技术进阶与实战  开源项目比特币 比特币白皮书  以太坊 以太坊白皮书 以太坊wiki go-ethereum-code-analysis 以太坊源码分析-teaspring的技术专栏 干货|以太坊分片:overview and finalit
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-08-02 00:08" pubdate>
+              2024-08-02
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/BlockChain/" class="category-chain-item">BlockChain</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/BlockChain/Road/" class="category-chain-item">Road</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/BlockChain/">#BlockChain</a>
+            
+              <a href="/tags/Road/">#Road</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/08/02/BlockChain/Road/08-NFT/" target="_self">
+          08-NFT
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/08/02/BlockChain/Road/08-NFT/" target="_self">
+        <div>
+          NFTer-roadmap 2024NFT 学习路线总结，不断更新。 —— By 浙江大学区块链协会（Zhejiang University BlockChain Association, ZJUBCA） 第一层 快速入门   历史发展： NFT 圣经：关于非同质化代币的所有知识 🔗   一些解读： NFT：价值互联网的 HTML 🔗  深度解析：NFT 有哪些应用场景？非同质化代币最全用例手
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-08-02 00:07" pubdate>
+              2024-08-02
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/BlockChain/" class="category-chain-item">BlockChain</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/BlockChain/Road/" class="category-chain-item">Road</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/BlockChain/">#BlockChain</a>
+            
+              <a href="/tags/Road/">#Road</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/08/02/BlockChain/Road/07-Base/" target="_self">
+          07-Base
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/08/02/BlockChain/Road/07-Base/" target="_self">
+        <div>
+          Base背景介绍什么是BaseBase是总部位于美国的加密货币交易平台Coinbase于2023年8月9日正式发布的以太坊Layer 2(L2)区块链。作为这家上市公司推出的第一个区块链，它受到了加密货币社区的广泛关注。 Base是与以太坊Layer 2区块链OP Stack上的OPtimism合作开发的，而OP Stack是一个支持OPTimism的标准化开源开发堆栈。Base允许开发者在开发去
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-08-02 00:05" pubdate>
+              2024-08-02
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/BlockChain/" class="category-chain-item">BlockChain</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/BlockChain/Road/" class="category-chain-item">Road</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/BlockChain/">#BlockChain</a>
+            
+              <a href="/tags/Road/">#Road</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/08/02/BlockChain/Road/06-Farcaster%E7%A4%BE%E4%BA%A4%E5%8D%8F%E8%AE%AE/" target="_self">
+          06-Farcaster社交协议
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/08/02/BlockChain/Road/06-Farcaster%E7%A4%BE%E4%BA%A4%E5%8D%8F%E8%AE%AE/" target="_self">
+        <div>
+          Farcaster 社交协议简介Farcaster是一个社交协议，作为一个开源的社交关系图谱，支持开发者在这个协议上构建各种应用，其地位可以看作是Base生态的核心，现在的Base链项目的一手消息都是Farcaster上面的。 Warpcast是支持这个协议的一个客户端，也是大家最常的一个，简单理解就是一个社交APP，类比推特 投资背景2022 年 7 月 13 日，Farcaster 完成 30
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-08-02 00:05" pubdate>
+              2024-08-02
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/BlockChain/" class="category-chain-item">BlockChain</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/BlockChain/Road/" class="category-chain-item">Road</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/BlockChain/">#BlockChain</a>
+            
+              <a href="/tags/Road/">#Road</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/08/02/BlockChain/Road/05-%E4%BB%A3%E5%B8%81/" target="_self">
+          05-代币
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/08/02/BlockChain/Road/05-%E4%BB%A3%E5%B8%81/" target="_self">
+        <div>
+          Degen代币Degen 代币的起源与发展Degen 代币的历史可以追溯到 2024 年 1 月在 Base 链上的首次推出。从 Farcaster 社区的 &#x2F;degen 频道开始,Degen 凭借其独特的激励机制和迷因文化,迅速在加密货币社区内掀起了轰动,并为其后续的发展奠定了坚实的基础。 Degen 的早期发展 Farcaster 社区 Farcaster 作为一个去中心化的社交应用
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-08-02 00:04" pubdate>
+              2024-08-02
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/BlockChain/" class="category-chain-item">BlockChain</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/BlockChain/Road/" class="category-chain-item">Road</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/BlockChain/">#BlockChain</a>
+            
+              <a href="/tags/Road/">#Road</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/08/02/BlockChain/Road/04-%E8%81%94%E7%9B%9F%E9%93%BE/" target="_self">
+          04-联盟链
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/08/02/BlockChain/Road/04-%E8%81%94%E7%9B%9F%E9%93%BE/" target="_self">
+        <div>
+          Consortium Blockchain-roadmap 2024联盟链学习路线总结，不断更新。 —— By 浙江大学区块链协会（Zhejiang University BlockChain Association, ZJUBCA） 第一层 基本概念： 什么是公有链、联盟链和私有链？(万向区块链实验室动画教程) 🔗 Blockchain Consortium: Advantages And D
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-08-02 00:03" pubdate>
+              2024-08-02
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/BlockChain/" class="category-chain-item">BlockChain</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/BlockChain/Road/" class="category-chain-item">Road</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/BlockChain/">#BlockChain</a>
+            
+              <a href="/tags/Road/">#Road</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/08/02/BlockChain/Road/03-Dapp/" target="_self">
+          03-Dapp
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/08/02/BlockChain/Road/03-Dapp/" target="_self">
+        <div>
+          初探以太坊 Dapp 开发BY ZJUBCA 本文假设读者已经对区块链有了基本的概念，如果你对诸如区块链、智能合约与 Dapp 这类词语完全陌生，那么我们建议读者先阅读协会的：🔗ZJUBCA-Roadmap 以太坊技术原理一、什么是以太坊（Ethereum）对以太坊的定义往往仁者见仁，但如果集大成来解释，以太坊是基于状态转换的「世界计算机」（所有人都可以访问并使用的计算机，不受空间限制） 从计算
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-08-02 00:02" pubdate>
+              2024-08-02
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/BlockChain/" class="category-chain-item">BlockChain</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/BlockChain/Road/" class="category-chain-item">Road</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/BlockChain/">#BlockChain</a>
+            
+              <a href="/tags/Road/">#Road</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
