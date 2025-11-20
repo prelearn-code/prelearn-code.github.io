@@ -1,310 +1,477 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
-
-
-
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/myicon.png">
-  <link rel="icon" href="/img/myicon.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="prelearn">
-  <meta name="keywords" content="">
-  
-    <meta name="description" content="Consortium Blockchain-roadmap 2024联盟链学习路线总结，不断更新。 —— By 浙江大学区块链协会（Zhejiang University BlockChain Association, ZJUBCA） 第一层 基本概念： 什么是公有链、联盟链和私有链？(万向区块链实验室动画教程) 🔗 Blockchain Consortium: Advantages And D">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="The Redefine Team">
+    
+    <!-- Completely eliminate flash of wrong theme -->
+    <script>
+        (function() {
+            const THEME_KEY = "REDEFINE-THEME-STATUS";
+            const DARK = "dark", LIGHT = "light";
+            
+            // Get preferred theme
+            function getTheme() {
+                try {
+                    const saved = localStorage.getItem(THEME_KEY);
+                    if (saved) {
+                        const { isDark } = JSON.parse(saved);
+                        return isDark ? DARK : LIGHT;
+                    }
+                } catch (e) {}
+                
+                return matchMedia("(prefers-color-scheme: dark)").matches ? DARK : LIGHT;
+            }
+            
+            // Apply theme to document
+            function applyTheme(theme) {
+                const isDark = theme === DARK;
+                const root = document.documentElement;
+                
+                // Set data attribute for CSS variables
+                root.setAttribute("data-theme", theme);
+                
+                // Set classes for compatibility
+                root.classList.add(theme);
+                root.classList.remove(isDark ? LIGHT : DARK);
+                root.style.colorScheme = theme;
+            }
+            
+            // Initial application
+            const theme = getTheme();
+            applyTheme(theme);
+            
+            // Listen for system preference changes
+            matchMedia("(prefers-color-scheme: dark)").addEventListener("change", ({ matches }) => {
+                // Only update if using system preference (no localStorage entry)
+                if (!localStorage.getItem(THEME_KEY)) {
+                    applyTheme(matches ? DARK : LIGHT);
+                }
+            });
+            
+            // Set body classes once DOM is ready
+            if (document.readyState !== "loading") {
+                document.body.classList.add(theme + "-mode");
+            } else {
+                document.addEventListener("DOMContentLoaded", () => {
+                    document.body.classList.add(theme + "-mode");
+                    document.body.classList.remove((theme === DARK ? LIGHT : DARK) + "-mode");
+                });
+            }
+        })();
+    </script>
+    
+    <!-- Critical CSS to prevent flash -->
+    <style>
+        :root[data-theme="dark"] {
+            --background-color: #202124;
+            --background-color-transparent: rgba(32, 33, 36, 0.6);
+            --second-background-color: #2d2e32;
+            --third-background-color: #34353a;
+            --third-background-color-transparent: rgba(32, 33, 36, 0.6);
+            --primary-color: #0066CC;
+            --first-text-color: #ffffff;
+            --second-text-color: #eeeeee;
+            --third-text-color: #bebec6;
+            --fourth-text-color: #999999;
+            --default-text-color: #bebec6;
+            --invert-text-color: #373D3F;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --selection-color: #0066CC;
+            --shadow-color-1: rgba(255, 255, 255, 0.08);
+            --shadow-color-2: rgba(255, 255, 255, 0.05);
+        }
+        
+        :root[data-theme="light"] {
+            --background-color: #fff;
+            --background-color-transparent: rgba(255, 255, 255, 0.6);
+            --second-background-color: #f8f8f8;
+            --third-background-color: #f2f2f2;
+            --third-background-color-transparent: rgba(241, 241, 241, 0.6);
+            --primary-color: #0066CC;
+            --first-text-color: #16171a;
+            --second-text-color: #2f3037;
+            --third-text-color: #5e5e5e;
+            --fourth-text-color: #eeeeee;
+            --default-text-color: #373D3F;
+            --invert-text-color: #bebec6;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --selection-color: #0066CC;
+            --shadow-color-1: rgba(0, 0, 0, 0.08);
+            --shadow-color-2: rgba(0, 0, 0, 0.05);
+        }
+        
+        body {
+            background-color: var(--background-color);
+            color: var(--default-text-color);
+        }
+        
+        /* Apply body classes as soon as DOM is ready */
+        :root[data-theme="dark"] body {
+            background-color: var(--background-color);
+            color: var(--default-text-color);
+        }
+    </style>
+    
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://prelearn-code.github.io/2024/08/02/blockchain/road/04-联盟链/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+    
+        
+        <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="04-联盟链">
 <meta property="og:url" content="https://prelearn-code.github.io/2024/08/02/BlockChain/Road/04-%E8%81%94%E7%9B%9F%E9%93%BE/index.html">
 <meta property="og:site_name" content="prelearn-code">
-<meta property="og:description" content="Consortium Blockchain-roadmap 2024联盟链学习路线总结，不断更新。 —— By 浙江大学区块链协会（Zhejiang University BlockChain Association, ZJUBCA） 第一层 基本概念： 什么是公有链、联盟链和私有链？(万向区块链实验室动画教程) 🔗 Blockchain Consortium: Advantages And D">
+<meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://prelearn-code.github.io/images/redefine-og.webp">
 <meta property="article:published_time" content="2024-08-01T16:03:18.000Z">
 <meta property="article:modified_time" content="2025-11-20T02:21:25.039Z">
 <meta property="article:author" content="prelearn">
 <meta property="article:tag" content="BlockChain">
 <meta property="article:tag" content="Road">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-  
-  <title>04-联盟链 - prelearn-code</title>
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://prelearn-code.github.io/images/redefine-og.webp">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            04-联盟链 | Theme Redefine
+        
+    </title>
 
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-
-
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
 
 
+    <!--- Inject Part-->
+    
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
+    
+<link rel="stylesheet" href="/css/style.css">
 
 
+    
+        
+<link rel="stylesheet" href="/css/build/tailwind.css">
 
+    
 
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"prelearn-code.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
 
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
-    }
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"prelearn-code.github.io","root":"/","language":"zh-CN"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"side_tools":{"gear_rotation":true,"auto_expand":false},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"Hexo Theme Redefine, Redefine Your Hexo Journey."},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Theme Redefine","subtitle":{"text":[],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"11.4.1"}},"version":"2.8.5","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.data = {"masonry":false};
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
 
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
 
-  
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
 <meta name="generator" content="Hexo 7.3.0"></head>
 
 
+
 <body>
-  
+	<div class="progress-bar-container">
+	
 
-  <header>
-    
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
 
-<div class="header-inner" style="height: 70vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>prelearn-code</strong>
-    </a>
+<main class="page-container" id="swup">
 
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
+	
 
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
-                <i class="iconfont icon-home-fill"></i>
-                <span>首页</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
-                <i class="iconfont icon-archive-fill"></i>
-                <span>归档</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
-                <i class="iconfont icon-category-fill"></i>
-                <span>分类</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
-                <i class="iconfont icon-tags-fill"></i>
-                <span>标签</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
-                <i class="iconfont icon-user-fill"></i>
-                <span>关于</span>
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              <i class="iconfont icon-search"></i>
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                Theme Redefine
+                
             </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
-              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
-            </a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-  
-
-<div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle" data-typed-text="04-联盟链"></span>
-          
         </div>
 
-        
-          
-  <div class="mt-3">
-    
-    
-      <span class="post-meta">
-        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-08-02 00:03" pubdate>
-          2024年8月2日 凌晨
-        </time>
-      </span>
-    
-  </div>
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
 
-  <div class="mt-1">
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-chart"></i>
-        
-          963 字
-        
-      </span>
-    
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    首页
+                                    
+                                </a>
 
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-clock-fill"></i>
-        
-        
-        
-          9 分钟
-        
-      </span>
-    
-
-    
-    
-  </div>
-
-
-        
-      </div>
-
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-  </header>
-
-  <main>
-    
-      
-
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-
-    </div>
-
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div id="board">
-          <article class="post-content mx-auto">
-            <h1 id="seo-header">04-联盟链</h1>
-            
-            
-              <div class="markdown-body">
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
                 
-                <h1 id="Consortium-Blockchain-roadmap-2024"><a href="#Consortium-Blockchain-roadmap-2024" class="headerlink" title="Consortium Blockchain-roadmap 2024"></a>Consortium Blockchain-roadmap 2024</h1><p>联盟链学习路线总结，不断更新。</p>
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                首页
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">6</div>
+        <div class="label text-third-text-color text-sm">标签</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">8</div>
+        <div class="label text-third-text-color text-sm">分类</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">39</div>
+        <div class="label text-third-text-color text-sm">文章</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			<div class="w-full flex items-center pt-6 justify-start">
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">04-联盟链</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/images/redefine-avatar.svg">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">The Redefine Team</span>
+					
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv4</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2024-08-02 00:03:18</span>
+        <span class="mobile">2024-08-02 00:03:18</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-11-20 10:21:25</span>
+            <span class="mobile">2025-11-20 10:21:25</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/BlockChain/">BlockChain</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/BlockChain/Road/">Road</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/BlockChain/">BlockChain</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Road/">Road</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<h1 id="Consortium-Blockchain-roadmap-2024"><a href="#Consortium-Blockchain-roadmap-2024" class="headerlink" title="Consortium Blockchain-roadmap 2024"></a>Consortium Blockchain-roadmap 2024</h1><p>联盟链学习路线总结，不断更新。</p>
 <p>—— By 浙江大学区块链协会（Zhejiang University BlockChain Association, ZJUBCA）</p>
 <h2 id="第一层"><a href="#第一层" class="headerlink" title="第一层"></a>第一层</h2><ul>
 <li><strong>基本概念</strong>：<ul>
-<li>什么是公有链、联盟链和私有链？(万向区块链实验室动画教程) <a target="_blank" rel="noopener" href="https://v.qq.com/x/page/a0328vol40v.html">🔗</a></li>
-<li>Blockchain Consortium: Advantages And Disadvantages<a target="_blank" rel="noopener" href="https://dataconomy.com/2023/01/blockchain-consortium-advantages/">🔗</a></li>
-<li>A Complete Guide to Consortium Blockchain And Its Features<a target="_blank" rel="noopener" href="https://www.analyticsvidhya.com/blog/2023/01/a-complete-guide-to-consortium-blockchain-and-its-features/">🔗</a></li>
-<li>Everything You Need To Know About Consortium Blockchain<a target="_blank" rel="noopener" href="https://www.blockchain-council.org/blockchain/everything-you-need-to-know-about-consortium-blockchain/">🔗</a></li>
+<li>什么是公有链、联盟链和私有链？(万向区块链实验室动画教程) <a class="link"   target="_blank" rel="noopener" href="https://v.qq.com/x/page/a0328vol40v.html" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>Blockchain Consortium: Advantages And Disadvantages<a class="link"   target="_blank" rel="noopener" href="https://dataconomy.com/2023/01/blockchain-consortium-advantages/" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>A Complete Guide to Consortium Blockchain And Its Features<a class="link"   target="_blank" rel="noopener" href="https://www.analyticsvidhya.com/blog/2023/01/a-complete-guide-to-consortium-blockchain-and-its-features/" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>Everything You Need To Know About Consortium Blockchain<a class="link"   target="_blank" rel="noopener" href="https://www.blockchain-council.org/blockchain/everything-you-need-to-know-about-consortium-blockchain/" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
 </ul>
 </li>
 <li><strong>解读与讨论</strong>：<ul>
-<li>联盟链战国：五大巨头横向对比 <a target="_blank" rel="noopener" href="https://www.infoq.cn/article/5-consortium-blockchain-comparison/">🔗</a></li>
-<li>基于联盟链技术的隐私保护金融应用研究报告 <a target="_blank" rel="noopener" href="https://www.bfia.org.cn/upload/file/20221201/1669860599908060153.pdf">🔗</a></li>
-<li>研报：连通公链和联盟链的研究 <a target="_blank" rel="noopener" href="https://www.8btc.com/article/6582723">🔗</a></li>
-<li>安全问题成短板，联盟链发展背后的安全如何保障？<a target="_blank" rel="noopener" href="https://www.chainnews.com/articles/576303926328.htm">🔗</a></li>
-<li>联盟链智能合约安全浅析 <a target="_blank" rel="noopener" href="https://paper.seebug.org/1317/">🔗</a></li>
-<li>怎样让你的区块链更加安全可控<a target="_blank" rel="noopener" href="https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/articles/1_conception/safe_and_controllable.html">🔗</a></li>
-<li>盘点国内联盟链及现状 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/519283107">🔗</a></li>
+<li>联盟链战国：五大巨头横向对比 <a class="link"   target="_blank" rel="noopener" href="https://www.infoq.cn/article/5-consortium-blockchain-comparison/" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>基于联盟链技术的隐私保护金融应用研究报告 <a class="link"   target="_blank" rel="noopener" href="https://www.bfia.org.cn/upload/file/20221201/1669860599908060153.pdf" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>研报：连通公链和联盟链的研究 <a class="link"   target="_blank" rel="noopener" href="https://www.8btc.com/article/6582723" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>安全问题成短板，联盟链发展背后的安全如何保障？<a class="link"   target="_blank" rel="noopener" href="https://www.chainnews.com/articles/576303926328.htm" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>联盟链智能合约安全浅析 <a class="link"   target="_blank" rel="noopener" href="https://paper.seebug.org/1317/" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>怎样让你的区块链更加安全可控<a class="link"   target="_blank" rel="noopener" href="https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/articles/1_conception/safe_and_controllable.html" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>盘点国内联盟链及现状 <a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/519283107" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
 </ul>
 </li>
 </ul>
 <h2 id="第二层"><a href="#第二层" class="headerlink" title="第二层"></a>第二层</h2><ul>
 <li><strong>技术原理</strong><ul>
 <li>共识机制<ul>
-<li>区块链共识机制浅谈：<a target="_blank" rel="noopener" href="https://blog.csdn.net/jeffrey__zhou/article/details/56672948">🔗</a></li>
-<li>[区块链] 共识算法之争（PBFT，Raft，PoW，PoS，DPoS，Ripple）:<a target="_blank" rel="noopener" href="https://www.cnblogs.com/X-knight/p/9157814.html">🔗</a></li>
-<li>深度分析 Raft 的主要特点：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/yxJNsFzhpShzRvU9djhTjQ">🔗</a></li>
-<li>Paxos，Raft，Zab 一致性协议-Raft 篇：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/5EZ2_vIzHEymJPxeSZtlmg">🔗</a></li>
-<li>深入剖析区块链的共识算法 Raft &amp; PBFT：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/ITCaMKdYrdlvQ0IGW3qpKg">🔗</a></li>
+<li>区块链共识机制浅谈：<a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/jeffrey__zhou/article/details/56672948" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>[区块链] 共识算法之争（PBFT，Raft，PoW，PoS，DPoS，Ripple）:<a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/X-knight/p/9157814.html" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>深度分析 Raft 的主要特点：<a class="link"   target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/yxJNsFzhpShzRvU9djhTjQ" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>Paxos，Raft，Zab 一致性协议-Raft 篇：<a class="link"   target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/5EZ2_vIzHEymJPxeSZtlmg" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>深入剖析区块链的共识算法 Raft &amp; PBFT：<a class="link"   target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/ITCaMKdYrdlvQ0IGW3qpKg" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
 </ul>
 </li>
 <li>密码学相关<ul>
@@ -315,17 +482,17 @@
 </ul>
 </li>
 <li>网络通信<ul>
-<li>联盟链网络专栏(Hyperledger Fabric)：<a target="_blank" rel="noopener" href="https://hyperledger-fabric.readthedocs.io/zh_CN/latest/network/network.html">🔗</a></li>
-<li>【网络专栏】联盟链的通信安全如何保障？：<a target="_blank" rel="noopener" href="https://tech.hyperchain.cn/wang-luo-zhuan-lan-lian-meng-lian-de-tong-xin-an-quan-ru-he-bao-zhang/">🔗</a></li>
+<li>联盟链网络专栏(Hyperledger Fabric)：<a class="link"   target="_blank" rel="noopener" href="https://hyperledger-fabric.readthedocs.io/zh_CN/latest/network/network.html" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>【网络专栏】联盟链的通信安全如何保障？：<a class="link"   target="_blank" rel="noopener" href="https://tech.hyperchain.cn/wang-luo-zhuan-lan-lian-meng-lian-de-tong-xin-an-quan-ru-he-bao-zhang/" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
 </ul>
 </li>
 <li>存储相关<ul>
-<li>IPFS：<a target="_blank" rel="noopener" href="https://docs.ipfs.tech/">🔗</a></li>
+<li>IPFS：<a class="link"   target="_blank" rel="noopener" href="https://docs.ipfs.tech/" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
 <li>传统数据库如 mysql、CouchDB、MongoDB 等</li>
 </ul>
 </li>
 <li>智能合约<ul>
-<li>智能合约初探：概念与演变：<a target="_blank" rel="noopener" href="https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/articles/3_features/35_contract/smart_contract_concept_and_evolution.html">🔗</a></li>
+<li>智能合约初探：概念与演变：<a class="link"   target="_blank" rel="noopener" href="https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/articles/3_features/35_contract/smart_contract_concept_and_evolution.html" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
 <li>联盟链的智能合约多采用 go、java 等语言编写，不同联盟链框架对合约语言的支持不同，可根据需要进一步学习</li>
 </ul>
 </li>
@@ -333,10 +500,10 @@
 </li>
 <li><strong>源码分析</strong><ul>
 <li>《Hyperledger Fabric 源代码分析与深入解读》</li>
-<li>Hyperledger Fabric v2.x 最新资料汇总<a target="_blank" rel="noopener" href="https://hello2mao.github.io/2020/04/22/hyperledger-fabric-v2.x-info/">🔗</a></li>
-<li>Fabric2.2 中的 Raft 共识模块源码分析<a target="_blank" rel="noopener" href="https://www.cnblogs.com/GarrettWale/p/16131853.html">🔗</a></li>
-<li>深入浅出 FISCO BCOS<a target="_blank" rel="noopener" href="https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/articles/index.html">🔗</a></li>
-<li>FISCO BCOS 核心模块设计解析<a target="_blank" rel="noopener" href="https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/design/index.html">🔗</a></li>
+<li>Hyperledger Fabric v2.x 最新资料汇总<a class="link"   target="_blank" rel="noopener" href="https://hello2mao.github.io/2020/04/22/hyperledger-fabric-v2.x-info/" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>Fabric2.2 中的 Raft 共识模块源码分析<a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/GarrettWale/p/16131853.html" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>深入浅出 FISCO BCOS<a class="link"   target="_blank" rel="noopener" href="https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/articles/index.html" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>FISCO BCOS 核心模块设计解析<a class="link"   target="_blank" rel="noopener" href="https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/design/index.html" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
 </ul>
 </li>
 </ul>
@@ -344,79 +511,79 @@
 <li><strong>联盟链实例</strong><ul>
 <li>Hyperledger Fabric<ul>
 <li>Hyperledger Fabric 是由 Linux 基金会支持的开源项目，提供了一种可扩展、可定制和安全的联盟链技术。</li>
-<li>官网：<a target="_blank" rel="noopener" href="https://www.hyperledger.org/use/fabric">🔗</a></li>
-<li>paper:<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1801.10228.pdf">🔗</a></li>
-<li>官方文档：<a target="_blank" rel="noopener" href="https://hyperledger-fabric.readthedocs.io/en/release-2.5/">🔗</a></li>
-<li>中文文档：<a target="_blank" rel="noopener" href="https://hyperledgercn.github.io/hyperledgerDocs/">🔗</a></li>
-<li>中文视频 Tutorial：<a target="_blank" rel="noopener" href="https://wiki.hyperledger.org/display/TWGC/Fabric+Video+Tutorial">🔗</a></li>
-<li>FAQ：<a target="_blank" rel="noopener" href="https://github.com/Hyperledger-TWGC/FAQ">🔗</a></li>
-<li>博客(Hyperledger Fabric 2.0 系列)：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_28540443/article/details/104265844">🔗</a></li>
-<li>电子书《区块链技术指南》:<a target="_blank" rel="noopener" href="https://github.com/yeasy/blockchain_guide">🔗</a></li>
-<li>电子书《Hyperledger 源码分析之 Fabric》:<a target="_blank" rel="noopener" href="https://github.com/yeasy/hyperledger_code_fabric">🔗</a></li>
+<li>官网：<a class="link"   target="_blank" rel="noopener" href="https://www.hyperledger.org/use/fabric" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>paper:<a class="link"   target="_blank" rel="noopener" href="https://arxiv.org/pdf/1801.10228.pdf" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>官方文档：<a class="link"   target="_blank" rel="noopener" href="https://hyperledger-fabric.readthedocs.io/en/release-2.5/" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>中文文档：<a class="link"   target="_blank" rel="noopener" href="https://hyperledgercn.github.io/hyperledgerDocs/" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>中文视频 Tutorial：<a class="link"   target="_blank" rel="noopener" href="https://wiki.hyperledger.org/display/TWGC/Fabric+Video+Tutorial" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>FAQ：<a class="link"   target="_blank" rel="noopener" href="https://github.com/Hyperledger-TWGC/FAQ" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>博客(Hyperledger Fabric 2.0 系列)：<a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/qq_28540443/article/details/104265844" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>电子书《区块链技术指南》:<a class="link"   target="_blank" rel="noopener" href="https://github.com/yeasy/blockchain_guide" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>电子书《Hyperledger 源码分析之 Fabric》:<a class="link"   target="_blank" rel="noopener" href="https://github.com/yeasy/hyperledger_code_fabric" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
 </ul>
 </li>
 <li>R3 Corda(金融行业)<ul>
 <li>R3 Corda 是一种用于金融行业的联盟链技术，提供了一种可扩展、安全和隐私保护的方法。</li>
-<li>官网：<a target="_blank" rel="noopener" href="https://r3.com/products/corda/">🔗</a></li>
-<li>white paper：<a target="_blank" rel="noopener" href="https://r3.com/blog/corda-technical-whitepaper/">🔗</a></li>
-<li>官方文档：<a target="_blank" rel="noopener" href="https://docs.r3.com/">🔗</a></li>
-<li>中文文档：<a target="_blank" rel="noopener" href="https://cncorda.readthedocs.io/zh_CN/latest/index.html">🔗</a></li>
-<li>developer training:<a target="_blank" rel="noopener" href="https://training.corda.net/">🔗</a></li>
-<li>FAQ:<a target="_blank" rel="noopener" href="https://docs.r3.com/en/platform/corda/4.9/enterprise/notary/faq/toctree.html">🔗</a></li>
+<li>官网：<a class="link"   target="_blank" rel="noopener" href="https://r3.com/products/corda/" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>white paper：<a class="link"   target="_blank" rel="noopener" href="https://r3.com/blog/corda-technical-whitepaper/" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>官方文档：<a class="link"   target="_blank" rel="noopener" href="https://docs.r3.com/" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>中文文档：<a class="link"   target="_blank" rel="noopener" href="https://cncorda.readthedocs.io/zh_CN/latest/index.html" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>developer training:<a class="link"   target="_blank" rel="noopener" href="https://training.corda.net/" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>FAQ:<a class="link"   target="_blank" rel="noopener" href="https://docs.r3.com/en/platform/corda/4.9/enterprise/notary/faq/toctree.html" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
 </ul>
 </li>
 <li>FISCO BCOS(国内金链盟)<ul>
 <li>FISCO BCOS 是由国内企业主导研发、对外开源、安全可控的企业级金融联盟链底层平台，由金链盟开源工作组协作打造，并于 2017 年正式对外开源。</li>
-<li>官网：<a target="_blank" rel="noopener" href="https://www.fisco.com.cn/fisco_20.html">🔗</a></li>
-<li>white paper:<a target="_blank" rel="noopener" href="https://github.com/FISCO-BCOS/whitepaper">🔗</a></li>
-<li>中文文档：<a target="_blank" rel="noopener" href="https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/">🔗</a></li>
-<li>英文文档：<a target="_blank" rel="noopener" href="https://fisco-bcos-documentation.readthedocs.io/en/latest/index.html">🔗</a></li>
-<li>博客：<a target="_blank" rel="noopener" href="https://www.wanghaoyi.com/fisco-bcos-learning.html">🔗</a></li>
-<li>FAQ：<a target="_blank" rel="noopener" href="https://fisco-bcos-documentation.readthedocs.io/en/latest/docs/faq/faq.html">🔗</a></li>
+<li>官网：<a class="link"   target="_blank" rel="noopener" href="https://www.fisco.com.cn/fisco_20.html" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>white paper:<a class="link"   target="_blank" rel="noopener" href="https://github.com/FISCO-BCOS/whitepaper" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>中文文档：<a class="link"   target="_blank" rel="noopener" href="https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>英文文档：<a class="link"   target="_blank" rel="noopener" href="https://fisco-bcos-documentation.readthedocs.io/en/latest/index.html" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>博客：<a class="link"   target="_blank" rel="noopener" href="https://www.wanghaoyi.com/fisco-bcos-learning.html" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>FAQ：<a class="link"   target="_blank" rel="noopener" href="https://fisco-bcos-documentation.readthedocs.io/en/latest/docs/faq/faq.html" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
 </ul>
 </li>
 <li>Quorum(基于以太坊代码库)<ul>
 <li>Quorum 是由美国金融机构摩根大通推出的企业级分布式账本和智能合约平台，可看作企业版的以太坊。它是基于以太坊分布式账本协议开发而成，为金融服务行业提供以太坊许可链方案，以便支持交易与合约的隐私性。</li>
-<li>官网：<a target="_blank" rel="noopener" href="https://quorum.com/">🔗</a></li>
-<li>white paper:<a target="_blank" rel="noopener" href="https://github.com/ConsenSys/quorum/blob/master/docs/Quorum%20Whitepaper%20v0.2.pdf">🔗</a></li>
-<li>官方 Tutorial：<a target="_blank" rel="noopener" href="https://docs.goquorum.consensys.net/">🔗</a></li>
+<li>官网：<a class="link"   target="_blank" rel="noopener" href="https://quorum.com/" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>white paper:<a class="link"   target="_blank" rel="noopener" href="https://github.com/ConsenSys/quorum/blob/master/docs/Quorum%20Whitepaper%20v0.2.pdf" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>官方 Tutorial：<a class="link"   target="_blank" rel="noopener" href="https://docs.goquorum.consensys.net/" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><strong>应用实例</strong><ul>
 <li>金融服务：<ul>
-<li>项目：taXchain - A blockchain network to exchange digitized tax forms(Hyperledger Fabric)<a target="_blank" rel="noopener" href="https://www.hyperledger.org/learn/publications/taxchain-case-study">🔗</a></li>
-<li>项目：fragmos chain - Digitizing interactions between OTC derivatives market participants(R3 Corda)<a target="_blank" rel="noopener" href="https://r3.com/case-studies/fragmos-chain/">🔗</a></li>
-<li>项目：Spunta - Revolutionizing the interbank reconciliation process in Italy(R3 Corda)<a target="_blank" rel="noopener" href="https://r3.com/case-studies/spunta/">🔗</a></li>
-<li>项目：广东国税税链项目（蚂蚁链）<a target="_blank" rel="noopener" href="https://guangdong.chinatax.gov.cn/gdsw/gzsw_swxw/2021-10/08/content_323f08675f604b629f233b5f38707d91.shtml">🔗</a></li>
-<li>项目：浙江区块链电子票据平台（蚂蚁链）<a target="_blank" rel="noopener" href="https://www.zjzwfw.gov.cn/col/col1228922696/">🔗</a></li>
+<li>项目：taXchain - A blockchain network to exchange digitized tax forms(Hyperledger Fabric)<a class="link"   target="_blank" rel="noopener" href="https://www.hyperledger.org/learn/publications/taxchain-case-study" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>项目：fragmos chain - Digitizing interactions between OTC derivatives market participants(R3 Corda)<a class="link"   target="_blank" rel="noopener" href="https://r3.com/case-studies/fragmos-chain/" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>项目：Spunta - Revolutionizing the interbank reconciliation process in Italy(R3 Corda)<a class="link"   target="_blank" rel="noopener" href="https://r3.com/case-studies/spunta/" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>项目：广东国税税链项目（蚂蚁链）<a class="link"   target="_blank" rel="noopener" href="https://guangdong.chinatax.gov.cn/gdsw/gzsw_swxw/2021-10/08/content_323f08675f604b629f233b5f38707d91.shtml" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>项目：浙江区块链电子票据平台（蚂蚁链）<a class="link"   target="_blank" rel="noopener" href="https://www.zjzwfw.gov.cn/col/col1228922696/" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
 </ul>
 </li>
 <li>供应链管理：<ul>
-<li>项目：KrypC - Managing the Metal and Mining Industry’s Supply Chain(Hyperledger Fabric)<a target="_blank" rel="noopener" href="https://www.hyperledger.org/learn/publications/krypc-minehub-case-study">🔗</a></li>
-<li>项目：gavea - Automating the commodity trading process(R3 Corda)<a target="_blank" rel="noopener" href="https://r3.com/case-studies/gavea/">🔗</a></li>
-<li>项目：axedra - Connecting and digitizing the precious metals industry(R3 Corda)<a target="_blank" rel="noopener" href="https://r3.com/case-studies/axedras/">🔗</a></li>
+<li>项目：KrypC - Managing the Metal and Mining Industry’s Supply Chain(Hyperledger Fabric)<a class="link"   target="_blank" rel="noopener" href="https://www.hyperledger.org/learn/publications/krypc-minehub-case-study" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>项目：gavea - Automating the commodity trading process(R3 Corda)<a class="link"   target="_blank" rel="noopener" href="https://r3.com/case-studies/gavea/" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>项目：axedra - Connecting and digitizing the precious metals industry(R3 Corda)<a class="link"   target="_blank" rel="noopener" href="https://r3.com/case-studies/axedras/" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
 </ul>
 </li>
 <li>电子政务：<ul>
 <li>项目：澳门智慧城市-证书电子化（FISCO BCOS）</li>
 <li>项目：山东省荣成市区块链政务诚信管理系统（FISCO BCOS)</li>
-<li>项目：安徽区块链电子证照应用（蚂蚁链）<a target="_blank" rel="noopener" href="https://sft.ah.gov.cn/public/7061/53866131.html">🔗</a></li>
+<li>项目：安徽区块链电子证照应用（蚂蚁链）<a class="link"   target="_blank" rel="noopener" href="https://sft.ah.gov.cn/public/7061/53866131.html" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
 </ul>
 </li>
 <li>智慧医疗：<ul>
-<li>项目：LedgerDomain - The Right Rx for the Pharmaceutical Supply Chain(Hyperledger Fabric)<a target="_blank" rel="noopener" href="https://www.hyperledger.org/learn/publications/ledgerdomain-case-study">🔗</a></li>
-<li>项目：武汉市中心医院&#x2F;上海华山医院-区块链医疗电子处方（蚂蚁链）<a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/697162">🔗</a></li>
+<li>项目：LedgerDomain - The Right Rx for the Pharmaceutical Supply Chain(Hyperledger Fabric)<a class="link"   target="_blank" rel="noopener" href="https://www.hyperledger.org/learn/publications/ledgerdomain-case-study" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>项目：武汉市中心医院&#x2F;上海华山医院-区块链医疗电子处方（蚂蚁链）<a class="link"   target="_blank" rel="noopener" href="https://developer.aliyun.com/article/697162" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
 </ul>
 </li>
 <li>版权保护：<ul>
-<li>项目：人民版权-区块链版权保护平台（FISCO BCOS）<a target="_blank" rel="noopener" href="https://www.peoplec.cn/">🔗</a></li>
-<li>项目：雀凿数字版权服务平台（蚂蚁链）<a target="_blank" rel="noopener" href="https://www.mydcs.com/pages/index?channelCode=WBLT">🔗</a></li>
+<li>项目：人民版权-区块链版权保护平台（FISCO BCOS）<a class="link"   target="_blank" rel="noopener" href="https://www.peoplec.cn/" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>项目：雀凿数字版权服务平台（蚂蚁链）<a class="link"   target="_blank" rel="noopener" href="https://www.mydcs.com/pages/index?channelCode=WBLT" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
 </ul>
 </li>
 <li>其他：<ul>
-<li>项目：Sony Global Education - a Next-Generation Credentials Platform(Hyperledger Fabric)<a target="_blank" rel="noopener" href="https://www.hyperledger.org/wp-content/uploads/2017/12/Hyperledger_CaseStudy_Sony.pdf">🔗</a></li>
+<li>项目：Sony Global Education - a Next-Generation Credentials Platform(Hyperledger Fabric)<a class="link"   target="_blank" rel="noopener" href="https://www.hyperledger.org/wp-content/uploads/2017/12/Hyperledger_CaseStudy_Sony.pdf" >🔗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
 <li>项目：绿色出行普惠平台-绿色碳交易积分区块链（FISCO BCOS)</li>
 </ul>
 </li>
@@ -424,386 +591,412 @@
 </li>
 </ul>
 
-                
-              </div>
-            
-            <hr/>
-            <div>
-              <div class="post-metas my-3">
-  
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
+		</div>
 
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>标题:</strong> 04-联盟链</li>
+        <li><strong>作者:</strong> The Redefine Team</li>
+        <li><strong>创建于
+                :</strong> 2024-08-02 00:03:18</li>
         
-  <a href="/categories/BlockChain/" class="category-chain-item">BlockChain</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/BlockChain/Road/" class="category-chain-item">Road</a>
-  
-  
+            <li>
+                <strong>更新于
+                    :</strong> 2025-11-20 10:21:25
+            </li>
+        
+        <li>
+            <strong>链接:</strong> https://redefine.ohevan.com/2024/08/02/BlockChain/Road/04-联盟链/
+        </li>
+        <li>
+            <strong>
+                版权声明:
+            </strong>
+            
 
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/BlockChain/" class="print-no-link">#BlockChain</a>
-      
-        <a href="/tags/Road/" class="print-no-link">#Road</a>
-      
-    </div>
-  
+            
+                本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> 进行许可。
+            
+        </li>
+    </ul>
 </div>
 
+		</div>
+		
 
-              
-  
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/BlockChain/">#BlockChain</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Road/">#Road</a>&nbsp;
+			</li>
+			
+		</ul>
+		
 
-  <div class="license-box my-3">
-    <div class="license-title">
-      <div>04-联盟链</div>
-      <div>https://prelearn-code.github.io/2024/08/02/BlockChain/Road/04-联盟链/</div>
+		
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="prev" rel="prev" href="/2024/08/02/BlockChain/Road/05-%E4%BB%A3%E5%B8%81/">
+					<span class="left arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-left"></i>
+					</span>
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item truncate max-w-48">05-代币</span>
+						<span class="post-nav-item">上一篇</span>
+					</span>
+				</a>
+			</div>
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2024/08/02/BlockChain/Road/03-Dapp/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item truncate max-w-48">03-Dapp</span>
+						<span class="post-nav-item">下一篇</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+		<div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+			<div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        评论
     </div>
-    <div class="license-meta">
-      
-        <div class="license-meta-item">
-          <div>作者</div>
-          <div>prelearn</div>
-        </div>
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>发布于</div>
-          <div>2024年8月2日</div>
-        </div>
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>更新于</div>
-          <div>2025年11月20日</div>
-        </div>
-      
-      
-        <div class="license-meta-item">
-          <div>许可协议</div>
-          <div>
+    
+
+        
             
-              
-              
-                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
-                    <i class="iconfont icon-by"></i>
-                  </span>
-                </a>
-              
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://example.example.com',
+          dark: 'body[class~="dark-mode"]',
+          reaction: false,
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+                    lang: 'zh-CN',
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+		</div>
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">目录</div>
+		<div class="page-title">04-联盟链</div>
+		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Consortium-Blockchain-roadmap-2024"><span class="nav-text">Consortium Blockchain-roadmap 2024</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E5%B1%82"><span class="nav-text">第一层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E5%B1%82"><span class="nav-text">第二层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E5%B1%82"><span class="nav-text">第三层</span></a></li></ol></li></ol>
+
+	</div>
+</div>
+	</div>
+	
+</div>
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
             
-          </div>
+              <span>2022</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">The Redefine Team</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        共撰写了 39 篇文章
+                    </span>
+                    
+                </p>
+            
         </div>
-      
-    </div>
-    <div class="license-icon iconfont"></div>
-  </div>
-
-
-
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2024/08/02/BlockChain/Road/05-%E4%BB%A3%E5%B8%81/" title="05-代币">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">05-代币</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2024/08/02/BlockChain/Road/03-Dapp/" title="03-Dapp">
-                        <span class="hidden-mobile">03-Dapp</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">访问人数</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">总访问量</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
             </div>
-
-            
-          </article>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.5</a></span>
         </div>
-      </div>
-    </div>
+        
+        
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
 
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header">
-    <i class="iconfont icon-list"></i>
-    <span>目录</span>
-  </p>
-  <div class="toc-body" id="toc-body"></div>
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+		<li class="go-comment">
+			<i class="fa-regular fa-comments"></i>
+		</li>
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
 </div>
 
+	
 
-
-  </aside>
-
-
-    </div>
-  </div>
-</div>
+</main>
 
 
 
+<script src="/js/build/libs/Swup.min.js"></script>
 
+<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
 
-  
+<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
 
+<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
 
+<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
 
-  
+<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
 
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
-    
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-    
-
-    
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-    </div>
-  
-  
-  
-  
-</div>
-
-  </footer>
-
-  <!-- Scripts -->
-  
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
-
-
-<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
-
-
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
-      }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
-
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-
-  
 <script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
-    var toc = jQuery('#toc');
-    if (toc.length === 0 || !window.tocbot) { return; }
-    var boardCtn = jQuery('#board-ctn');
-    var boardTop = boardCtn.offset().top;
-
-    window.tocbot.init(Object.assign({
-      tocSelector     : '#toc-body',
-      contentSelector : '.markdown-body',
-      linkClass       : 'tocbot-link',
-      activeLinkClass : 'tocbot-active-link',
-      listClass       : 'tocbot-list',
-      isCollapsedClass: 'tocbot-is-collapsed',
-      collapsibleClass: 'tocbot-is-collapsible',
-      scrollSmooth    : true,
-      includeTitleTags: true,
-      headingsOffset  : -boardTop,
-    }, CONFIG.toc));
-    if (toc.find('.toc-list-item').length > 0) {
-      toc.css('visibility', 'visible');
-    }
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('tocbot' in window) {
-        tocbot.refresh();
-        var toc = jQuery('#toc');
-        if (toc.length === 0 || !tocbot) {
-          return;
-        }
-        if (toc.find('.toc-list-item').length > 0) {
-          toc.css('visibility', 'visible');
-        }
-      }
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
     });
-  });
 </script>
 
 
-  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
 
-  <script>Fluid.plugins.codeWidget();</script>
+
+	
+<script src="/js/build/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/build/utils.js" type="module"></script>
+
+<script src="/js/build/main.js" type="module"></script>
+
+<script src="/js/build/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/build/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/build/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/build/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/runtime.js"></script>
+
+    
+<script src="/js/build/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
 
 
   
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
-    window.anchors.options = {
-      placement: CONFIG.anchorjs.placement,
-      visible  : CONFIG.anchorjs.visible
-    };
-    if (CONFIG.anchorjs.icon) {
-      window.anchors.options.icon = CONFIG.anchorjs.icon;
-    }
-    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-    var res = [];
-    for (var item of el) {
-      res.push('.markdown-body > ' + item.trim());
-    }
-    if (CONFIG.anchorjs.placement === 'left') {
-      window.anchors.options.class = 'anchorjs-link-left';
-    }
-    window.anchors.add(res.join(', '));
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('anchors' in window) {
-        anchors.removeAll();
-        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-        var res = [];
-        for (var item of el) {
-          res.push('.markdown-body > ' + item.trim());
-        }
-        if (CONFIG.anchorjs.placement === 'left') {
-          anchors.options.class = 'anchorjs-link-left';
-        }
-        anchors.add(res.join(', '));
-      }
-    });
-  });
-</script>
-
+<script src="/js/build/libs/Typed.min.js"></script>
 
   
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
-    Fluid.plugins.fancyBox();
-  });
-</script>
-
-
-  <script>Fluid.plugins.imageCaption();</script>
-
-  <script  src="/js/local-search.js" ></script>
+<script src="/js/build/plugins/typed.js" type="module"></script>
 
 
 
 
 
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
 
 
-  
 
-  <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript>
+    
+<script src="/js/build/libs/anime.min.js"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/build/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+
+	
 </body>
+
 </html>
