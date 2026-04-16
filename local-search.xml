@@ -903,12 +903,20 @@
   
   
   <entry>
-    <title>01 比特币中的密码学原理</title>
-    <link href="/null/BlockChain/BTC/01%20%E6%AF%94%E7%89%B9%E5%B8%81%E4%B8%AD%E7%9A%84%E5%AF%86%E7%A0%81%E5%AD%A6%E5%8E%9F%E7%90%86/"/>
-    <url>/null/BlockChain/BTC/01%20%E6%AF%94%E7%89%B9%E5%B8%81%E4%B8%AD%E7%9A%84%E5%AF%86%E7%A0%81%E5%AD%A6%E5%8E%9F%E7%90%86/</url>
+    <title>02 BTC-数据结构</title>
+    <link href="/BlockChain/BTC/BlockChain/BTC/02%20BTC-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    <url>/BlockChain/BTC/BlockChain/BTC/02%20BTC-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</url>
     
-    <content type="html"><![CDATA[<h1 id="1-哈希函数"><a href="#1-哈希函数" class="headerlink" title="1.哈希函数"></a>1.哈希函数</h1><h3 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h3><ul><li>collision resistance：哈希碰撞十分困难。</li><li>hiding：即不可逆的性质。</li><li>puzzle friendly：雪崩效应。</li></ul><h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><ul><li>生成摘要，做完整性验证。</li><li>数字签名</li><li>数字信封，验证信息。</li></ul><h1 id="2-对称加密"><a href="#2-对称加密" class="headerlink" title="2.对称加密"></a>2.对称加密</h1><h3 id="性质-1"><a href="#性质-1" class="headerlink" title="性质"></a>性质</h3><ul><li>密钥传输需要在安全的条件，密钥分发不便。</li><li></li></ul><h3 id="作用-1"><a href="#作用-1" class="headerlink" title="作用"></a>作用</h3><p>- </p><h1 id="3-非对称加密"><a href="#3-非对称加密" class="headerlink" title="3.非对称加密"></a>3.非对称加密</h1><h3 id="条件"><a href="#条件" class="headerlink" title="条件"></a>条件</h3><ul><li>好的随机源，防止生成的随机数的重复。</li></ul><h3 id="性质-2"><a href="#性质-2" class="headerlink" title="性质"></a>性质</h3><ul><li>已知公钥，生成私钥是十分困难。</li></ul><h3 id="作用-2"><a href="#作用-2" class="headerlink" title="作用"></a>作用</h3><ul><li>使用公私密钥对，进行加密与验证。</li></ul><h1 id="4-公私钥对的生成"><a href="#4-公私钥对的生成" class="headerlink" title="4.公私钥对的生成"></a>4.公私钥对的生成</h1><p><a href="https://www.cnblogs.com/kumata/p/10477369.html">比特币公私钥对生成</a></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="1-区块关系-链表形式"><a href="#1-区块关系-链表形式" class="headerlink" title="1. 区块关系-链表形式"></a>1. 区块关系-链表形式</h1><h3 id="区块格式"><a href="#区块格式" class="headerlink" title="区块格式"></a>区块格式</h3><ul><li>前一个HASH</li><li>本区块的区块信息。</li><li>二者合并取HASH为本区块的HASH值。</li></ul><h1 id="2-默克尔树"><a href="#2-默克尔树" class="headerlink" title="2. 默克尔树"></a>2. 默克尔树</h1><h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><ul><li>验证数据的完整性。</li><li>交易的组成形式为默克尔树.</li><li>根哈希值在block header里面。</li></ul><h3 id="验证交易的可信性"><a href="#验证交易的可信性" class="headerlink" title="验证交易的可信性"></a>验证交易的可信性</h3><p><img src="/pic/Pasted%20image%2020240711184141.png"></p><p>说明：</p><ul><li>轻节点具有交易的默克尔树的跟哈希。</li><li>只用提供交易路径上的哈希值，即可计算是否与根哈希值符合。</li><li>其中区块中的两个哈希值，表示两个哈希值的哈希值。</li></ul><h3 id="证明区块不存在区块中"><a href="#证明区块不存在区块中" class="headerlink" title="证明区块不存在区块中"></a>证明区块不存在区块中</h3><p>操作：对于所有的交易HASH都排序，比特币没有排序。</p><h1 id="3-区块内容"><a href="#3-区块内容" class="headerlink" title="3. 区块内容"></a>3. 区块内容</h1><h3 id="block-header"><a href="#block-header" class="headerlink" title="block header"></a>block header</h3><ul><li>协议</li><li>前一个区块头的HASH。</li><li>交易的默克尔根HASH。</li><li>target，目标值。</li><li>Nonce，随机数值。</li></ul><h3 id="block-body"><a href="#block-body" class="headerlink" title="block body"></a>block body</h3><ul><li>包含交易信息。</li></ul>]]></content>
     
+    
+    <categories>
+      
+      <category>BlockChain</category>
+      
+      <category>BTC</category>
+      
+    </categories>
     
     
     <tags>
@@ -924,20 +932,12 @@
   
   
   <entry>
-    <title>02 BTC-数据结构</title>
-    <link href="/BlockChain/BTC/BlockChain/BTC/02%20BTC-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
-    <url>/BlockChain/BTC/BlockChain/BTC/02%20BTC-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</url>
+    <title>01 比特币中的密码学原理</title>
+    <link href="/null/BlockChain/BTC/01%20%E6%AF%94%E7%89%B9%E5%B8%81%E4%B8%AD%E7%9A%84%E5%AF%86%E7%A0%81%E5%AD%A6%E5%8E%9F%E7%90%86/"/>
+    <url>/null/BlockChain/BTC/01%20%E6%AF%94%E7%89%B9%E5%B8%81%E4%B8%AD%E7%9A%84%E5%AF%86%E7%A0%81%E5%AD%A6%E5%8E%9F%E7%90%86/</url>
     
-    <content type="html"><![CDATA[<h1 id="1-区块关系-链表形式"><a href="#1-区块关系-链表形式" class="headerlink" title="1. 区块关系-链表形式"></a>1. 区块关系-链表形式</h1><h3 id="区块格式"><a href="#区块格式" class="headerlink" title="区块格式"></a>区块格式</h3><ul><li>前一个HASH</li><li>本区块的区块信息。</li><li>二者合并取HASH为本区块的HASH值。</li></ul><h1 id="2-默克尔树"><a href="#2-默克尔树" class="headerlink" title="2. 默克尔树"></a>2. 默克尔树</h1><h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><ul><li>验证数据的完整性。</li><li>交易的组成形式为默克尔树.</li><li>根哈希值在block header里面。</li></ul><h3 id="验证交易的可信性"><a href="#验证交易的可信性" class="headerlink" title="验证交易的可信性"></a>验证交易的可信性</h3><p><img src="/pic/Pasted%20image%2020240711184141.png"></p><p>说明：</p><ul><li>轻节点具有交易的默克尔树的跟哈希。</li><li>只用提供交易路径上的哈希值，即可计算是否与根哈希值符合。</li><li>其中区块中的两个哈希值，表示两个哈希值的哈希值。</li></ul><h3 id="证明区块不存在区块中"><a href="#证明区块不存在区块中" class="headerlink" title="证明区块不存在区块中"></a>证明区块不存在区块中</h3><p>操作：对于所有的交易HASH都排序，比特币没有排序。</p><h1 id="3-区块内容"><a href="#3-区块内容" class="headerlink" title="3. 区块内容"></a>3. 区块内容</h1><h3 id="block-header"><a href="#block-header" class="headerlink" title="block header"></a>block header</h3><ul><li>协议</li><li>前一个区块头的HASH。</li><li>交易的默克尔根HASH。</li><li>target，目标值。</li><li>Nonce，随机数值。</li></ul><h3 id="block-body"><a href="#block-body" class="headerlink" title="block body"></a>block body</h3><ul><li>包含交易信息。</li></ul>]]></content>
+    <content type="html"><![CDATA[<h1 id="1-哈希函数"><a href="#1-哈希函数" class="headerlink" title="1.哈希函数"></a>1.哈希函数</h1><h3 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h3><ul><li>collision resistance：哈希碰撞十分困难。</li><li>hiding：即不可逆的性质。</li><li>puzzle friendly：雪崩效应。</li></ul><h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><ul><li>生成摘要，做完整性验证。</li><li>数字签名</li><li>数字信封，验证信息。</li></ul><h1 id="2-对称加密"><a href="#2-对称加密" class="headerlink" title="2.对称加密"></a>2.对称加密</h1><h3 id="性质-1"><a href="#性质-1" class="headerlink" title="性质"></a>性质</h3><ul><li>密钥传输需要在安全的条件，密钥分发不便。</li><li></li></ul><h3 id="作用-1"><a href="#作用-1" class="headerlink" title="作用"></a>作用</h3><p>- </p><h1 id="3-非对称加密"><a href="#3-非对称加密" class="headerlink" title="3.非对称加密"></a>3.非对称加密</h1><h3 id="条件"><a href="#条件" class="headerlink" title="条件"></a>条件</h3><ul><li>好的随机源，防止生成的随机数的重复。</li></ul><h3 id="性质-2"><a href="#性质-2" class="headerlink" title="性质"></a>性质</h3><ul><li>已知公钥，生成私钥是十分困难。</li></ul><h3 id="作用-2"><a href="#作用-2" class="headerlink" title="作用"></a>作用</h3><ul><li>使用公私密钥对，进行加密与验证。</li></ul><h1 id="4-公私钥对的生成"><a href="#4-公私钥对的生成" class="headerlink" title="4.公私钥对的生成"></a>4.公私钥对的生成</h1><p><a href="https://www.cnblogs.com/kumata/p/10477369.html">比特币公私钥对生成</a></p>]]></content>
     
-    
-    <categories>
-      
-      <category>BlockChain</category>
-      
-      <category>BTC</category>
-      
-    </categories>
     
     
     <tags>
